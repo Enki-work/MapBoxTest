@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */; };
 		A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC62D2443FAF100D12922 /* AppDelegate.swift */; };
 		A47DC6302443FAF100D12922 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC62F2443FAF100D12922 /* SceneDelegate.swift */; };
 		A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC6312443FAF100D12922 /* MapViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		A47DC62A2443FAF100D12922 /* MapBoxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapBoxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A47DC62D2443FAF100D12922 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A47DC62F2443FAF100D12922 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96667FF92446CA8D00661E91 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		A47DC6212443FAF100D12922 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +90,7 @@
 		A47DC62C2443FAF100D12922 /* MapBoxTest */ = {
 			isa = PBXGroup;
 			children = (
+				96667FF92446CA8D00661E91 /* Manager */,
 				A47DC62D2443FAF100D12922 /* AppDelegate.swift */,
 				A47DC62F2443FAF100D12922 /* SceneDelegate.swift */,
 				A47DC6312443FAF100D12922 /* MapViewController.swift */,
@@ -197,6 +208,7 @@
 			files = (
 				A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */,
 				A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */,
+				96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */,
 				A47DC6302443FAF100D12922 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
