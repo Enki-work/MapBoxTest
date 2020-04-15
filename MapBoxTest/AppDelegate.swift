@@ -77,7 +77,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         LocalNotificationManager.sendLocalNotification(title: "位置情報の更新を開始します",
                                                        body: "あなた現在の位置情報 - lat: " + lat + ",lon: " + lon,
                                                        timeInterval: 5,
-                                                       isRepeats: true,
+                                                       isRepeats: false,
                                                        identifier: "didUpdateLocationsIdentifier") {
                                                         (error) in
                                                         if error != nil {
