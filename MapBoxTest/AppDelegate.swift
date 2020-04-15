@@ -7,14 +7,26 @@
 //
 
 import UIKit
+import CoreLocation
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var locationManager: CLLocationManager = CLLocationManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        startRequestLocation()
+        requestLocalNotificationAuth()
+        
+        locationManager.delegate = self
+        
+        if let _ = launchOptions?[UIApplication.LaunchOptionsKey.location] {
+            // 位置情報の取得を開始する
+            locationManager.startUpdatingLocation()
+        }
+        
         return true
     }
 
@@ -32,6 +44,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
+    private func startRequestLocation() {
+        
+        locationManager.allowsBackgroundLocationUpdates = true
+        // 位置情報の取得を開始する
+        locationManager.startUpdatingLocation()
+        // 位置情報の取得を維持するように
+        locationManager.startMonitoringSignificantLocationChanges()
+    }
+    
+    private func requestLocalNotificationAuth() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,
+                                                                          .sound,
+                                                                          .badge])
+        { (acceped, error) in
+            if !acceped {
+                print("ローカル通知は拒否された")
+            }
+        }
+    }
 }
 
+extension AppDelegate: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        var lat = ""
+        var lon = ""
+        
+        if let myLocations = locations.first {
+            lat = String(format: "%.2f", myLocations.coordinate.latitude)
+            lon = String(format: "%.2f", myLocations.coordinate.longitude)
+        }
+        LocalNotificationManager.sendLocalNotification(title: "位置情報の更新を開始します",
+                                                       body: "あなた現在の位置情報 - lat: " + lat + ",lon: " + lon,
+                                                       timeInterval: 5,
+                                                       isRepeats: true,
+                                                       identifier: "didUpdateLocationsIdentifier") {
+                                                        (error) in
+                                                        if error != nil {
+                                                            print(error?.localizedDescription ?? "")
+                                                        }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedWhenInUse:
+            locationManager.requestAlwaysAuthorization()
+        case .authorizedAlways:
+            startRequestLocation()
+            break
+        case .notDetermined:
+            break
+        case .restricted:
+            break
+        default:
+            break
+        }
+    }
+}
