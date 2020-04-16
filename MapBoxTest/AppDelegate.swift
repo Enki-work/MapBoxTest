@@ -67,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // デバッグモードでローカル通知を送付する
+        #if DEBUG
         var lat = ""
         var lon = ""
         
@@ -75,7 +77,7 @@ extension AppDelegate: CLLocationManagerDelegate {
             lon = String(format: "%.2f", myLocations.coordinate.longitude)
         }
         LocalNotificationManager.sendLocalNotification(title: "位置情報の更新を開始します",
-                                                       body: "あなた現在の位置情報 - lat: " + lat + ",lon: " + lon,
+                                                       body: "あなた現在の位置情報 - lat: " + lat + ", lon: " + lon,
                                                        timeInterval: 5,
                                                        isRepeats: false,
                                                        identifier: "didUpdateLocationsIdentifier") {
@@ -84,6 +86,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                                                             print(error?.localizedDescription ?? "")
                                                         }
         }
+        #endif
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
