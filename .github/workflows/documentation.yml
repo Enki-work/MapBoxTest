@@ -1,13 +1,12 @@
 name: Documentation
 
-on:
-  push:
-    branches:
-      #- master
-      on: [push]
-    paths:
-      - .github/workflows/documentation.yml
-      - MapBoxTest/SwiftDoc/**.swift
+on: [push]
+#  push:
+#    branches:
+#      - master
+#    paths:
+#      - .github/workflows/documentation.yml
+#      - MapBoxTest/SwiftDoc/**.swift
 
 jobs:
   build:
