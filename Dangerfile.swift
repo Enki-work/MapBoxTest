@@ -1,42 +1,12 @@
-import Danger
-import Foundation
+# ===== PR title =====
+warn('PR is classed as Work in Progress') if github.pr_title.include? '[WIP]'
 
-let danger = Danger()
+# ===== diff size =====
+warn('PRの変更量が多すぎます。PRを分割しましょう！') if git.lines_of_code > 500
 
-// fileImport: DangerfileExtensions/ChangelogCheck.swift
-checkChangelog()
-
-if danger.git.createdFiles.count + danger.git.modifiedFiles.count - danger.git.deletedFiles.count > 300 {
-    warn("Big PR, try to keep changes smaller if you can")
-}
-
-let swiftFilesWithCopyright = danger.git.createdFiles.filter {
-    $0.fileType == .swift
-        && danger.utils.readFile($0).contains("//  Created by")
-}
-
-if !swiftFilesWithCopyright.isEmpty {
-    let files = swiftFilesWithCopyright.joined(separator: ", ")
-    warn("In Danger JS we don't include copyright headers, found them in: \(files)")
-}
-
-SwiftLint.lint(.modifiedAndCreatedFiles(directory: "Sources"), inline: true)
-
-// Support running via `danger local`
-if danger.github != nil {
-    // These checks only happen on a PR
-    if danger.github.pullRequest.title.contains("WIP") {
-        warn("PR is classed as Work in Progress")
-    }
-
-    // TODO: We're still figuring this out
-    _ = danger.github.api.me { response in
-        print("OK")
-        switch response {
-        case let .success(user):
-            message(user.name ?? "")
-        case .failure:
-            break
-        }
-    }
-}
+# ===== Test =====
+raise('テストが書かれていません！') if `grep -r fdescribe specs/ `.length > 1
+raise('テストが書かれていません！') if `grep -r fit specs/ `.length > 1
+# ===== Label ====
+labels = github.pr_labels
+warn('labelを選択してください！') if labels.empty?
