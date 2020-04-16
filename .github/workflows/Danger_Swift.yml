@@ -1,21 +1,4 @@
-name: Danger_Swift
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Danger Swift
-      uses: danger/swift@2.0.3
-      with:
-          args: --failOnErrors --no-publish-check
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-
+github.dismiss_out_of_range_messages
+swiftlint.config_file = '.SwiftLint.yml' # ここで.swiftlint.ymlのパスを指定
+swiftlint.lint_files inline_mode: true
