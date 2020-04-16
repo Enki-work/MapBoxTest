@@ -1,0 +1,22 @@
+PODS:
+  - SwiftFormat/CLI (0.40.14)
+
+DEPENDENCIES:
+  - SwiftFormat/CLI (from `https://github.com/nicklockwood/SwiftFormat`, tag `0.40.14`)
+
+EXTERNAL SOURCES:
+  SwiftFormat:
+    :git: https://github.com/nicklockwood/SwiftFormat
+    :tag: 0.40.14
+
+CHECKOUT OPTIONS:
+  SwiftFormat:
+    :git: https://github.com/nicklockwood/SwiftFormat
+    :tag: 0.40.14
+
+SPEC CHECKSUMS:
+  SwiftFormat: 21c9c3c748d5fcece493d8610eee23df15393458
+
+PODFILE CHECKSUM: 8c2667f9d888e0e0677b22655a7590a518111d14
+
+COCOAPODS: 1.9.1
