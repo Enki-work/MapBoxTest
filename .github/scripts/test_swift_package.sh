@@ -2,4 +2,4 @@
 
 set -eo pipefail
 
-swift test --parallel; cd ..
+swift test --parallel
