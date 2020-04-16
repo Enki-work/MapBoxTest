@@ -19,6 +19,8 @@
 		A4472C332446FCC00067A7DE /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C322446FCC00067A7DE /* LoginNavigator.swift */; };
 		A4472C35244722240067A7DE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C34244722240067A7DE /* UserModel.swift */; };
 		A4472C37244726490067A7DE /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C36244726490067A7DE /* Observable+Ext.swift */; };
+		A4472C3F2447E9780067A7DE /* CheckLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */; };
+		A4472C412447EA140067A7DE /* MapViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C402447EA140067A7DE /* MapViewNavigator.swift */; };
 		A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC62D2443FAF100D12922 /* AppDelegate.swift */; };
 		A47DC6302443FAF100D12922 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC62F2443FAF100D12922 /* SceneDelegate.swift */; };
 		A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC6312443FAF100D12922 /* MapViewController.swift */; };
@@ -60,6 +62,8 @@
 		A4472C322446FCC00067A7DE /* LoginNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
 		A4472C34244722240067A7DE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		A4472C36244726490067A7DE /* Observable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
+		A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginViewModel.swift; sourceTree = "<group>"; };
+		A4472C402447EA140067A7DE /* MapViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewNavigator.swift; sourceTree = "<group>"; };
 		A47DC62A2443FAF100D12922 /* MapBoxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapBoxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A47DC62D2443FAF100D12922 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A47DC62F2443FAF100D12922 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 			children = (
 				A4472C2A2446FA550067A7DE /* LoginViewModel.swift */,
 				A4472C2E2446FAC20067A7DE /* ViewModelType.swift */,
+				A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -138,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				A4472C322446FCC00067A7DE /* LoginNavigator.swift */,
+				A4472C402447EA140067A7DE /* MapViewNavigator.swift */,
 			);
 			path = Navigators;
 			sourceTree = "<group>";
@@ -287,9 +293,11 @@
 				A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */,
 				A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */,
 				A4472C332446FCC00067A7DE /* LoginNavigator.swift in Sources */,
+				A4472C412447EA140067A7DE /* MapViewNavigator.swift in Sources */,
 				A4472C312446FB940067A7DE /* ErrorTracker.swift in Sources */,
 				A4472C2B2446FA550067A7DE /* LoginViewModel.swift in Sources */,
 				A47DC6302443FAF100D12922 /* SceneDelegate.swift in Sources */,
+				A4472C3F2447E9780067A7DE /* CheckLoginViewModel.swift in Sources */,
 				A4472C2D2446FA7A0067A7DE /* AuthModel.swift in Sources */,
 				A4472C37244726490067A7DE /* Observable+Ext.swift in Sources */,
 				A4472C35244722240067A7DE /* UserModel.swift in Sources */,

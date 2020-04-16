@@ -16,14 +16,16 @@ class LoginViewController: UIViewController {
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    var loginViewModel: LoginViewModel!
+    private lazy var loginViewModel: LoginViewModel = {
+        return LoginViewModel(with: AuthModel(),
+        and: LoginNavigator(with: self))
+    }()
     
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeUI()
-        initializeViewModel()
         bindViewModel()
     }
     
@@ -31,11 +33,6 @@ class LoginViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         passwordTextField.isSecureTextEntry  = true
-    }
-    
-    func initializeViewModel() {
-        loginViewModel = LoginViewModel(with: AuthModel(),
-                                        and: LoginNavigator(with: self))
     }
     
     func bindViewModel() {
@@ -58,7 +55,7 @@ class LoginViewController: UIViewController {
     }
     
     func presentValidateAlert() {
-        let alert = UIAlertController(title: "メール認証", message: "メール認証を行ってください", preferredStyle: .alert)
+        let alert = UIAlertController(title: "認証エラー", message: "メールとパスワードを確認してください", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
