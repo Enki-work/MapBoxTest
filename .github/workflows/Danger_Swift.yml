@@ -9,11 +9,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Setup Ruby, JRuby and TruffleRuby
-    uses: ruby/setup-ruby@v1.31.1
-    with:
-      ruby-version: 2.6
-      run: ruby -v
+    - name: Setup ruby
+      uses: ruby/setup-ruby@v1.31.1
+      with:
+        ruby-version: 2.6
 
     - name: Cache bundle
       uses: actions/cache@v1
