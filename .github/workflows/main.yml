@@ -22,6 +22,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-carthage-
     - name: Carthage bootstrap
-      run: fastlane carthage_bootstrap
+      run: carthage bootstrap --platform iOS --cache-builds
+      env: 
+        GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Run unit tests
       run: fastlane tests
