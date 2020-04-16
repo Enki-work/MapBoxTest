@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-xcodebuild -workspace Calculator.xcworkspace \
-            -scheme Calculator\ iOS \
+xcodebuild -project MapBoxTest.xcodeproj \
+            -scheme MapBoxTest\ iOS \
             -destination platform=iOS\ Simulator,OS=13.3,name=iPhone\ 11 \
             clean test | xcpretty
