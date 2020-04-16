@@ -1,19 +1,14 @@
 name: Test
-on: [push]
+on:
+  pull_request:
+    branches:
+    - master
 jobs:
   job-test:
     name: Run unit tests
     runs-on: macOS-latest    
     steps:
     - uses: actions/checkout@v1
-    - name: Install needed software
-      run: |
-        gem install xcpretty 
-        gem install bundler:1.17.2
-        brew install swiftlint
-        brew uninstall carthage
-        brew tap nsoperations/formulas
-        brew install nsoperations/formulas/carthage 
     - name: Cache
       uses: actions/cache@v1
       with:
