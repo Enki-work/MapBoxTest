@@ -1,19 +1,24 @@
-# .github/workflows/documentation.yml
 name: Documentation
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/documentation.yml
+      - MapBoxTest/SwiftDoc/**.swift
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: Generate Documentation
         uses: SwiftDocOrg/swift-doc@master
         with:
           inputs: "MapBoxTest"
-          module-name: MyLibrary
           output: "Documentation"
       - name: Upload Documentation to Wiki
         uses: SwiftDocOrg/github-wiki-publish-action@v1
