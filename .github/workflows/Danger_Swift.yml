@@ -8,7 +8,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-
+      
+    - name: Install needed software
+      run: |
+        gem install public_suffix --version 4.0.4
+        brew install swiftlint
+        
     - name: Setup ruby
       uses: ruby/setup-ruby@v1.31.1
       with:
