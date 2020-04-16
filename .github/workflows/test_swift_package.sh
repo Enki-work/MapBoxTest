@@ -2,4 +2,4 @@
 
 set -eo pipefail
 
-cd Calculator-package; swift test --parallel; cd ..
+swift test --parallel; cd ..
