@@ -18,9 +18,8 @@ jobs:
       uses: actions/cache@v1
       with:
         path: Carthage
-        key: ${{ runner.os }}-carthage-${{ hashFiles('**/Cartfile.resolved') }}
-        restore-keys: |
-          ${{ runner.os }}-carthage-
+        key: ${{ runner.os }}-carthage-${{ hashFiles('**/Cartfile.resolved') }}-${{ github.sha }}
+        restore-keys: ${{ runner.os }}-carthage-
     - name: Carthage bootstrap
       run: carthage bootstrap --platform iOS --cache-builds
       env: 
