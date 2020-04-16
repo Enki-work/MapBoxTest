@@ -7,11 +7,14 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Danger Swift
+build:
+  runs-on: ubuntu-latest
+  name: "Run Danger"
+  steps:
+    - uses: actions/checkout@v1
+    - name: Danger
       uses: danger/swift@2.0.3
+      with:
+          args: --failOnErrors --no-publish-check
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
