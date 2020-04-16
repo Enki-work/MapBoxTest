@@ -8,11 +8,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-      
-    - name: Install needed software
-      run: |
-        gem install public_suffix --version 4.0.4
-        brew install swiftlint
         
     - name: Setup ruby
       uses: ruby/setup-ruby@v1.31.1
@@ -48,3 +43,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: bundle exec danger
+      
+    - name: Danger
+      uses: danger/swift@2.0.3
+      with:
+            args: --failOnErrors --no-publish-check
+      env:
+          GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
