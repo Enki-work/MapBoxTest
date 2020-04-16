@@ -42,7 +42,7 @@ jobs:
           ${{ runner.os }}-pods-
 
     - name: Pod install
-      run: bundle exec pod install
+      run: pod install
 
     - name: Run danger
       env:
