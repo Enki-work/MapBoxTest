@@ -54,11 +54,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func requestLocalNotificationAuth() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,
-                                                                          .sound,
-                                                                          .badge])
-        { (acceped, error) in
-            if !acceped {
+        var options: UNAuthorizationOptions
+        
+        // iOS12以降の場合お試しプッシュ通知を送る
+        if #available(iOS 12.0, *) {
+            options = [.alert, .sound, .badge, .provisional]
+        } else {
+            options = [.alert, .sound, .badge]
+        }
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { (isAcceped, error) in
+            guard error == nil else {
+                print(error?.localizedDescription ?? "Unknown Error")
+                return
+            }
+            
+            if isAcceped {
+                // 同意された場合
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            } else {
+                // 拒否された場合
                 print("ローカル通知は拒否された")
             }
         }
