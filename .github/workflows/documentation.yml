@@ -6,7 +6,7 @@ on: [push]
 #      - master
 #    paths:
 #      - .github/workflows/documentation.yml
-#      - MapBoxTest/SwiftDoc/**.swift
+#      - MapBoxTest/SwiftDoc/**.swift 
 
 jobs:
   build:
