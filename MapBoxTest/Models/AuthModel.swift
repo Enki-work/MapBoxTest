@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 class AuthModel {
-    
+
     func checkLogin() -> Observable<Bool> {
         return Observable.create { observer in
             //TODO: check login
@@ -18,7 +18,7 @@ class AuthModel {
             return Disposables.create()
         }
     }
-    
+
     func login(with email: String, and password: String) -> Observable<UserModel> {
         return Observable.create { observer in
             //TODO: Login

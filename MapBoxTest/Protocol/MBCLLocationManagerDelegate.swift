@@ -10,5 +10,4 @@ import Foundation
 import CoreLocation
 
 protocol MBCLLocationManagerDelegate: CLLocationManagerDelegate {
-    
 }
