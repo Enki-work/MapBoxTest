@@ -56,8 +56,11 @@ extension MBCLLocationManager: CLLocationManagerDelegate {
                 lat = String(format: "%.2f", myLocations.coordinate.latitude)
                 lon = String(format: "%.2f", myLocations.coordinate.longitude)
             }
-            LocalNotificationManager.sendLocalNotification(title: "位置情報の更新を開始します",
-                                                           body: "あなた現在の位置情報 - 緯度: " + lat + ", 経度: " + lon,
+
+            let title = "位置情報の更新を開始します"
+            let body = "あなた現在の位置情報 - 緯度: " + lat + ", 経度: " + lon
+
+            LocalNotificationManager.sendLocalNotification(contents: (title, body),
                                                            timeInterval: 5,
                                                            isRepeats: false,
                                                            identifier: "didUpdateLocationsIdentifier") { (error) in
