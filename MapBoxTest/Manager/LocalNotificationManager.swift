@@ -13,11 +13,11 @@ class LocalNotificationManager {
 
     // ローカル通知を設定する
     class func sendLocalNotification(title: String?,
-        body: String?,
-        timeInterval: TimeInterval,
-        isRepeats: Bool,
-        identifier: String,
-        completionHandler: @escaping (Error?) -> Void) {
+                                     body: String?,
+                                     timeInterval: TimeInterval,
+                                     isRepeats: Bool,
+                                     identifier: String,
+                                     completionHandler: @escaping (Error?) -> Void) {
         let content = UNMutableNotificationContent()
         if let title = title {
             content.title = title
@@ -28,13 +28,13 @@ class LocalNotificationManager {
         }
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval,
-            repeats: isRepeats)
+                                                        repeats: isRepeats)
 
         let request = UNNotificationRequest(identifier: identifier,
-            content: content,
-            trigger: trigger)
+                                            content: content,
+                                            trigger: trigger)
 
         UNUserNotificationCenter.current().add(request,
-            withCompletionHandler: completionHandler)
+                                               withCompletionHandler: completionHandler)
     }
 }

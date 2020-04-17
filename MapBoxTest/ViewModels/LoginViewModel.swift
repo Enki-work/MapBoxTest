@@ -11,30 +11,30 @@ import RxSwift
 import RxCocoa
 
 class LoginViewModel: ViewModelType {
-    
+
     struct Input {
         let loginTrigger: Driver<Void>
         let email: Driver<String>
         let password: Driver<String>
     }
-    
+
     struct Output {
         let login: Driver<UserModel>
         let error: Driver<Error>
     }
-    
+
     struct State {
         let error = ErrorTracker()
     }
-    
+
     private let authModel: AuthModel
     private let navigator: LoginNavigator
-    
+
     init(with authModel: AuthModel, and navigator: LoginNavigator) {
         self.authModel = authModel
         self.navigator = navigator
     }
-    
+
     func transform(input: LoginViewModel.Input) -> LoginViewModel.Output {
         let state = State()
         let requiredInputs = Driver.combineLatest(input.email, input.password)

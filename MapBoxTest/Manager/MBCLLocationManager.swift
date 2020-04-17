@@ -58,10 +58,10 @@ extension MBCLLocationManager: CLLocationManagerDelegate {
                 lon = String(format: "%.2f", myLocations.coordinate.longitude)
             }
             LocalNotificationManager.sendLocalNotification(title: "位置情報の更新を開始します",
-                body: "あなた現在の位置情報 - 緯度: " + lat + ", 経度: " + lon,
-                timeInterval: 5,
-                isRepeats: false,
-                identifier: "didUpdateLocationsIdentifier") {
+                                                           body: "あなた現在の位置情報 - 緯度: " + lat + ", 経度: " + lon,
+                                                           timeInterval: 5,
+                                                           isRepeats: false,
+                                                           identifier: "didUpdateLocationsIdentifier") {
                 (error) in
                 if error != nil {
                     print(error?.localizedDescription ?? "")
@@ -71,7 +71,7 @@ extension MBCLLocationManager: CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager,
-        didChangeAuthorization status: CLAuthorizationStatus) {
+                         didChangeAuthorization status: CLAuthorizationStatus) {
 
         switch status {
         case .authorizedWhenInUse:

@@ -11,11 +11,11 @@ import UIKit
 
 class MapViewNavigator {
     private weak var viewController: UIViewController?
-    
+
     init(with viewController: UIViewController) {
         self.viewController = viewController
     }
-    
+
     func toLogin() {
         viewController?.performSegue(withIdentifier: "toLogin", sender: nil)
     }
