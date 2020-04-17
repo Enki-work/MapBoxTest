@@ -53,8 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             options = [.alert, .sound, .badge]
         }
 
-        UNUserNotificationCenter.current().requestAuthorization(options: options) { (isAcceped,
-                                                                                     error) in
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { (isAcceped, error) in
             guard error == nil else {
                 print(error?.localizedDescription ?? "Unknown Error")
                 return
