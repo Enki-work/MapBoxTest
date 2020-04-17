@@ -17,13 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var locationManager: MBCLLocationManager = MBCLLocationManager.shared
 
     func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions:
-                         [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+                     didFinishLaunchingWithOptions
+                     launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         locationManager.startRequestLocation()
         requestLocalNotificationAuth()
 
-        if let _ = launchOptions?[UIApplication.LaunchOptionsKey.location] {
+        if launchOptions?[UIApplication.LaunchOptionsKey.location] != nil {
             // 位置情報の更新を開始する
             locationManager.startUpdatingLocation()
         }
@@ -54,9 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             options = [.alert, .sound, .badge]
         }
 
-        UNUserNotificationCenter.current().requestAuthorization(options: options) {
-            (isAcceped, error) in
-
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { (isAcceped,
+                                                                                     error) in
             guard error == nil else {
                 print(error?.localizedDescription ?? "Unknown Error")
                 return

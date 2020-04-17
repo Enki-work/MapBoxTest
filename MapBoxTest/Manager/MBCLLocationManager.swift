@@ -10,7 +10,6 @@ import Foundation
 import CoreLocation
 
 final class MBCLLocationManager: NSObject {
-
     // MARK: - Constants
 
     private let clLocationManager: CLLocationManager = CLLocationManager()
