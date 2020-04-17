@@ -15,7 +15,6 @@ extension ObservableType where E == Bool {
     public func not() -> Observable<Bool> {
         return self.map(!)
     }
-
 }
 
 extension SharedSequenceConvertibleType {
