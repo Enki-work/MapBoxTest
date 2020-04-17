@@ -1,0 +1,20 @@
+name: Danger_Swift
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Danger Swift
+      uses: danger/swift@2.0.3
+      with:
+          args: --failOnErrors --no-publish-check
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}

@@ -9,10 +9,19 @@
 
 import UIKit
 import Mapbox
+import RxSwift
+import RxCocoa
 
 class MapViewController: UIViewController {
 
-    @IBOutlet weak var mapView: MGLMapView!
+    @IBOutlet private weak var mapView: MGLMapView!
+    
+    private lazy var checkLoginViewModel: CheckLoginViewModel = {
+        return CheckLoginViewModel(with: AuthModel(),
+        and: MapViewNavigator(with: self))
+    }()
+    
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +31,21 @@ class MapViewController: UIViewController {
         mapView.userTrackingMode = .followWithHeading
     }
 
-    @IBAction func clickGetLocationBtn(_ sender: Any) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        bindViewModel()
+    }
+    
+    func bindViewModel() {
+        let checkTrigger = Observable<Void>.just(())
+        let input = CheckLoginViewModel.Input.init(checkTrigger: checkTrigger.asObservable().asDriverOnErrorJustComplete())
         
+        checkLoginViewModel.transform(input: input).check.drive().disposed(by: disposeBag)
+    }
+    
+    @IBAction func clickGetLocationBtn(_ sender: Any) {
         print("###############\(String(describing: mapView.userLocation?.coordinate))")
+        self.performSegue(withIdentifier: "toLogin", sender: nil)
     }
     
 }
