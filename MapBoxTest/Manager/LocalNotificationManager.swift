@@ -12,18 +12,17 @@ import UserNotifications
 class LocalNotificationManager {
 
     // ローカル通知を設定する
-    class func sendLocalNotification(title: String?,
-                                     body: String?,
+    class func sendLocalNotification(contents: (title: String, body: String),
                                      timeInterval: TimeInterval,
                                      isRepeats: Bool,
                                      identifier: String,
                                      completionHandler: @escaping (Error?) -> Void) {
         let content = UNMutableNotificationContent()
-        if let title = title {
+        if let title = contents.title {
             content.title = title
         }
 
-        if let body = body {
+        if let body = contents.body {
             content.body = body
         }
 
