@@ -17,7 +17,7 @@ final class MBCLLocationManager: NSObject {
     // MARK: - Variables
 
     static var shared: MBCLLocationManager = MBCLLocationManager()
-    var delegate: MBCLLocationManagerDelegate?
+    weak var delegate: MBCLLocationManagerDelegate?
 
     // MARK: - Methods
 
@@ -60,8 +60,7 @@ extension MBCLLocationManager: CLLocationManagerDelegate {
                                                            body: "あなた現在の位置情報 - 緯度: " + lat + ", 経度: " + lon,
                                                            timeInterval: 5,
                                                            isRepeats: false,
-                                                           identifier: "didUpdateLocationsIdentifier") {
-                (error) in
+                                                           identifier: "didUpdateLocationsIdentifier") { (error) in
                 if error != nil {
                     print(error?.localizedDescription ?? "")
                 }

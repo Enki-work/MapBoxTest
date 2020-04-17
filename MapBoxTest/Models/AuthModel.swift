@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 class AuthModel {
-
+// swiftlint:disable todo
     func checkLogin() -> Observable<Bool> {
         return Observable.create { observer in
             //TODO: check login
