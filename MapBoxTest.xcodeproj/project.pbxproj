@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9645D4982447F01500737631 /* MBCLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645D4972447F01500737631 /* MBCLLocationManager.swift */; };
+		9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */; };
+		96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */; };
+		9676BDCF244D642800F98E2E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9676BDCE244D642800F98E2E /* SignupViewController.swift */; };
 		A4472C1D2446D9EF0067A7DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */; };
 		A4472C232446F15A0067A7DE /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; };
 		A4472C242446F15A0067A7DE /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -21,9 +25,6 @@
 		A4472C37244726490067A7DE /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C36244726490067A7DE /* Observable+Ext.swift */; };
 		A4472C3F2447E9780067A7DE /* CheckLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */; };
 		A4472C412447EA140067A7DE /* MapViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C402447EA140067A7DE /* MapViewNavigator.swift */; };
-		9645D4982447F01500737631 /* MBCLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645D4972447F01500737631 /* MBCLLocationManager.swift */; };
-		9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */; };
-		96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */; };
 		A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC62D2443FAF100D12922 /* AppDelegate.swift */; };
 		A47DC6302443FAF100D12922 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC62F2443FAF100D12922 /* SceneDelegate.swift */; };
 		A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC6312443FAF100D12922 /* MapViewController.swift */; };
@@ -54,6 +55,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9645D4972447F01500737631 /* MBCLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBCLLocationManager.swift; sourceTree = "<group>"; };
+		9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBCLLocationManagerDelegate.swift; sourceTree = "<group>"; };
+		96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		9676BDCE244D642800F98E2E /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A4472C1E2446F15A0067A7DE /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		A4472C1F2446F15A0067A7DE /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
@@ -67,9 +72,6 @@
 		A4472C36244726490067A7DE /* Observable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
 		A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginViewModel.swift; sourceTree = "<group>"; };
 		A4472C402447EA140067A7DE /* MapViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewNavigator.swift; sourceTree = "<group>"; };
-		9645D4972447F01500737631 /* MBCLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBCLLocationManager.swift; sourceTree = "<group>"; };
-		9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBCLLocationManagerDelegate.swift; sourceTree = "<group>"; };
-		96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		A47DC62A2443FAF100D12922 /* MapBoxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapBoxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A47DC62D2443FAF100D12922 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A47DC62F2443FAF100D12922 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,11 +99,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9645D4992447F04B00737631 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		96667FF92446CA8D00661E91 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */,
+				9645D4972447F01500737631 /* MBCLLocationManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		A4472C192446D56E0067A7DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				A47DC6312443FAF100D12922 /* MapViewController.swift */,
 				A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */,
+				9676BDCE244D642800F98E2E /* SignupViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -152,23 +172,6 @@
 				A4472C402447EA140067A7DE /* MapViewNavigator.swift */,
 			);
 			path = Navigators;
-                sourceTree = "<group>";
-            };
-		9645D4992447F04B00737631 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		96667FF92446CA8D00661E91 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */,
-				9645D4972447F01500737631 /* MBCLLocationManager.swift */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		A47DC6212443FAF100D12922 = {
@@ -326,6 +329,7 @@
 				9645D4982447F01500737631 /* MBCLLocationManager.swift in Sources */,
 				96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */,
 				A47DC6302443FAF100D12922 /* SceneDelegate.swift in Sources */,
+				9676BDCF244D642800F98E2E /* SignupViewController.swift in Sources */,
 				A4472C3F2447E9780067A7DE /* CheckLoginViewModel.swift in Sources */,
 				A4472C2D2446FA7A0067A7DE /* AuthModel.swift in Sources */,
 				A4472C37244726490067A7DE /* Observable+Ext.swift in Sources */,

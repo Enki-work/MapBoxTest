@@ -10,17 +10,30 @@ import UIKit
 import RxSwift
 
 class LoginViewController: UIViewController {
+    // MARK: - IBOutlet
 
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+
+    // MARK: - IBAction
+
+    @IBAction func signupBtnTapped(_ sender: UIButton) {
+
+    }
+
+    // MARK: - Variables
 
     private lazy var loginViewModel: LoginViewModel = {
         return LoginViewModel(with: AuthModel(),
                               and: LoginNavigator(with: self))
     }()
 
+    // MARK: - Constants
+
     let disposeBag = DisposeBag()
+
+    // MARK: - View Life Cycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +41,15 @@ class LoginViewController: UIViewController {
         bindViewModel()
     }
 
-    func initializeUI() {
+    // MARK: - Private Methods
+
+    private func initializeUI() {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         passwordTextField.isSecureTextEntry = true
     }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         let input = LoginViewModel.Input(loginTrigger: loginButton.rx.tap.asDriver(),
                                          email: emailTextField.rx.text
                                              .map { if let text = $0 { return text } else { return "" } }
@@ -46,14 +61,14 @@ class LoginViewController: UIViewController {
         output.login.drive(onNext: userWillLogin).disposed(by: disposeBag)
     }
 
-    func userWillLogin(user: UserModel) {
+    private func userWillLogin(user: UserModel) {
         guard user.mail.count > 0, user.pwd.count > 0 else {
             presentValidateAlert()
             return
         }
     }
 
-    func presentValidateAlert() {
+    private func presentValidateAlert() {
         let alert = UIAlertController(title: "認証エラー",
                                       message: "メールとパスワードを確認してください",
                                       preferredStyle: .alert)
@@ -61,6 +76,8 @@ class LoginViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
