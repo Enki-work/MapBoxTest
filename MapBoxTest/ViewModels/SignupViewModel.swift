@@ -12,7 +12,7 @@ import RxCocoa
 
 // 検証結果
 enum ValidationResult {
-    case ok(message: String)
+    case success(message: String)
     case empty
     case validating
     case failed(message: String)
@@ -68,15 +68,13 @@ class SignupViewModel: ViewModelType {
 }
 
 extension ValidationResult {
-    
     /// 検証済みかどうか
     var isValid: Bool {
         switch self {
-        case .ok:
+        case .success:
             return true
         default:
             return false
         }
     }
 }
-

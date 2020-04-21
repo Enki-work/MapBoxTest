@@ -25,7 +25,7 @@ class MBDefaultValidationService: MBValidationServiceProtocol {
             return .just(.failed(message: "正しく入力してください"))
         }
 
-        return .just(.ok(message: "メールが利用可能"))
+        return .just(.success(message: "メールが利用可能"))
     }
 
     /// パスワード検証用
@@ -41,7 +41,7 @@ class MBDefaultValidationService: MBValidationServiceProtocol {
             return .failed(message: "\(minPasswordCount)文字以上にする必要がる")
         }
 
-        return .ok(message: "正確")
+        return .success(message: "正確")
     }
 
     /// 再確認パスワード検証用
@@ -53,7 +53,7 @@ class MBDefaultValidationService: MBValidationServiceProtocol {
         }
 
         if repeatedPassword == password {
-            return .ok(message: "正確")
+            return .success(message: "正確")
         } else {
             return .failed(message: "パスワードが異なっている")
         }

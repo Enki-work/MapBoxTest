@@ -19,12 +19,12 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var repeatedPasswordTextField: UITextField!
     @IBOutlet weak var repeatedPasswordValidationOutlet: UILabel!
     @IBOutlet weak var finishBtn: UIButton!
-    
+
     // MARK: - IBAction
     @IBAction func backBtnTapped(_ sender: UIButton) {
         self.performSegue(withIdentifier: "backToLogin", sender: nil)
     }
-    
+
     private func presentValidateAlert() {
         let alert = UIAlertController(title: "認証エラー",
                                       message: "メールとパスワードを確認してください",
@@ -34,7 +34,7 @@ class SignupViewController: UIViewController {
     }
 
     // MARK: - Constants
-    
+
     private lazy var signupViewModel: SignupViewModel = {
         return SignupViewModel()
     }()
@@ -56,36 +56,36 @@ class SignupViewController: UIViewController {
         passwordTextField.delegate = self
         repeatedPasswordTextField.delegate = self
     }
-    
+
     private func bindViewModel() {
         let input = SignupViewModel.Input(signupTrigger: UIButton().rx.tap.asDriver(),
                                           email: emailTextField.rx.text.orEmpty.asDriver(),
                                           password: passwordTextField.rx.text.orEmpty.asDriver(),
                                           repeatedPassword: repeatedPasswordTextField.rx.text.orEmpty.asDriver())
         let output = signupViewModel.transform(input: input)
-        
+
         output.validatedEmail
             .drive(emailValidationOutlet.rx.validationResult)
             .disposed(by: disposeBag)
-        
+
         output.validatedPassword
             .drive(passwordValidationOutlet.rx.validationResult)
             .disposed(by: disposeBag)
-        
+
         output.validatedPasswordRepeated
             .drive(repeatedPasswordValidationOutlet.rx.validationResult)
             .disposed(by: disposeBag)
-        
+
         output.signupEnabled.drive(onNext: { [weak self] valid in
             self?.finishBtn.isEnabled = valid
             self?.finishBtn.alpha = valid ? 1.0 : 0.5
-            }).disposed(by: disposeBag)
-        
+        }).disposed(by: disposeBag)
+
         let tapBackground = UITapGestureRecognizer()
         tapBackground.rx.event.subscribe(onNext: { [weak self] _ in
             self?.view.endEditing(true)
         })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         view.addGestureRecognizer(tapBackground)
     }
 }

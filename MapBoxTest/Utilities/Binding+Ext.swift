@@ -21,7 +21,7 @@ struct ValidationColors {
 extension ValidationResult: CustomStringConvertible {
     var description: String {
         switch self {
-        case let .ok(message):
+        case let .success(message):
             return message
         case .empty:
             return ""
@@ -36,7 +36,7 @@ extension ValidationResult: CustomStringConvertible {
 extension ValidationResult {
     var textColor: UIColor {
         switch self {
-        case .ok:
+        case .success:
             return ValidationColors.okColor
         case .empty:
             return UIColor.black
