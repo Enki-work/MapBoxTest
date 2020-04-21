@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
                                              .asDriver(onErrorJustReturn: ""),
                                          password: passwordTextField.rx.text
                                              .map { if let text = $0 { return text } else { return "" } }
-                                             .asDriver(onErrorJustReturn: "").asDriver())
+                                             .asDriver(onErrorJustReturn: ""))
         let output = loginViewModel.transform(input: input)
         output.login.drive(onNext: userWillLogin).disposed(by: disposeBag)
     }
