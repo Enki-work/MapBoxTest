@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A4472C1D2446D9EF0067A7DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */; };
+		A4472C232446F15A0067A7DE /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; };
+		A4472C242446F15A0067A7DE /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4472C252446F15A0067A7DE /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C202446F15A0067A7DE /* RxCocoa.framework */; };
+		A4472C262446F15A0067A7DE /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C202446F15A0067A7DE /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4472C2B2446FA550067A7DE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C2A2446FA550067A7DE /* LoginViewModel.swift */; };
+		A4472C2D2446FA7A0067A7DE /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C2C2446FA7A0067A7DE /* AuthModel.swift */; };
+		A4472C2F2446FAC20067A7DE /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C2E2446FAC20067A7DE /* ViewModelType.swift */; };
+		A4472C312446FB940067A7DE /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C302446FB940067A7DE /* ErrorTracker.swift */; };
+		A4472C332446FCC00067A7DE /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C322446FCC00067A7DE /* LoginNavigator.swift */; };
+		A4472C35244722240067A7DE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C34244722240067A7DE /* UserModel.swift */; };
+		A4472C37244726490067A7DE /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C36244726490067A7DE /* Observable+Ext.swift */; };
+		A4472C3F2447E9780067A7DE /* CheckLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */; };
+		A4472C412447EA140067A7DE /* MapViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C402447EA140067A7DE /* MapViewNavigator.swift */; };
 		9645D4982447F01500737631 /* MBCLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645D4972447F01500737631 /* MBCLLocationManager.swift */; };
 		9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */; };
 		96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */; };
@@ -29,8 +43,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				A4472C242446F15A0067A7DE /* RxSwift.framework in Embed Frameworks */,
 				A47DC6582443FD9A00D12922 /* MapboxMobileEvents.framework in Embed Frameworks */,
 				A47DC6562443FD9A00D12922 /* Mapbox.framework in Embed Frameworks */,
+				A4472C262446F15A0067A7DE /* RxCocoa.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,6 +54,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A4472C1E2446F15A0067A7DE /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		A4472C1F2446F15A0067A7DE /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		A4472C202446F15A0067A7DE /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		A4472C2A2446FA550067A7DE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		A4472C2C2446FA7A0067A7DE /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		A4472C2E2446FAC20067A7DE /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		A4472C302446FB940067A7DE /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
+		A4472C322446FCC00067A7DE /* LoginNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
+		A4472C34244722240067A7DE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		A4472C36244726490067A7DE /* Observable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
+		A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginViewModel.swift; sourceTree = "<group>"; };
+		A4472C402447EA140067A7DE /* MapViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewNavigator.swift; sourceTree = "<group>"; };
 		9645D4972447F01500737631 /* MBCLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBCLLocationManager.swift; sourceTree = "<group>"; };
 		9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBCLLocationManagerDelegate.swift; sourceTree = "<group>"; };
 		96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
@@ -58,14 +87,73 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4472C232446F15A0067A7DE /* RxSwift.framework in Frameworks */,
 				A47DC6572443FD9A00D12922 /* MapboxMobileEvents.framework in Frameworks */,
 				A47DC6552443FD9A00D12922 /* Mapbox.framework in Frameworks */,
+				A4472C252446F15A0067A7DE /* RxCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A4472C192446D56E0067A7DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A47DC6312443FAF100D12922 /* MapViewController.swift */,
+				A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A4472C1A2446D5720067A7DE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A4472C2C2446FA7A0067A7DE /* AuthModel.swift */,
+				A4472C34244722240067A7DE /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A4472C1B2446D5E10067A7DE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A47DC6332443FAF100D12922 /* Main.storyboard */,
+				A47DC6362443FAF800D12922 /* Assets.xcassets */,
+				A47DC6382443FAF800D12922 /* LaunchScreen.storyboard */,
+				A47DC63B2443FAF800D12922 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A4472C272446FA140067A7DE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A4472C2A2446FA550067A7DE /* LoginViewModel.swift */,
+				A4472C2E2446FAC20067A7DE /* ViewModelType.swift */,
+				A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A4472C282446FA1D0067A7DE /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A4472C302446FB940067A7DE /* ErrorTracker.swift */,
+				A4472C36244726490067A7DE /* Observable+Ext.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		A4472C292446FA2B0067A7DE /* Navigators */ = {
+			isa = PBXGroup;
+			children = (
+				A4472C322446FCC00067A7DE /* LoginNavigator.swift */,
+				A4472C402447EA140067A7DE /* MapViewNavigator.swift */,
+			);
+			path = Navigators;
+                sourceTree = "<group>";
+            };
 		9645D4992447F04B00737631 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,15 +191,16 @@
 		A47DC62C2443FAF100D12922 /* MapBoxTest */ = {
 			isa = PBXGroup;
 			children = (
+				A4472C292446FA2B0067A7DE /* Navigators */,
+				A4472C282446FA1D0067A7DE /* Utilities */,
+				A4472C272446FA140067A7DE /* ViewModels */,
+				A4472C1B2446D5E10067A7DE /* Resources */,
+				A4472C1A2446D5720067A7DE /* Models */,
+				A4472C192446D56E0067A7DE /* Views */,
 				9645D4992447F04B00737631 /* Protocol */,
 				96667FF92446CA8D00661E91 /* Manager */,
 				A47DC62D2443FAF100D12922 /* AppDelegate.swift */,
 				A47DC62F2443FAF100D12922 /* SceneDelegate.swift */,
-				A47DC6312443FAF100D12922 /* MapViewController.swift */,
-				A47DC6332443FAF100D12922 /* Main.storyboard */,
-				A47DC6362443FAF800D12922 /* Assets.xcassets */,
-				A47DC6382443FAF800D12922 /* LaunchScreen.storyboard */,
-				A47DC63B2443FAF800D12922 /* Info.plist */,
 			);
 			path = MapBoxTest;
 			sourceTree = "<group>";
@@ -119,6 +208,9 @@
 		A47DC6412443FD2600D12922 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4472C1E2446F15A0067A7DE /* RxBlocking.framework */,
+				A4472C202446F15A0067A7DE /* RxCocoa.framework */,
+				A4472C1F2446F15A0067A7DE /* RxSwift.framework */,
 				A47DC6422443FD2600D12922 /* Mapbox.framework */,
 				A47DC6432443FD2600D12922 /* MapboxMobileEvents.framework */,
 			);
@@ -203,6 +295,8 @@
 			inputFileListPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Mapbox.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MapboxMobileEvents.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 			);
 			inputPaths = (
 			);
@@ -221,12 +315,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4472C1D2446D9EF0067A7DE /* LoginViewController.swift in Sources */,
 				A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */,
 				9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */,
 				A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */,
+				A4472C332446FCC00067A7DE /* LoginNavigator.swift in Sources */,
+				A4472C412447EA140067A7DE /* MapViewNavigator.swift in Sources */,
+				A4472C312446FB940067A7DE /* ErrorTracker.swift in Sources */,
+				A4472C2B2446FA550067A7DE /* LoginViewModel.swift in Sources */,
 				9645D4982447F01500737631 /* MBCLLocationManager.swift in Sources */,
 				96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */,
 				A47DC6302443FAF100D12922 /* SceneDelegate.swift in Sources */,
+				A4472C3F2447E9780067A7DE /* CheckLoginViewModel.swift in Sources */,
+				A4472C2D2446FA7A0067A7DE /* AuthModel.swift in Sources */,
+				A4472C37244726490067A7DE /* Observable+Ext.swift in Sources */,
+				A4472C35244722240067A7DE /* UserModel.swift in Sources */,
+				A4472C2F2446FAC20067A7DE /* ViewModelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,7 +480,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = MapBoxTest/Info.plist;
+				INFOPLIST_FILE = MapBoxTest/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -398,7 +502,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = MapBoxTest/Info.plist;
+				INFOPLIST_FILE = MapBoxTest/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

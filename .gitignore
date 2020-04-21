@@ -1,2 +1,3 @@
 Carthage/Checkouts
 Carthage/Build
+*.xcuserstate
