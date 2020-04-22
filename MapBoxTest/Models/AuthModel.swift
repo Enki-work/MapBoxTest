@@ -36,7 +36,7 @@ class AuthModel {
         return URLSession.shared.rx.data(request: urlRequest)
             .flatMap { (data) -> Observable<UserModel> in
                 let user = try? JSONDecoder().decode(UserModel.self, from: data)
-                if let _ = user {
+                if user != nil {
                     UserDefaults.standard.set(data, forKey: "myUserData")
                 } else if let error = try? JSONDecoder().decode(MBTError.self, from: data) {
                     print(error)
