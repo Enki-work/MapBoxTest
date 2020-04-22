@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
 
     private func bindViewModel() {
         let input = LoginViewModel.Input(loginTrigger: loginButton.rx.tap.asDriver(),
-                                         email: emailTextField.rx.text
+                                         mailaddress: emailTextField.rx.text
                                              .map { if let text = $0 { return text } else { return "" } }
                                              .asDriver(onErrorJustReturn: ""),
                                          password: passwordTextField.rx.text
@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
     }
 
     private func userWillLogin(user: UserModel) {
-        guard user.mail.count > 0, user.pwd.count > 0 else {
+        guard user.mailAddress.count > 0, user.passWord.count > 0 else {
             presentValidateAlert()
             return
         }
