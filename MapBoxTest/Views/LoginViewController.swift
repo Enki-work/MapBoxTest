@@ -15,18 +15,14 @@ class LoginViewController: UIViewController {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-
-    // MARK: - IBAction
-
-    @IBAction func signupBtnTapped(_ sender: UIButton) {
-
-    }
+    @IBOutlet weak var signupButton: UIButton!
 
     // MARK: - Variables
 
     private lazy var loginViewModel: LoginViewModel = {
         return LoginViewModel(with: AuthModel(),
-                              and: LoginNavigator(with: self))
+                              and: LoginNavigator(with: self),
+                              and: SignupNavigator(with: self))
     }()
 
     // MARK: - Constants
@@ -51,6 +47,7 @@ class LoginViewController: UIViewController {
 
     private func bindViewModel() {
         let input = LoginViewModel.Input(loginTrigger: loginButton.rx.tap.asDriver(),
+                                         signupTrigger: signupButton.rx.tap.asDriver(),
                                          email: emailTextField.rx.text
                                              .map { if let text = $0 { return text } else { return "" } }
                                              .asDriver(onErrorJustReturn: ""),
@@ -59,6 +56,7 @@ class LoginViewController: UIViewController {
                                              .asDriver(onErrorJustReturn: ""))
         let output = loginViewModel.transform(input: input)
         output.login.drive(onNext: userWillLogin).disposed(by: disposeBag)
+        output.signup.drive().disposed(by: disposeBag)
     }
 
     private func userWillLogin(user: UserModel) {

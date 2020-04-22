@@ -14,12 +14,14 @@ class LoginViewModel: ViewModelType {
 
     struct Input {
         let loginTrigger: Driver<Void>
+        let signupTrigger: Driver<Void>
         let email: Driver<String>
         let password: Driver<String>
     }
 
     struct Output {
         let login: Driver<UserModel>
+        let signup: Driver<Void>
         let error: Driver<Error>
     }
 
@@ -29,10 +31,14 @@ class LoginViewModel: ViewModelType {
 
     private let authModel: AuthModel
     private let navigator: LoginNavigator
+    private let signupNavigator: SignupNavigator
 
-    init(with authModel: AuthModel, and navigator: LoginNavigator) {
+    init(with authModel: AuthModel,
+         and navigator: LoginNavigator,
+         and signupNavigator: SignupNavigator) {
         self.authModel = authModel
         self.navigator = navigator
+        self.signupNavigator = signupNavigator
     }
 
     func transform(input: LoginViewModel.Input) -> LoginViewModel.Output {
@@ -50,6 +56,12 @@ class LoginViewModel: ViewModelType {
                     .trackError(state.error)
                     .asDriverOnErrorJustComplete()
         }
-        return LoginViewModel.Output(login: login, error: state.error.asDriver())
+        let signup = input.signupTrigger.do(onNext: {
+            self.signupNavigator.toSignupView()
+        }).asDriver()
+
+        return LoginViewModel.Output(login: login,
+                                     signup: signup,
+                                     error: state.error.asDriver())
     }
 }

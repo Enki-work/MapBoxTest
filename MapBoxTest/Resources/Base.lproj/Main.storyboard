@@ -54,10 +54,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYk-zw-g1T">
                                 <rect key="frame" x="50" y="658" width="275" height="30"/>
                                 <state key="normal" title="サインアップ"/>
-                                <connections>
-                                    <action selector="signupBtnTapped:" destination="Rts-rL-3DK" eventType="touchUpInside" id="fFp-7t-olp"/>
-                                    <segue destination="fER-wO-CGx" kind="presentation" identifier="toSignup" modalPresentationStyle="fullScreen" id="fai-ga-DI5"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -78,6 +74,8 @@
                         <outlet property="emailTextField" destination="0V5-Px-Bbw" id="Egu-Me-bbH"/>
                         <outlet property="loginButton" destination="15z-cL-8O1" id="1so-cf-Xo4"/>
                         <outlet property="passwordTextField" destination="KVF-iW-9Hw" id="ap8-xi-hGq"/>
+                        <outlet property="signupButton" destination="MYk-zw-g1T" id="qHb-Y7-jZP"/>
+                        <segue destination="fER-wO-CGx" kind="presentation" identifier="goToSignup" modalPresentationStyle="fullScreen" id="lXO-LE-iso"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1Q-JZ-dAZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -147,9 +145,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2j-Lu-TXu">
                                 <rect key="frame" x="50" y="639" width="275" height="30"/>
                                 <state key="normal" title="戻る"/>
-                                <connections>
-                                    <action selector="backBtnTapped:" destination="fER-wO-CGx" eventType="touchUpInside" id="J5o-ew-hio"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -233,6 +228,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="lXO-LE-iso"/>
         <segue reference="HNp-03-JgE"/>
     </inferredMetricsTieBreakers>
 </document>

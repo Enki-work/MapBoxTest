@@ -20,10 +20,7 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var repeatedPasswordValidationOutlet: UILabel!
     @IBOutlet weak var finishBtn: UIButton!
 
-    // MARK: - IBAction
-    @IBAction func backBtnTapped(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "backToLogin", sender: nil)
-    }
+    // MARK: - Private Methods
 
     private func presentValidateAlert() {
         let alert = UIAlertController(title: "認証エラー",
