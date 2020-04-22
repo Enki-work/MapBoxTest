@@ -14,4 +14,3 @@ protocol MBNavigatorProtocol {
     func performSegue(with identifier: SegueIdentifiers)
     func dismiss()
 }
-
