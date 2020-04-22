@@ -54,10 +54,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYk-zw-g1T">
                                 <rect key="frame" x="50" y="658" width="275" height="30"/>
                                 <state key="normal" title="サインアップ"/>
-                                <connections>
-                                    <action selector="signupBtnTapped:" destination="Rts-rL-3DK" eventType="touchUpInside" id="fFp-7t-olp"/>
-                                    <segue destination="fER-wO-CGx" kind="presentation" identifier="toSignup" modalPresentationStyle="fullScreen" id="fai-ga-DI5"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -78,6 +74,8 @@
                         <outlet property="emailTextField" destination="0V5-Px-Bbw" id="Egu-Me-bbH"/>
                         <outlet property="loginButton" destination="15z-cL-8O1" id="1so-cf-Xo4"/>
                         <outlet property="passwordTextField" destination="KVF-iW-9Hw" id="ap8-xi-hGq"/>
+                        <outlet property="signupButton" destination="MYk-zw-g1T" id="qHb-Y7-jZP"/>
+                        <segue destination="fER-wO-CGx" kind="presentation" identifier="loginToSignup" modalPresentationStyle="fullScreen" id="lXO-LE-iso"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1Q-JZ-dAZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -140,16 +138,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egm-zx-yat">
                                 <rect key="frame" x="50" y="574" width="275" height="30"/>
                                 <state key="normal" title="入力完了"/>
-                                <connections>
-                                    <segue destination="Rts-rL-3DK" kind="presentation" identifier="backToLogin" modalPresentationStyle="fullScreen" id="HNp-03-JgE"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2j-Lu-TXu">
                                 <rect key="frame" x="50" y="639" width="275" height="30"/>
                                 <state key="normal" title="戻る"/>
-                                <connections>
-                                    <action selector="backBtnTapped:" destination="fER-wO-CGx" eventType="touchUpInside" id="J5o-ew-hio"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -169,11 +161,13 @@
                     <connections>
                         <outlet property="emailTextField" destination="5dN-IG-rCY" id="DSS-aY-gpA"/>
                         <outlet property="emailValidationOutlet" destination="Wma-xZ-5Sh" id="odr-lN-jDn"/>
-                        <outlet property="finishBtn" destination="egm-zx-yat" id="BEg-HZ-3Oh"/>
+                        <outlet property="goBackBtnOutlet" destination="h2j-Lu-TXu" id="TGu-SC-whK"/>
                         <outlet property="passwordTextField" destination="3AA-k8-cLu" id="4BJ-9T-b45"/>
                         <outlet property="passwordValidationOutlet" destination="3WA-mm-xjP" id="M7v-Ej-BeJ"/>
                         <outlet property="repeatedPasswordTextField" destination="WN7-Bk-h60" id="P8F-xn-VoD"/>
                         <outlet property="repeatedPasswordValidationOutlet" destination="AR8-p6-pN7" id="vAX-Aa-jyg"/>
+                        <outlet property="signupFinishBtnOutlet" destination="egm-zx-yat" id="025-t8-wR9"/>
+                        <segue destination="Rts-rL-3DK" kind="presentation" identifier="signupToLogin" modalPresentationStyle="fullScreen" id="vNz-h3-v1O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZV-Fq-daE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -224,7 +218,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="Z2n-U9-cjw" id="U2H-Ub-pL1"/>
-                        <segue destination="Rts-rL-3DK" kind="presentation" identifier="toLogin" modalPresentationStyle="fullScreen" id="vJS-BI-rPn"/>
+                        <segue destination="Rts-rL-3DK" kind="presentation" identifier="mapToLogin" modalPresentationStyle="fullScreen" id="vJS-BI-rPn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -233,7 +227,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="fai-ga-DI5"/>
-        <segue reference="HNp-03-JgE"/>
+        <segue reference="vNz-h3-v1O"/>
     </inferredMetricsTieBreakers>
 </document>

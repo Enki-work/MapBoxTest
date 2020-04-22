@@ -14,12 +14,14 @@ class LoginViewModel: ViewModelType {
 
     struct Input {
         let loginTrigger: Driver<Void>
+        let signupTrigger: Driver<Void>
         let mailaddress: Driver<String>
         let password: Driver<String>
     }
 
     struct Output {
         let login: Driver<UserModel>
+        let signup: Driver<Void>
         let error: Driver<Error>
     }
 
@@ -28,9 +30,10 @@ class LoginViewModel: ViewModelType {
     }
 
     private let authModel: AuthModel
-    private let navigator: LoginNavigator
+    private let navigator: MBNavigator
 
-    init(with authModel: AuthModel, and navigator: LoginNavigator) {
+    init(with authModel: AuthModel,
+         and navigator: MBNavigator) {
         self.authModel = authModel
         self.navigator = navigator
     }
@@ -44,12 +47,18 @@ class LoginViewModel: ViewModelType {
                 return self.authModel.login(with: UserModel.init(mailAddress: mailaddress, passWord: password))
                     .do(onNext: { [unowned self] user in
                         if user.mailAddress.count > 0, user.passWord.count > 0 {
-                            self.navigator.toMap()
+                            self.navigator.dismiss()
                         }
                     })
                     .trackError(state.error)
                     .asDriverOnErrorJustComplete()
         }
-        return LoginViewModel.Output(login: login, error: state.error.asDriver())
+        let signup = input.signupTrigger.do(onNext: {
+            self.navigator.performSegue(with: .loginToSignup)
+        }).asDriver()
+
+        return LoginViewModel.Output(login: login,
+                                     signup: signup,
+                                     error: state.error.asDriver())
     }
 }

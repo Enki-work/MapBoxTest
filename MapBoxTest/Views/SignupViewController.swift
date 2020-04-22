@@ -18,25 +18,13 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var passwordValidationOutlet: UILabel!
     @IBOutlet weak var repeatedPasswordTextField: UITextField!
     @IBOutlet weak var repeatedPasswordValidationOutlet: UILabel!
-    @IBOutlet weak var finishBtn: UIButton!
-
-    // MARK: - IBAction
-    @IBAction func backBtnTapped(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "backToLogin", sender: nil)
-    }
-
-    private func presentValidateAlert() {
-        let alert = UIAlertController(title: "認証エラー",
-                                      message: "メールとパスワードを確認してください",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
+    @IBOutlet weak var signupFinishBtnOutlet: UIButton!
+    @IBOutlet weak var goBackBtnOutlet: UIButton!
 
     // MARK: - Constants
 
     private lazy var signupViewModel: SignupViewModel = {
-        return SignupViewModel()
+        return SignupViewModel(with: MBNavigator(with: self))
     }()
 
     let disposeBag = DisposeBag()
@@ -58,7 +46,8 @@ class SignupViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        let input = SignupViewModel.Input(signupTrigger: UIButton().rx.tap.asDriver(),
+        let input = SignupViewModel.Input(signupFinishTrigger: signupFinishBtnOutlet.rx.tap.asDriver(),
+                                          backTrigger: goBackBtnOutlet.rx.tap.asDriver(),
                                           email: emailTextField.rx.text.orEmpty.asDriver(),
                                           password: passwordTextField.rx.text.orEmpty.asDriver(),
                                           repeatedPassword: repeatedPasswordTextField.rx.text.orEmpty.asDriver())
@@ -77,9 +66,17 @@ class SignupViewController: UIViewController {
             .disposed(by: disposeBag)
 
         output.signupEnabled.drive(onNext: { [weak self] valid in
-            self?.finishBtn.isEnabled = valid
-            self?.finishBtn.alpha = valid ? 1.0 : 0.5
+            self?.signupFinishBtnOutlet.isEnabled = valid
+            self?.signupFinishBtnOutlet.alpha = valid ? 1.0 : 0.5
         }).disposed(by: disposeBag)
+
+        output.signupFinish
+            .drive(onNext: userFinishedSignup)
+            .disposed(by: disposeBag)
+
+        output.back
+            .drive()
+            .disposed(by: disposeBag)
 
         let tapBackground = UITapGestureRecognizer()
         tapBackground.rx.event.subscribe(onNext: { [weak self] _ in
@@ -87,6 +84,10 @@ class SignupViewController: UIViewController {
         })
             .disposed(by: disposeBag)
         view.addGestureRecognizer(tapBackground)
+    }
+
+    private func userFinishedSignup() {
+        // アカウント登録後サーバー通信などの処理をする
     }
 }
 
