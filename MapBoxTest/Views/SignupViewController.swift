@@ -20,16 +20,6 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var repeatedPasswordValidationOutlet: UILabel!
     @IBOutlet weak var finishBtn: UIButton!
 
-    // MARK: - Private Methods
-
-    private func presentValidateAlert() {
-        let alert = UIAlertController(title: "認証エラー",
-                                      message: "メールとパスワードを確認してください",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-
     // MARK: - Constants
 
     private lazy var signupViewModel: SignupViewModel = {

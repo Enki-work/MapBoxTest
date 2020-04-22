@@ -26,9 +26,9 @@ class CheckLoginViewModel: ViewModelType {
     }
 
     private let authModel: AuthModel
-    private let navigator: MapViewNavigator
+    private let navigator: MBNavigator
 
-    init(with authModel: AuthModel, and navigator: MapViewNavigator) {
+    init(with authModel: AuthModel, and navigator: MBNavigator) {
         self.authModel = authModel
         self.navigator = navigator
     }
@@ -40,7 +40,7 @@ class CheckLoginViewModel: ViewModelType {
                 return self.authModel.checkLogin()
                     .map { [weak self] isLogin in
                         if !isLogin {
-                            self?.navigator.toLogin()
+                            self?.navigator.performSegue(with: .mapToLogin)
                         }
                         return isLogin
                     }.trackError(state.error)

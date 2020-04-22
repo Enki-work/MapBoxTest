@@ -75,7 +75,7 @@
                         <outlet property="loginButton" destination="15z-cL-8O1" id="1so-cf-Xo4"/>
                         <outlet property="passwordTextField" destination="KVF-iW-9Hw" id="ap8-xi-hGq"/>
                         <outlet property="signupButton" destination="MYk-zw-g1T" id="qHb-Y7-jZP"/>
-                        <segue destination="fER-wO-CGx" kind="presentation" identifier="goToSignup" modalPresentationStyle="fullScreen" id="lXO-LE-iso"/>
+                        <segue destination="fER-wO-CGx" kind="presentation" identifier="loginToSignup" modalPresentationStyle="fullScreen" id="lXO-LE-iso"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1Q-JZ-dAZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -138,9 +138,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egm-zx-yat">
                                 <rect key="frame" x="50" y="574" width="275" height="30"/>
                                 <state key="normal" title="入力完了"/>
-                                <connections>
-                                    <segue destination="Rts-rL-3DK" kind="presentation" identifier="backToLogin" modalPresentationStyle="fullScreen" id="HNp-03-JgE"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2j-Lu-TXu">
                                 <rect key="frame" x="50" y="639" width="275" height="30"/>
@@ -169,6 +166,7 @@
                         <outlet property="passwordValidationOutlet" destination="3WA-mm-xjP" id="M7v-Ej-BeJ"/>
                         <outlet property="repeatedPasswordTextField" destination="WN7-Bk-h60" id="P8F-xn-VoD"/>
                         <outlet property="repeatedPasswordValidationOutlet" destination="AR8-p6-pN7" id="vAX-Aa-jyg"/>
+                        <segue destination="Rts-rL-3DK" kind="presentation" identifier="signupToLogin" modalPresentationStyle="fullScreen" id="vNz-h3-v1O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZV-Fq-daE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -219,7 +217,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="Z2n-U9-cjw" id="U2H-Ub-pL1"/>
-                        <segue destination="Rts-rL-3DK" kind="presentation" identifier="toLogin" modalPresentationStyle="fullScreen" id="vJS-BI-rPn"/>
+                        <segue destination="Rts-rL-3DK" kind="presentation" identifier="mapToLogin" modalPresentationStyle="fullScreen" id="vJS-BI-rPn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -228,7 +226,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lXO-LE-iso"/>
-        <segue reference="HNp-03-JgE"/>
+        <segue reference="vJS-BI-rPn"/>
     </inferredMetricsTieBreakers>
 </document>
