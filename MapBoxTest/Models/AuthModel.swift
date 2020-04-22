@@ -18,7 +18,7 @@ class AuthModel {
         }
         return Observable.create { observer in
             //TODO: check login
-            observer.onNext(user.mailAddress.count > 0 && user.passWord.count > 0)
+            observer.onNext(false)
             observer.onCompleted()
             return Disposables.create()
         }
@@ -35,11 +35,13 @@ class AuthModel {
         urlRequest.httpBody = try? JSONEncoder().encode(user)
         return URLSession.shared.rx.data(request: urlRequest)
             .flatMap { (data) -> Observable<UserModel> in
-                let user = try JSONDecoder().decode(UserModel.self, from: data)
-                UserDefaults.standard.set(data, forKey: "myUserData")
-                return Observable<UserModel>.just(user)
-            }.do(onError: { (error) in
-                print(error)
-            }).observeOn(MainScheduler.instance)
+                let user = try? JSONDecoder().decode(UserModel.self, from: data)
+                if let _ = user {
+                    UserDefaults.standard.set(data, forKey: "myUserData")
+                } else if let error = try? JSONDecoder().decode(MBTError.self, from: data) {
+                    print(error)
+                }
+                return Observable<UserModel>.just(user ?? UserModel.init(mailAddress: "", passWord: ""))
+            }.observeOn(MainScheduler.instance)
     }
 }
