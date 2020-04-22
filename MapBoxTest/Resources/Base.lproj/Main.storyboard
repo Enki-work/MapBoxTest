@@ -161,11 +161,12 @@
                     <connections>
                         <outlet property="emailTextField" destination="5dN-IG-rCY" id="DSS-aY-gpA"/>
                         <outlet property="emailValidationOutlet" destination="Wma-xZ-5Sh" id="odr-lN-jDn"/>
-                        <outlet property="finishBtn" destination="egm-zx-yat" id="BEg-HZ-3Oh"/>
+                        <outlet property="goBackBtnOutlet" destination="h2j-Lu-TXu" id="TGu-SC-whK"/>
                         <outlet property="passwordTextField" destination="3AA-k8-cLu" id="4BJ-9T-b45"/>
                         <outlet property="passwordValidationOutlet" destination="3WA-mm-xjP" id="M7v-Ej-BeJ"/>
                         <outlet property="repeatedPasswordTextField" destination="WN7-Bk-h60" id="P8F-xn-VoD"/>
                         <outlet property="repeatedPasswordValidationOutlet" destination="AR8-p6-pN7" id="vAX-Aa-jyg"/>
+                        <outlet property="signupFinishBtnOutlet" destination="egm-zx-yat" id="025-t8-wR9"/>
                         <segue destination="Rts-rL-3DK" kind="presentation" identifier="signupToLogin" modalPresentationStyle="fullScreen" id="vNz-h3-v1O"/>
                     </connections>
                 </viewController>
@@ -226,6 +227,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vJS-BI-rPn"/>
+        <segue reference="vNz-h3-v1O"/>
     </inferredMetricsTieBreakers>
 </document>

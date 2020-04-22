@@ -15,6 +15,7 @@ enum SegueIdentifiers: String {
 }
 
 class MBNavigator: MBNavigatorProtocol {
+
     internal weak var viewController: UIViewController?
 
     init(with viewController: UIViewController) {
@@ -25,7 +26,7 @@ class MBNavigator: MBNavigatorProtocol {
         viewController?.performSegue(withIdentifier: identifier.rawValue, sender: nil)
     }
 
-    func toMap() {
+    func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }
 }

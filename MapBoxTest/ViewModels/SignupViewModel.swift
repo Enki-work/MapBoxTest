@@ -20,7 +20,8 @@ enum ValidationResult {
 
 class SignupViewModel: ViewModelType {
     struct Input {
-        let signupTrigger: Driver<Void>
+        let signupFinishTrigger: Driver<Void>
+        let backTrigger: Driver<Void>
         let email: Driver<String>
         let password: Driver<String>
         let repeatedPassword: Driver<String>
@@ -30,11 +31,19 @@ class SignupViewModel: ViewModelType {
         let validatedEmail: Driver<ValidationResult>
         let validatedPassword: Driver<ValidationResult>
         let validatedPasswordRepeated: Driver<ValidationResult>
+        let signupFinish: Driver<Void>
+        let back: Driver<Void>
         let signupEnabled: Driver<Bool>
     }
 
     struct State {
         let error = ErrorTracker()
+    }
+
+    private let navigator: MBNavigator
+
+    init(with navigator: MBNavigator) {
+        self.navigator = navigator
     }
 
     func transform(input: SignupViewModel.Input) -> SignupViewModel.Output {
@@ -60,9 +69,19 @@ class SignupViewModel: ViewModelType {
                 email.isValid && password.isValid && repeatedPassword.isValid
             }.distinctUntilChanged()
 
+        let signupFinish = input.signupFinishTrigger.do(onNext: {
+            self.navigator.dismiss()
+        }).asDriver()
+
+        let back = input.backTrigger.do(onNext: {
+            self.navigator.dismiss()
+        }).asDriver()
+
         return SignupViewModel.Output(validatedEmail: validatedEmail,
                                       validatedPassword: validatedPassword,
                                       validatedPasswordRepeated: validateRepeatedPassword,
+                                      signupFinish: signupFinish,
+                                      back: back,
                                       signupEnabled: signupEnabled)
     }
 }

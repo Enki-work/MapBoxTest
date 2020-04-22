@@ -47,7 +47,7 @@ class LoginViewModel: ViewModelType {
                 return self.authModel.login(with: email, and: password)
                     .do(onNext: { [unowned self] user in
                         if user.mail.count > 0, user.pwd.count > 0 {
-                            self.navigator.toMap()
+                            self.navigator.dismiss()
                         }
                     })
                     .trackError(state.error)

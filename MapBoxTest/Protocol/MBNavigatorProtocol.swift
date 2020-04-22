@@ -12,5 +12,6 @@ protocol MBNavigatorProtocol {
     var viewController: UIViewController? { get set }
 
     func performSegue(with identifier: SegueIdentifiers)
+    func dismiss()
 }
 
