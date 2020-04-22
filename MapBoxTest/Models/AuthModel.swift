@@ -19,6 +19,7 @@ class AuthModel {
         return Observable.create { observer in
             //TODO: check login
             observer.onNext(user.mailAddress.count > 0 && user.passWord.count > 0)
+            observer.onCompleted()
             return Disposables.create()
         }
     }
