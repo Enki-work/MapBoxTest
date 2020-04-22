@@ -12,14 +12,19 @@ import RxSwift
 class AuthModel {
     // swiftlint:disable todo
     func checkLogin() -> Observable<Bool> {
+        guard let myUserData = UserDefaults.standard.data(forKey: "myUserData"),
+            let user = try? JSONDecoder().decode(UserModel.self, from: myUserData) else {
+                return Observable<Bool>.just(false)
+        }
         return Observable.create { observer in
             //TODO: check login
-            observer.onNext(false)
+            observer.onNext(user.mailAddress.count > 0 && user.passWord.count > 0)
             return Disposables.create()
         }
     }
 
     func login(with user: UserModel) -> Observable<UserModel> {
+        //ローカルのloginURL
         guard let url = URL(string: "http://192.168.0.3:8081/api/users/login") else {
             return Observable<UserModel>.error(RxError.unknown)
         }
@@ -30,6 +35,7 @@ class AuthModel {
         return URLSession.shared.rx.data(request: urlRequest)
             .flatMap { (data) -> Observable<UserModel> in
                 let user = try JSONDecoder().decode(UserModel.self, from: data)
+                UserDefaults.standard.set(data, forKey: "myUserData")
                 return Observable<UserModel>.just(user)
             }.do(onError: { (error) in
                 print(error)
