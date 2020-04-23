@@ -8,9 +8,25 @@
 
 import UIKit
 
+enum SegueIdentifiers: String {
+    case signupToLogin
+    case loginToSignup
+    case mapToLogin
+}
+
 protocol MBNavigatorProtocol {
     var viewController: UIViewController? { get set }
 
     func performSegue(with identifier: SegueIdentifiers)
     func dismiss()
+}
+
+extension MBNavigatorProtocol {
+    func performSegue(with identifier: SegueIdentifiers) {
+        viewController?.performSegue(withIdentifier: identifier.rawValue, sender: nil)
+    }
+
+    func dismiss() {
+        viewController?.dismiss(animated: true, completion: nil)
+    }
 }

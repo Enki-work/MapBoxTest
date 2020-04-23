@@ -11,7 +11,9 @@
 		960A3B61244E81BC0003965C /* MBDefaultValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A3B60244E81BC0003965C /* MBDefaultValidationService.swift */; };
 		960A3B66244EB4260003965C /* Binding+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A3B65244EB4260003965C /* Binding+Ext.swift */; };
 		960A3B6C24500E540003965C /* MBNavigatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A3B6B24500E540003965C /* MBNavigatorProtocol.swift */; };
-		960A3B7024500F4C0003965C /* MBNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A3B6F24500F4C0003965C /* MBNavigator.swift */; };
+		960A3D2F245122A40003965C /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A3D2E245122A40003965C /* LoginNavigator.swift */; };
+		960A3D31245123560003965C /* MapViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A3D30245123560003965C /* MapViewNavigator.swift */; };
+		960A3D33245124230003965C /* SignupNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960A3D32245124230003965C /* SignupNavigator.swift */; };
 		962850DB244D8E0000B2157F /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962850DA244D8E0000B2157F /* SignupViewModel.swift */; };
 		9645D4982447F01500737631 /* MBCLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645D4972447F01500737631 /* MBCLLocationManager.swift */; };
 		9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */; };
@@ -64,7 +66,9 @@
 		960A3B60244E81BC0003965C /* MBDefaultValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBDefaultValidationService.swift; sourceTree = "<group>"; };
 		960A3B65244EB4260003965C /* Binding+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Ext.swift"; sourceTree = "<group>"; };
 		960A3B6B24500E540003965C /* MBNavigatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBNavigatorProtocol.swift; sourceTree = "<group>"; };
-		960A3B6F24500F4C0003965C /* MBNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBNavigator.swift; sourceTree = "<group>"; };
+		960A3D2E245122A40003965C /* LoginNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
+		960A3D30245123560003965C /* MapViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewNavigator.swift; sourceTree = "<group>"; };
+		960A3D32245124230003965C /* SignupNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupNavigator.swift; sourceTree = "<group>"; };
 		962850DA244D8E0000B2157F /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		9645D4972447F01500737631 /* MBCLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBCLLocationManager.swift; sourceTree = "<group>"; };
 		9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBCLLocationManagerDelegate.swift; sourceTree = "<group>"; };
@@ -183,7 +187,9 @@
 		A4472C292446FA2B0067A7DE /* Navigators */ = {
 			isa = PBXGroup;
 			children = (
-				960A3B6F24500F4C0003965C /* MBNavigator.swift */,
+				960A3D2E245122A40003965C /* LoginNavigator.swift */,
+				960A3D30245123560003965C /* MapViewNavigator.swift */,
+				960A3D32245124230003965C /* SignupNavigator.swift */,
 			);
 			path = Navigators;
 			sourceTree = "<group>";
@@ -334,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				960A3B6C24500E540003965C /* MBNavigatorProtocol.swift in Sources */,
+				960A3D33245124230003965C /* SignupNavigator.swift in Sources */,
 				962850DB244D8E0000B2157F /* SignupViewModel.swift in Sources */,
 				A4472C1D2446D9EF0067A7DE /* LoginViewController.swift in Sources */,
 				960A3B66244EB4260003965C /* Binding+Ext.swift in Sources */,
@@ -346,14 +353,15 @@
 				A4472C312446FB940067A7DE /* ErrorTracker.swift in Sources */,
 				A4472C2B2446FA550067A7DE /* LoginViewModel.swift in Sources */,
 				9645D4982447F01500737631 /* MBCLLocationManager.swift in Sources */,
+				960A3D31245123560003965C /* MapViewNavigator.swift in Sources */,
 				96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */,
 				A47DC6302443FAF100D12922 /* SceneDelegate.swift in Sources */,
 				9676BDCF244D642800F98E2E /* SignupViewController.swift in Sources */,
 				A4472C3F2447E9780067A7DE /* CheckLoginViewModel.swift in Sources */,
 				A4472C2D2446FA7A0067A7DE /* AuthModel.swift in Sources */,
+				960A3D2F245122A40003965C /* LoginNavigator.swift in Sources */,
 				A4472C37244726490067A7DE /* Observable+Ext.swift in Sources */,
 				A4472C35244722240067A7DE /* UserModel.swift in Sources */,
-				960A3B7024500F4C0003965C /* MBNavigator.swift in Sources */,
 				A4472C2F2446FAC20067A7DE /* ViewModelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

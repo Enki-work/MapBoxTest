@@ -18,7 +18,7 @@ class MapViewController: UIViewController {
 
     private lazy var checkLoginViewModel: CheckLoginViewModel = {
         return CheckLoginViewModel(with: AuthModel(),
-                                   and: MBNavigator(with: self))
+                                   and: MapViewNavigator(with: self))
     }()
 
     private let disposeBag = DisposeBag()

@@ -9,6 +9,14 @@
 import Foundation
 import RxSwift
 
+// 検証結果
+enum ValidationResult {
+    case success(message: String)
+    case empty
+    case validating
+    case failed(message: String)
+}
+
 protocol MBValidationServiceProtocol {
     func validateEmail(_ email: String) -> Observable<ValidationResult>
     func validatePassword(_ password: String) -> ValidationResult

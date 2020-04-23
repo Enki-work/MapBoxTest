@@ -22,6 +22,8 @@ class LoginViewModel: ViewModelType {
     struct Output {
         let login: Driver<UserModel>
         let signup: Driver<Void>
+        let validatedEmail: Driver<ValidationResult>
+        let validatedPassword: Driver<ValidationResult>
         let error: Driver<Error>
     }
 
@@ -30,10 +32,10 @@ class LoginViewModel: ViewModelType {
     }
 
     private let authModel: AuthModel
-    private let navigator: MBNavigator
+    private let navigator: LoginNavigator
 
     init(with authModel: AuthModel,
-         and navigator: MBNavigator) {
+         and navigator: LoginNavigator) {
         self.authModel = authModel
         self.navigator = navigator
     }
@@ -41,6 +43,7 @@ class LoginViewModel: ViewModelType {
     func transform(input: LoginViewModel.Input) -> LoginViewModel.Output {
         let state = State()
         let requiredInputs = Driver.combineLatest(input.mailaddress, input.password)
+        let validationService = MBDefaultValidationService()
         let login = input.loginTrigger
             .withLatestFrom(requiredInputs)
             .flatMapLatest { [unowned self] (mailaddress: String, password: String) in
@@ -54,11 +57,22 @@ class LoginViewModel: ViewModelType {
                     .asDriverOnErrorJustComplete()
         }
         let signup = input.signupTrigger.do(onNext: {
-            self.navigator.performSegue(with: .loginToSignup)
+            self.navigator.toSignup()
         }).asDriver()
+
+        let validatedEmail = input.mailaddress.flatMapLatest { email in
+            return validationService.validateEmail(email)
+                .asDriver(onErrorJustReturn: .failed(message: "Error contacting server"))
+        }
+
+        let validatedPassword = input.password.map { password in
+            return validationService.validatePassword(password)
+        }
 
         return LoginViewModel.Output(login: login,
                                      signup: signup,
+                                     validatedEmail: validatedEmail,
+                                     validatedPassword: validatedPassword,
                                      error: state.error.asDriver())
     }
 }

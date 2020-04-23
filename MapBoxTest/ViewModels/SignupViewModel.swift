@@ -10,14 +10,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-// 検証結果
-enum ValidationResult {
-    case success(message: String)
-    case empty
-    case validating
-    case failed(message: String)
-}
-
 class SignupViewModel: ViewModelType {
     struct Input {
         let signupFinishTrigger: Driver<Void>
@@ -40,9 +32,9 @@ class SignupViewModel: ViewModelType {
         let error = ErrorTracker()
     }
 
-    private let navigator: MBNavigator
+    private let navigator: SignupNavigator
 
-    init(with navigator: MBNavigator) {
+    init(with navigator: SignupNavigator) {
         self.navigator = navigator
     }
 
