@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct UserModel {
-    let mail: String
-    let pwd: String
+struct UserModel: Codable {
+    var mailAddress: String
+    var passWord: String
 }

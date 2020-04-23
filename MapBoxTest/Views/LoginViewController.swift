@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
     private func bindViewModel() {
         let input = LoginViewModel.Input(loginTrigger: loginButton.rx.tap.asDriver(),
                                          signupTrigger: signupButton.rx.tap.asDriver(),
-                                         email: emailTextField.rx.text
+                                         mailaddress: emailTextField.rx.text
                                              .map { if let text = $0 { return text } else { return "" } }
                                              .asDriver(onErrorJustReturn: ""),
                                          password: passwordTextField.rx.text
@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
     }
 
     private func userWillLogin(user: UserModel) {
-        guard user.mail.count > 0, user.pwd.count > 0 else {
+        guard user.mailAddress.count > 0, user.passWord.count > 0 else {
             presentValidateAlert()
             return
         }
@@ -82,6 +82,11 @@ class LoginViewController: UIViewController {
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.view.endEditing(true)
     }
 }
 

@@ -15,7 +15,7 @@ class LoginViewModel: ViewModelType {
     struct Input {
         let loginTrigger: Driver<Void>
         let signupTrigger: Driver<Void>
-        let email: Driver<String>
+        let mailaddress: Driver<String>
         let password: Driver<String>
     }
 
@@ -42,15 +42,14 @@ class LoginViewModel: ViewModelType {
 
     func transform(input: LoginViewModel.Input) -> LoginViewModel.Output {
         let state = State()
-        let requiredInputs = Driver.combineLatest(input.email, input.password)
+        let requiredInputs = Driver.combineLatest(input.mailaddress, input.password)
         let validationService = MBDefaultValidationService()
-
         let login = input.loginTrigger
             .withLatestFrom(requiredInputs)
-            .flatMapLatest { [unowned self] (email: String, password: String) in
-                return self.authModel.login(with: email, and: password)
+            .flatMapLatest { [unowned self] (mailaddress: String, password: String) in
+                return self.authModel.login(with: UserModel.init(mailAddress: mailaddress, passWord: password))
                     .do(onNext: { [unowned self] user in
-                        if user.mail.count > 0, user.pwd.count > 0 {
+                        if user.mailAddress.count > 0, user.passWord.count > 0 {
                             self.navigator.dismiss()
                         }
                     })
@@ -61,7 +60,7 @@ class LoginViewModel: ViewModelType {
             self.navigator.toSignup()
         }).asDriver()
 
-        let validatedEmail = input.email.flatMapLatest { email in
+        let validatedEmail = input.mailaddress.flatMapLatest { email in
             return validationService.validateEmail(email)
                 .asDriver(onErrorJustReturn: .failed(message: "Error contacting server"))
         }
