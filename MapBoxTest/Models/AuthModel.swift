@@ -42,6 +42,8 @@ class AuthModel {
                     print(error)
                 }
                 return Observable<UserModel>.just(user ?? UserModel.init(mailAddress: "", passWord: ""))
-            }.observeOn(MainScheduler.instance)
+        }.do(onError: { (error) in
+            print(error)
+        }).observeOn(MainScheduler.instance)
     }
 }

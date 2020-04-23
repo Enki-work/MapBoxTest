@@ -46,7 +46,6 @@ class MapViewController: UIViewController {
 
     @IBAction func clickGetLocationBtn(_ sender: Any) {
         print("###############\(String(describing: mapView.userLocation?.coordinate))")
-        self.performSegue(withIdentifier: "mapToLogin", sender: nil)
     }
 
 }
