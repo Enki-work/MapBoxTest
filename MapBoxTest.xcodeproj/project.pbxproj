@@ -81,6 +81,7 @@
 		A4472C34244722240067A7DE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		A4472C36244726490067A7DE /* Observable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
 		A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginViewModel.swift; sourceTree = "<group>"; };
+		A453EA5D24503A8600B2BA0E /* MBTError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTError.swift; sourceTree = "<group>"; };
 		A47DC62A2443FAF100D12922 /* MapBoxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapBoxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A47DC62D2443FAF100D12922 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A47DC62F2443FAF100D12922 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +143,7 @@
 			children = (
 				A4472C2C2446FA7A0067A7DE /* AuthModel.swift */,
 				A4472C34244722240067A7DE /* UserModel.swift */,
+				A453EA5D24503A8600B2BA0E /* MBTError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -335,6 +337,7 @@
 				962850DB244D8E0000B2157F /* SignupViewModel.swift in Sources */,
 				A4472C1D2446D9EF0067A7DE /* LoginViewController.swift in Sources */,
 				960A3B66244EB4260003965C /* Binding+Ext.swift in Sources */,
+				A453EA5E24503A8600B2BA0E /* MBTError.swift in Sources */,
 				A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */,
 				9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */,
 				A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */,
