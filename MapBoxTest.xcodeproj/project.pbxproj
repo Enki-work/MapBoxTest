@@ -29,6 +29,7 @@
 		A4472C35244722240067A7DE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C34244722240067A7DE /* UserModel.swift */; };
 		A4472C37244726490067A7DE /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C36244726490067A7DE /* Observable+Ext.swift */; };
 		A4472C3F2447E9780067A7DE /* CheckLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */; };
+		A453EA5E24503A8600B2BA0E /* MBTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453EA5D24503A8600B2BA0E /* MBTError.swift */; };
 		A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC62D2443FAF100D12922 /* AppDelegate.swift */; };
 		A47DC6302443FAF100D12922 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC62F2443FAF100D12922 /* SceneDelegate.swift */; };
 		A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC6312443FAF100D12922 /* MapViewController.swift */; };
