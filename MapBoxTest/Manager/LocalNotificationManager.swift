@@ -12,7 +12,7 @@ import UserNotifications
 class LocalNotificationManager {
 
     // ローカル通知を設定する
-    class func sendLocalNotification(contents: (title: String, body: String),
+    class func sendLocalNotification(contents: (title: String?, body: String?),
                                      timeInterval: TimeInterval,
                                      isRepeats: Bool,
                                      identifier: String,
