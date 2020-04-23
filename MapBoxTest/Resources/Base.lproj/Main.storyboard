@@ -24,7 +24,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0V5-Px-Bbw">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0V5-Px-Bbw">
                                         <rect key="frame" x="0.0" y="38.666666666666657" width="275" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -35,7 +35,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KVF-iW-9Hw">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KVF-iW-9Hw">
                                         <rect key="frame" x="0.0" y="136.33333333333331" width="275" height="43.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -72,8 +72,10 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="0V5-Px-Bbw" id="Egu-Me-bbH"/>
+                        <outlet property="emailValidationOutlet" destination="AHt-di-fjm" id="aGa-Bv-k1r"/>
                         <outlet property="loginButton" destination="15z-cL-8O1" id="1so-cf-Xo4"/>
                         <outlet property="passwordTextField" destination="KVF-iW-9Hw" id="ap8-xi-hGq"/>
+                        <outlet property="passwordValidationOutlet" destination="n3F-wR-stX" id="jbX-xr-khk"/>
                         <outlet property="signupButton" destination="MYk-zw-g1T" id="qHb-Y7-jZP"/>
                         <segue destination="fER-wO-CGx" kind="presentation" identifier="loginToSignup" modalPresentationStyle="fullScreen" id="lXO-LE-iso"/>
                     </connections>
@@ -227,6 +229,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="lXO-LE-iso"/>
         <segue reference="vNz-h3-v1O"/>
     </inferredMetricsTieBreakers>
 </document>

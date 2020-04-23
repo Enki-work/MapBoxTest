@@ -16,6 +16,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var emailValidationOutlet: UILabel!
+    @IBOutlet weak var passwordValidationOutlet: UILabel!
 
     // MARK: - Variables
 
@@ -54,8 +56,17 @@ class LoginViewController: UIViewController {
                                              .map { if let text = $0 { return text } else { return "" } }
                                              .asDriver(onErrorJustReturn: ""))
         let output = loginViewModel.transform(input: input)
+
         output.login.drive(onNext: userWillLogin).disposed(by: disposeBag)
         output.signup.drive().disposed(by: disposeBag)
+
+        output.validatedEmail
+            .drive(emailValidationOutlet.rx.validationResult)
+            .disposed(by: disposeBag)
+
+        output.validatedPassword
+            .drive(passwordValidationOutlet.rx.validationResult)
+            .disposed(by: disposeBag)
     }
 
     private func userWillLogin(user: UserModel) {
