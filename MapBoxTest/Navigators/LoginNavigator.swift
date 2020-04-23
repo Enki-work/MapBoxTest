@@ -14,7 +14,7 @@ class LoginNavigator: MBNavigatorProtocol {
     init(with viewController: UIViewController) {
         self.viewController = viewController
     }
-    
+
     func toSignup() {
         performSegue(with: .loginToSignup)
     }

@@ -25,7 +25,7 @@ extension MBNavigatorProtocol {
     func performSegue(with identifier: SegueIdentifiers) {
         viewController?.performSegue(withIdentifier: identifier.rawValue, sender: nil)
     }
-    
+
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }

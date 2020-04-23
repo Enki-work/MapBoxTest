@@ -14,7 +14,7 @@ class MapViewNavigator: MBNavigatorProtocol {
     init(with viewController: UIViewController) {
         self.viewController = viewController
     }
-    
+
     func toLogin() {
         performSegue(with: .mapToLogin)
     }
