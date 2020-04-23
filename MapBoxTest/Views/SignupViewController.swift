@@ -24,7 +24,7 @@ class SignupViewController: UIViewController {
     // MARK: - Constants
 
     private lazy var signupViewModel: SignupViewModel = {
-        return SignupViewModel(with: MBNavigator(with: self))
+        return SignupViewModel(with: SignupNavigator(with: self))
     }()
 
     let disposeBag = DisposeBag()

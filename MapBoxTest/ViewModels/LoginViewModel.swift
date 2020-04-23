@@ -30,10 +30,10 @@ class LoginViewModel: ViewModelType {
     }
 
     private let authModel: AuthModel
-    private let navigator: MBNavigator
+    private let navigator: LoginNavigator
 
     init(with authModel: AuthModel,
-         and navigator: MBNavigator) {
+         and navigator: LoginNavigator) {
         self.authModel = authModel
         self.navigator = navigator
     }
@@ -54,7 +54,7 @@ class LoginViewModel: ViewModelType {
                     .asDriverOnErrorJustComplete()
         }
         let signup = input.signupTrigger.do(onNext: {
-            self.navigator.performSegue(with: .loginToSignup)
+            self.navigator.toSignup()
         }).asDriver()
 
         return LoginViewModel.Output(login: login,

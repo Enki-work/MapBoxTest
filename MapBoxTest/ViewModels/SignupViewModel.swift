@@ -40,9 +40,9 @@ class SignupViewModel: ViewModelType {
         let error = ErrorTracker()
     }
 
-    private let navigator: MBNavigator
+    private let navigator: SignupNavigator
 
-    init(with navigator: MBNavigator) {
+    init(with navigator: SignupNavigator) {
         self.navigator = navigator
     }
 

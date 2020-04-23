@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
 
     private lazy var loginViewModel: LoginViewModel = {
         return LoginViewModel(with: AuthModel(),
-                              and: MBNavigator(with: self))
+                              and: LoginNavigator(with: self))
     }()
 
     // MARK: - Constants
