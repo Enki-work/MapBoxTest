@@ -12,7 +12,7 @@ import Mapbox
 import RxSwift
 import RxCocoa
 
-class MapViewController: UIViewController {
+class MapViewController: BaseViewController {
 
     @IBOutlet private weak var mapView: MGLMapView!
 

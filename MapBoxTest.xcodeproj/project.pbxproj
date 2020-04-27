@@ -42,6 +42,7 @@
 		A47DC6562443FD9A00D12922 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A47DC6422443FD2600D12922 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A47DC6572443FD9A00D12922 /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47DC6432443FD2600D12922 /* MapboxMobileEvents.framework */; };
 		A47DC6582443FD9A00D12922 /* MapboxMobileEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A47DC6432443FD2600D12922 /* MapboxMobileEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4F9B69024566AB500F4E13B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F9B68F24566AB500F4E13B /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,6 +97,7 @@
 		A47DC63B2443FAF800D12922 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A47DC6422443FD2600D12922 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Carthage/Build/iOS/Mapbox.framework; sourceTree = "<group>"; };
 		A47DC6432443FD2600D12922 /* MapboxMobileEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxMobileEvents.framework; path = Carthage/Build/iOS/MapboxMobileEvents.framework; sourceTree = "<group>"; };
+		A4F9B68F24566AB500F4E13B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				A47DC6312443FAF100D12922 /* MapViewController.swift */,
 				A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */,
 				9676BDCE244D642800F98E2E /* SignupViewController.swift */,
+				A4F9B68F24566AB500F4E13B /* BaseViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				9676BDCF244D642800F98E2E /* SignupViewController.swift in Sources */,
 				A4472C3F2447E9780067A7DE /* CheckLoginViewModel.swift in Sources */,
 				A4472C2D2446FA7A0067A7DE /* AuthModel.swift in Sources */,
+				A4F9B69024566AB500F4E13B /* BaseViewController.swift in Sources */,
 				960A3D2F245122A40003965C /* LoginNavigator.swift in Sources */,
 				A4472C37244726490067A7DE /* Observable+Ext.swift in Sources */,
 				A4472C35244722240067A7DE /* UserModel.swift in Sources */,

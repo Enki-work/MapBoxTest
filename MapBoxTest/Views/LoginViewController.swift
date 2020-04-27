@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     // MARK: - IBOutlet
 
     @IBOutlet var emailTextField: UITextField!
@@ -67,6 +67,8 @@ class LoginViewController: UIViewController {
         output.validatedPassword
             .drive(passwordValidationOutlet.rx.validationResult)
             .disposed(by: disposeBag)
+        
+        output.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
     }
 
     private func userWillLogin(user: UserModel) {
