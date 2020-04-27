@@ -58,10 +58,6 @@ class MapViewController: BaseViewController {
         SideMenuManager.default.leftMenuNavigationController?.statusBarEndAlpha = 0
     }
 
-    @IBAction func clickGetLocationBtn(_ sender: Any) {
-        print("###############\(String(describing: mapView.userLocation?.coordinate))")
-    }
-
     @IBAction func clickLeftBarItem(_ sender: UIBarButtonItem) {
         MapViewNavigator(with: self).toSideMenu()
     }

@@ -237,21 +237,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2n-U9-cjw" customClass="MGLMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npZ-Vv-AAW">
-                                        <rect key="frame" x="284" y="639" width="83" height="30"/>
-                                        <state key="normal" title="Get location"/>
-                                        <connections>
-                                            <action selector="clickGetLocationBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zId-YI-Ici"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="npZ-Vv-AAW" secondAttribute="trailing" constant="8" id="M4M-8S-QS8"/>
-                                    <constraint firstAttribute="bottom" secondItem="npZ-Vv-AAW" secondAttribute="bottom" constant="143" id="Tek-oF-0dG"/>
-                                    <constraint firstItem="npZ-Vv-AAW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Z2n-U9-cjw" secondAttribute="leading" constant="20" symbolic="YES" id="yZf-DA-NWo"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/mapbox/streets-v11"/>
                                 </userDefinedRuntimeAttributes>
