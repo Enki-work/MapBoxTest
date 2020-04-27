@@ -32,6 +32,7 @@
 		A4472C37244726490067A7DE /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C36244726490067A7DE /* Observable+Ext.swift */; };
 		A4472C3F2447E9780067A7DE /* CheckLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */; };
 		A453EA5E24503A8600B2BA0E /* MBTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453EA5D24503A8600B2BA0E /* MBTError.swift */; };
+		A47C89BD2456951B006EFC12 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47C89BC2456951B006EFC12 /* SideMenuViewController.swift */; };
 		A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC62D2443FAF100D12922 /* AppDelegate.swift */; };
 		A47DC6302443FAF100D12922 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC62F2443FAF100D12922 /* SceneDelegate.swift */; };
 		A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47DC6312443FAF100D12922 /* MapViewController.swift */; };
@@ -90,6 +91,7 @@
 		A4472C36244726490067A7DE /* Observable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
 		A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginViewModel.swift; sourceTree = "<group>"; };
 		A453EA5D24503A8600B2BA0E /* MBTError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTError.swift; sourceTree = "<group>"; };
+		A47C89BC2456951B006EFC12 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		A47DC62A2443FAF100D12922 /* MapBoxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapBoxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A47DC62D2443FAF100D12922 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A47DC62F2443FAF100D12922 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */,
 				9676BDCE244D642800F98E2E /* SignupViewController.swift */,
 				A4F9B68F24566AB500F4E13B /* BaseViewController.swift */,
+				A47C89BC2456951B006EFC12 /* SideMenuViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				9645D4982447F01500737631 /* MBCLLocationManager.swift in Sources */,
 				960A3D31245123560003965C /* MapViewNavigator.swift in Sources */,
 				96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */,
+				A47C89BD2456951B006EFC12 /* SideMenuViewController.swift in Sources */,
 				A47DC6302443FAF100D12922 /* SceneDelegate.swift in Sources */,
 				9676BDCF244D642800F98E2E /* SignupViewController.swift in Sources */,
 				A4472C3F2447E9780067A7DE /* CheckLoginViewModel.swift in Sources */,
