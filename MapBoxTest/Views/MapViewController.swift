@@ -69,6 +69,7 @@ class MapViewController: BaseViewController {
             return
         }
         mapView.setCenter(currentLocation, animated: true)
+        mapView.userTrackingMode = .followWithHeading
     }
 }
 
