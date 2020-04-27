@@ -30,6 +30,7 @@ class MapViewController: BaseViewController {
         mapView.showsUserLocation = true
         mapView.showsUserHeadingIndicator = true
         mapView.userTrackingMode = .followWithHeading
+        mapView.attributionButtonPosition = .bottomLeft
         setupSideMenu()
     }
 
@@ -61,6 +62,13 @@ class MapViewController: BaseViewController {
 
     @IBAction func clickLeftBarItem(_ sender: UIBarButtonItem) {
         MapViewNavigator(with: self).toSideMenu()
+    }
+
+    @IBAction func clickCurrentBtn(_ sender: Any) {
+        guard let currentLocation = mapView.userLocation?.coordinate else {
+            return
+        }
+        mapView.setCenter(currentLocation, animated: true)
     }
 }
 

@@ -42,7 +42,7 @@ extension ObservableType {
 
     func asDriverOnSkipError() -> Driver<E> {
         return asDriver { error in
-            debugPrint()("asDriverOnSkipError error: \(error)")
+            debugPrint("asDriverOnSkipError error: \(error)")
             return Driver.empty()
         }
     }

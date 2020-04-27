@@ -19,9 +19,9 @@ class MapViewNavigator: MBNavigatorProtocol {
     func toLogin() {
         performSegue(with: .mapToLogin)
     }
-    
+
     func toSideMenu() {
-        if let leftMenuNavigationController = SideMenuManager.default.leftMenuNavigationController  {
+        if let leftMenuNavigationController = SideMenuManager.default.leftMenuNavigationController {
             viewController?.present(leftMenuNavigationController, animated: true, completion: nil)
         }
     }
