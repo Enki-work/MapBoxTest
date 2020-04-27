@@ -16,7 +16,7 @@ class SideMenuViewController: BaseViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView.init()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -36,7 +36,7 @@ extension SideMenuViewController: UITableViewDataSource {
 
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }

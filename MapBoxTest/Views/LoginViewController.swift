@@ -67,7 +67,7 @@ class LoginViewController: BaseViewController {
         output.validatedPassword
             .drive(passwordValidationOutlet.rx.validationResult)
             .disposed(by: disposeBag)
-        
+
         output.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
     }
 

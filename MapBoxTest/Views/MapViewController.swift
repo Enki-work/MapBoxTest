@@ -48,7 +48,8 @@ class MapViewController: BaseViewController {
 
     private func setupSideMenu() {
         // Define the menus
-        SideMenuManager.default.leftMenuNavigationController = storyboard?.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? SideMenuNavigationController
+        SideMenuManager.default.leftMenuNavigationController = storyboard?
+            .instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? SideMenuNavigationController
 
         // Enable gestures. The left and/or right menus must be set up above for these to work.
         // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
