@@ -1,3 +1,4 @@
 binary "https://www.mapbox.com/ios-sdk/Mapbox-iOS-SDK.json" "5.8.0"
 github "ReactiveX/RxSwift" "4.0.0"
+github "jonkykong/SideMenu" "138103093176154f84ae9a2a63e58b9ae78bc6d7"
 github "mapbox/mapbox-events-ios" "v0.10.2"

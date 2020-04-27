@@ -42,6 +42,8 @@
 		A47DC6562443FD9A00D12922 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A47DC6422443FD2600D12922 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A47DC6572443FD9A00D12922 /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47DC6432443FD2600D12922 /* MapboxMobileEvents.framework */; };
 		A47DC6582443FD9A00D12922 /* MapboxMobileEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A47DC6432443FD2600D12922 /* MapboxMobileEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4E1812F245681FD004E9D56 /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E1812E245681FD004E9D56 /* SideMenu.framework */; };
+		A4E18130245681FD004E9D56 /* SideMenu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4E1812E245681FD004E9D56 /* SideMenu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A4F9B69024566AB500F4E13B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F9B68F24566AB500F4E13B /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A4472C242446F15A0067A7DE /* RxSwift.framework in Embed Frameworks */,
+				A4E18130245681FD004E9D56 /* SideMenu.framework in Embed Frameworks */,
 				A47DC6582443FD9A00D12922 /* MapboxMobileEvents.framework in Embed Frameworks */,
 				A47DC6562443FD9A00D12922 /* Mapbox.framework in Embed Frameworks */,
 				A4472C262446F15A0067A7DE /* RxCocoa.framework in Embed Frameworks */,
@@ -97,6 +100,7 @@
 		A47DC63B2443FAF800D12922 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A47DC6422443FD2600D12922 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Carthage/Build/iOS/Mapbox.framework; sourceTree = "<group>"; };
 		A47DC6432443FD2600D12922 /* MapboxMobileEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxMobileEvents.framework; path = Carthage/Build/iOS/MapboxMobileEvents.framework; sourceTree = "<group>"; };
+		A4E1812E245681FD004E9D56 /* SideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SideMenu.framework; path = Carthage/Build/iOS/SideMenu.framework; sourceTree = "<group>"; };
 		A4F9B68F24566AB500F4E13B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4472C232446F15A0067A7DE /* RxSwift.framework in Frameworks */,
+				A4E1812F245681FD004E9D56 /* SideMenu.framework in Frameworks */,
 				A47DC6572443FD9A00D12922 /* MapboxMobileEvents.framework in Frameworks */,
 				A47DC6552443FD9A00D12922 /* Mapbox.framework in Frameworks */,
 				A4472C252446F15A0067A7DE /* RxCocoa.framework in Frameworks */,
@@ -235,6 +240,7 @@
 		A47DC6412443FD2600D12922 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4E1812E245681FD004E9D56 /* SideMenu.framework */,
 				A4472C1E2446F15A0067A7DE /* RxBlocking.framework */,
 				A4472C202446F15A0067A7DE /* RxCocoa.framework */,
 				A4472C1F2446F15A0067A7DE /* RxSwift.framework */,
@@ -324,6 +330,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/MapboxMobileEvents.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SideMenu.framework",
 			);
 			inputPaths = (
 			);
