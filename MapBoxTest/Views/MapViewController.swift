@@ -26,11 +26,6 @@ class MapViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.showsScale = true
-        mapView.showsUserLocation = true
-        mapView.showsUserHeadingIndicator = true
-        mapView.userTrackingMode = .followWithHeading
-        mapView.attributionButtonPosition = .bottomLeft
         setupSideMenu()
     }
 
@@ -45,6 +40,14 @@ class MapViewController: BaseViewController {
             checkTrigger.asObservable().asDriverOnErrorJustComplete())
 
         checkLoginViewModel.transform(input: input).check.drive().disposed(by: disposeBag)
+    }
+    
+    private func setupMenu() {
+        mapView.showsScale = true
+        mapView.showsUserLocation = true
+        mapView.showsUserHeadingIndicator = true
+        mapView.userTrackingMode = .followWithHeading
+        mapView.attributionButtonPosition = .bottomLeft
     }
 
     private func setupSideMenu() {

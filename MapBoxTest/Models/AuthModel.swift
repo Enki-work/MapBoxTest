@@ -10,10 +10,17 @@ import Foundation
 import RxSwift
 
 class AuthModel {
-    // swiftlint:disable todo
-    func checkLogin() -> Observable<Bool> {
+    class func getMe() -> UserModel? {
         guard let myUserData = UserDefaults.standard.data(forKey: "myUserData"),
             let user = try? JSONDecoder().decode(UserModel.self, from: myUserData) else {
+                return nil
+        }
+        return user
+    }
+
+    // swiftlint:disable todo
+    func checkLogin() -> Observable<Bool> {
+        guard let user = AuthModel.getMe() else {
                 return Observable<Bool>.just(false)
         }
         return Observable.create { observer in
@@ -42,6 +49,6 @@ class AuthModel {
                     print(error)
                 }
                 return Observable<UserModel>.just(user ?? UserModel.init(mailAddress: "", passWord: ""))
-        }.observeOn(MainScheduler.instance)
+            }.observeOn(MainScheduler.instance)
     }
 }
