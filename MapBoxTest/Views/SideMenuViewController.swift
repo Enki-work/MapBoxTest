@@ -11,33 +11,33 @@ import RxSwift
 
 class SideMenuViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
-    let cellTitleList: [String] = ["マイローケーション"]
+    let disposeBag = DisposeBag()
+    let cellTitleList = Observable.just(["マイローケーション"])
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTableView()
+    }
+
+    private func setTableView() {
         tableView.tableFooterView = UIView.init()
-    }
+        cellTitleList
+            .bind(to: tableView.rx.items) { (tableView, row, element) in
+                let cell = tableView.dequeueReusableCell(withIdentifier: "leftMenuListIatem")!
+                cell.textLabel?.text = element
+                return cell
+            }
+            .disposed(by: disposeBag)
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-}
+        tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
+            guard let self = self,
+                let naviVC = self.presentingViewController as? UINavigationController,
+                let mapVC = naviVC.topViewController as? MapViewController else { return }
+            self.tableView.deselectRow(at: indexPath, animated: true)
+            self.dismiss(animated: true) {
+                SideMenuNavigator.init(with: mapVC).toLocations()
+            }
 
-extension SideMenuViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellTitleList.count
-    }
-}
-
-extension SideMenuViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "leftMenuListIatem", for: indexPath)
-
-        cell.textLabel?.text = cellTitleList[indexPath.row]
-
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        }).disposed(by: disposeBag)
     }
 }

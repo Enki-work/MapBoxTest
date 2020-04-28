@@ -226,10 +226,6 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
-                                <connections>
-                                    <outlet property="dataSource" destination="VIm-Jg-fhF" id="3f9-By-UWF"/>
-                                    <outlet property="delegate" destination="VIm-Jg-fhF" id="O2I-6q-nOY"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -334,11 +330,28 @@
                     <connections>
                         <outlet property="mapView" destination="Z2n-U9-cjw" id="U2H-Ub-pL1"/>
                         <segue destination="Rts-rL-3DK" kind="presentation" identifier="mapToLogin" modalPresentationStyle="fullScreen" id="vJS-BI-rPn"/>
+                        <segue destination="jf2-KF-zMD" kind="show" identifier="mapToLocations" id="yEe-F9-0fV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="137.4384236453202"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="FVn-x3-mO2">
+            <objects>
+                <viewController id="jf2-KF-zMD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u1i-GG-3LM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="wRy-J1-NlV"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="W5e-Wx-Zmy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zmW-Sp-XIA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1249" y="137"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

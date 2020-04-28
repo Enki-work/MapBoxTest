@@ -55,12 +55,6 @@ class MapViewController: BaseViewController {
         // Define the menus
         SideMenuManager.default.leftMenuNavigationController = storyboard?
             .instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? SideMenuNavigationController
-
-        // Enable gestures. The left and/or right menus must be set up above for these to work.
-        // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
-        SideMenuManager.default.addPanGestureToPresent(toView: navigationController!.navigationBar)
-        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
-        // (Optional) Prevent status bar area from turning black when menu appears:
         SideMenuManager.default.leftMenuNavigationController?.statusBarEndAlpha = 0
     }
 
