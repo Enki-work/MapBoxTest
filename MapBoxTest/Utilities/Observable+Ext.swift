@@ -40,6 +40,13 @@ extension ObservableType {
         }
     }
 
+    func asDriverOnSkipError() -> Driver<E> {
+        return asDriver { error in
+            debugPrint("asDriverOnSkipError error: \(error)")
+            return Driver.empty()
+        }
+    }
+
     func mapToVoid() -> Observable<Void> {
         return map { _ in }
     }

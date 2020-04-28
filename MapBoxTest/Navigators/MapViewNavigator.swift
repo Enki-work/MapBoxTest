@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class MapViewNavigator: MBNavigatorProtocol {
     internal weak var viewController: UIViewController?
@@ -17,5 +18,11 @@ class MapViewNavigator: MBNavigatorProtocol {
 
     func toLogin() {
         performSegue(with: .mapToLogin)
+    }
+
+    func toSideMenu() {
+        if let leftMenuNavigationController = SideMenuManager.default.leftMenuNavigationController {
+            viewController?.present(leftMenuNavigationController, animated: true, completion: nil)
+        }
     }
 }

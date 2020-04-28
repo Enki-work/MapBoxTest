@@ -11,8 +11,9 @@ import UIKit
 import Mapbox
 import RxSwift
 import RxCocoa
+import SideMenu
 
-class MapViewController: UIViewController {
+class MapViewController: BaseViewController {
 
     @IBOutlet private weak var mapView: MGLMapView!
 
@@ -29,6 +30,8 @@ class MapViewController: UIViewController {
         mapView.showsUserLocation = true
         mapView.showsUserHeadingIndicator = true
         mapView.userTrackingMode = .followWithHeading
+        mapView.attributionButtonPosition = .bottomLeft
+        setupSideMenu()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -44,10 +47,30 @@ class MapViewController: UIViewController {
         checkLoginViewModel.transform(input: input).check.drive().disposed(by: disposeBag)
     }
 
-    @IBAction func clickGetLocationBtn(_ sender: Any) {
-        print("###############\(String(describing: mapView.userLocation?.coordinate))")
+    private func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.default.leftMenuNavigationController = storyboard?
+            .instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? SideMenuNavigationController
+
+        // Enable gestures. The left and/or right menus must be set up above for these to work.
+        // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
+        SideMenuManager.default.addPanGestureToPresent(toView: navigationController!.navigationBar)
+        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
+        // (Optional) Prevent status bar area from turning black when menu appears:
+        SideMenuManager.default.leftMenuNavigationController?.statusBarEndAlpha = 0
     }
 
+    @IBAction func clickLeftBarItem(_ sender: UIBarButtonItem) {
+        MapViewNavigator(with: self).toSideMenu()
+    }
+
+    @IBAction func clickCurrentBtn(_ sender: Any) {
+        guard let currentLocation = mapView.userLocation?.coordinate else {
+            return
+        }
+        mapView.setCenter(currentLocation, animated: true)
+        mapView.userTrackingMode = .followWithHeading
+    }
 }
 
 extension MapViewController: MGLMapViewDelegate {
