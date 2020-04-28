@@ -27,6 +27,7 @@ class MapViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSideMenu()
+        setupMenu()
     }
 
     override func viewDidAppear(_ animated: Bool) {

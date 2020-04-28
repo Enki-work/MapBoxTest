@@ -10,30 +10,27 @@ import Foundation
 import RxSwift
 
 class AuthModel {
-    class func getMe() -> UserModel? {
-        guard let myUserData = UserDefaults.standard.data(forKey: "myUserData"),
-            let user = try? JSONDecoder().decode(UserModel.self, from: myUserData) else {
-                return nil
+    class func getMe() -> Observable<UserModel?> {
+        return UserDefaults.standard.rx.observe(Data.self, "myUserData").map { (data) -> UserModel? in
+            guard let data = data else { return nil }
+            return try? JSONDecoder().decode(UserModel.self, from: data)
         }
-        return user
     }
 
     // swiftlint:disable todo
     func checkLogin() -> Observable<Bool> {
-        guard let user = AuthModel.getMe() else {
-                return Observable<Bool>.just(false)
-        }
-        return Observable.create { observer in
+        return AuthModel.getMe().map { (user) -> Bool in
+            guard let user = user else {
+                return false
+            }
             //TODO: check login
-            observer.onNext(user.mailAddress.count > 0 && user.passWord.count > 0)
-            observer.onCompleted()
-            return Disposables.create()
+            return user.mailAddress.count > 0 && user.passWord.count > 0
         }
     }
 
     func login(with user: UserModel) -> Observable<UserModel> {
         //ローカルのloginURL
-        guard let url = URL(string: "http://192.168.0.3:8083/api/users/login") else {
+        guard let url = URL(string: "http://192.168.0.3:80/api/users/login") else {
             return Observable<UserModel>.error(RxError.unknown)
         }
         var urlRequest = URLRequest(url: url)
