@@ -44,7 +44,10 @@
 		A47DC6572443FD9A00D12922 /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47DC6432443FD2600D12922 /* MapboxMobileEvents.framework */; };
 		A47DC6582443FD9A00D12922 /* MapboxMobileEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A47DC6432443FD2600D12922 /* MapboxMobileEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A4D953E52457CF4700028D09 /* SideMenuNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D953E42457CF4700028D09 /* SideMenuNavigator.swift */; };
-		A4D953E72457D01E00028D09 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D953E62457D01E00028D09 /* LocationsViewController.swift */; };
+		A4D953E72457D01E00028D09 /* MyLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D953E62457D01E00028D09 /* MyLocationsViewController.swift */; };
+		A4D953E92457E62700028D09 /* GetUserLocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D953E82457E62700028D09 /* GetUserLocationsViewModel.swift */; };
+		A4D953EB2457FBE400028D09 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D953EA2457FBE400028D09 /* LocationModel.swift */; };
+		A4D953ED2457FF7C00028D09 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D953EC2457FF7C00028D09 /* Constant.swift */; };
 		A4E1812F245681FD004E9D56 /* SideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E1812E245681FD004E9D56 /* SideMenu.framework */; };
 		A4E18130245681FD004E9D56 /* SideMenu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4E1812E245681FD004E9D56 /* SideMenu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A4F9B69024566AB500F4E13B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F9B68F24566AB500F4E13B /* BaseViewController.swift */; };
@@ -105,7 +108,10 @@
 		A47DC6422443FD2600D12922 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = Carthage/Build/iOS/Mapbox.framework; sourceTree = "<group>"; };
 		A47DC6432443FD2600D12922 /* MapboxMobileEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapboxMobileEvents.framework; path = Carthage/Build/iOS/MapboxMobileEvents.framework; sourceTree = "<group>"; };
 		A4D953E42457CF4700028D09 /* SideMenuNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuNavigator.swift; sourceTree = "<group>"; };
-		A4D953E62457D01E00028D09 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
+		A4D953E62457D01E00028D09 /* MyLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationsViewController.swift; sourceTree = "<group>"; };
+		A4D953E82457E62700028D09 /* GetUserLocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserLocationsViewModel.swift; sourceTree = "<group>"; };
+		A4D953EA2457FBE400028D09 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		A4D953EC2457FF7C00028D09 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A4E1812E245681FD004E9D56 /* SideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SideMenu.framework; path = Carthage/Build/iOS/SideMenu.framework; sourceTree = "<group>"; };
 		A4F9B68F24566AB500F4E13B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,7 +159,7 @@
 				9676BDCE244D642800F98E2E /* SignupViewController.swift */,
 				A4F9B68F24566AB500F4E13B /* BaseViewController.swift */,
 				A47C89BC2456951B006EFC12 /* SideMenuViewController.swift */,
-				A4D953E62457D01E00028D09 /* LocationsViewController.swift */,
+				A4D953E62457D01E00028D09 /* MyLocationsViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +170,7 @@
 				A4472C2C2446FA7A0067A7DE /* AuthModel.swift */,
 				A4472C34244722240067A7DE /* UserModel.swift */,
 				A453EA5D24503A8600B2BA0E /* MBTError.swift */,
+				A4D953EA2457FBE400028D09 /* LocationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -186,6 +193,7 @@
 				A4472C2E2446FAC20067A7DE /* ViewModelType.swift */,
 				A4472C3E2447E9780067A7DE /* CheckLoginViewModel.swift */,
 				962850DA244D8E0000B2157F /* SignupViewModel.swift */,
+				A4D953E82457E62700028D09 /* GetUserLocationsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -196,6 +204,7 @@
 				A4472C302446FB940067A7DE /* ErrorTracker.swift */,
 				A4472C36244726490067A7DE /* Observable+Ext.swift */,
 				960A3B65244EB4260003965C /* Binding+Ext.swift */,
+				A4D953EC2457FF7C00028D09 /* Constant.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -363,9 +372,10 @@
 				960A3D33245124230003965C /* SignupNavigator.swift in Sources */,
 				962850DB244D8E0000B2157F /* SignupViewModel.swift in Sources */,
 				A4472C1D2446D9EF0067A7DE /* LoginViewController.swift in Sources */,
+				A4D953E92457E62700028D09 /* GetUserLocationsViewModel.swift in Sources */,
 				960A3B66244EB4260003965C /* Binding+Ext.swift in Sources */,
 				A453EA5E24503A8600B2BA0E /* MBTError.swift in Sources */,
-				A4D953E72457D01E00028D09 /* LocationsViewController.swift in Sources */,
+				A4D953E72457D01E00028D09 /* MyLocationsViewController.swift in Sources */,
 				A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */,
 				9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */,
 				A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */,
@@ -376,9 +386,11 @@
 				9645D4982447F01500737631 /* MBCLLocationManager.swift in Sources */,
 				960A3D31245123560003965C /* MapViewNavigator.swift in Sources */,
 				96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */,
+				A4D953ED2457FF7C00028D09 /* Constant.swift in Sources */,
 				A47C89BD2456951B006EFC12 /* SideMenuViewController.swift in Sources */,
 				A47DC6302443FAF100D12922 /* SceneDelegate.swift in Sources */,
 				9676BDCF244D642800F98E2E /* SignupViewController.swift in Sources */,
+				A4D953EB2457FBE400028D09 /* LocationModel.swift in Sources */,
 				A4472C3F2447E9780067A7DE /* CheckLoginViewModel.swift in Sources */,
 				A4472C2D2446FA7A0067A7DE /* AuthModel.swift in Sources */,
 				A4F9B69024566AB500F4E13B /* BaseViewController.swift in Sources */,

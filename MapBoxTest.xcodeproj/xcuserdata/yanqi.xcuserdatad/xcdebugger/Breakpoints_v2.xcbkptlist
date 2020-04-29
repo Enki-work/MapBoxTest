@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E662CD3C-D09A-4541-A3C9-F61DEF63BFAB"
+            uuid = "7CE6E64C-822E-4A6D-9020-DBCBDB407297"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MapBoxTest/ViewModels/CheckLoginViewModel.swift"
+            filePath = "MapBoxTest/Models/AuthModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "transform(input:)"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "login(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

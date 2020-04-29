@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class AuthModel {
+final class AuthModel {
     class func getMe() -> Observable<UserModel?> {
         return UserDefaults.standard.rx.observe(Data.self, "myUserData").map { (data) -> UserModel? in
             guard let data = data else { return nil }
@@ -29,8 +29,7 @@ class AuthModel {
     }
 
     func login(with user: UserModel) -> Observable<UserModel> {
-        //ローカルのloginURL
-        guard let url = URL(string: "http://192.168.0.3:80/api/users/login") else {
+        guard let url = URL(string: MBTUrlString.hostUrlString + MBTUrlString.loginUrlString) else {
             return Observable<UserModel>.error(RxError.unknown)
         }
         var urlRequest = URLRequest(url: url)

@@ -42,7 +42,7 @@ class MapViewController: BaseViewController {
 
         checkLoginViewModel.transform(input: input).check.drive().disposed(by: disposeBag)
     }
-    
+
     private func setupMenu() {
         mapView.showsScale = true
         mapView.showsUserLocation = true
@@ -66,8 +66,12 @@ class MapViewController: BaseViewController {
         guard let currentLocation = mapView.userLocation?.coordinate else {
             return
         }
-        mapView.setCenter(currentLocation, animated: true)
-        mapView.userTrackingMode = .followWithHeading
+        mapView.setCenter(currentLocation,
+                          zoomLevel: mapView.zoomLevel,
+                          direction: mapView.direction,
+                          animated: true, completionHandler: {[weak self] in
+                            self?.mapView.userTrackingMode = .followWithHeading
+        })
     }
 }
 

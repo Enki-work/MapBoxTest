@@ -8,15 +8,15 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class MyLocationsViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     // MARK: - Variables
 
-    private lazy var loginViewModel: LoginViewModel = {
-        return LoginViewModel(with: AuthModel(),
-                              and: LoginNavigator(with: self))
+    private lazy var locationViewModel: GetUserLocationsViewModel = {
+        return GetUserLocationsViewModel(with: LocationModel())
     }()
 
     // MARK: - Constants
@@ -25,15 +25,24 @@ class MyLocationsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTableView()
+        bindViewModel()
     }
 
-    private func setTableView() {
+    private func bindViewModel() {
+        let checkTrigger = Driver<Void>.just(())
+        let input = GetUserLocationsViewModel.Input(checkTrigger: checkTrigger)
+        let output = locationViewModel.transform(input: input)
+
+        setTableView(locations: output.locations.asObservable())
+        output.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
+    }
+
+    private func setTableView(locations: Observable<[Location]>) {
         tableView.tableFooterView = UIView.init()
-        cellTitleList
+        locations
             .bind(to: tableView.rx.items) { (tableView, row, element) in
-                let cell = tableView.dequeueReusableCell(withIdentifier: "leftMenuListIatem")!
-                cell.textLabel?.text = element
+                let cell = tableView.dequeueReusableCell(withIdentifier: "LocationsListItem")!
+                cell.textLabel?.text = "latitude: \(element.latitude) longitude:\(element.longitude)"
                 return cell
             }
             .disposed(by: disposeBag)
