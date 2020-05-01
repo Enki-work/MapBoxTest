@@ -31,7 +31,7 @@ struct Group: Codable {
             self.intValue = intValue
         }
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -43,12 +43,16 @@ struct Group: Codable {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let con = try! decoder.container(keyedBy: AnyCodingKey.self)
-        self.id = try! con.decode(String.self, forKey: AnyCodingKey(stringValue:CodingKeys.id.rawValue))
-        self.title = try! con.decode(String.self, forKey: AnyCodingKey(stringValue:CodingKeys.title.rawValue))
-        let updatedAtStr = try! con.decode(String.self, forKey: AnyCodingKey(stringValue:CodingKeys.updatedAt.rawValue))
+        let con = try decoder.container(keyedBy: AnyCodingKey.self)
+        self.id = try con.decode(String.self,
+                                 forKey: AnyCodingKey(stringValue: CodingKeys.id.rawValue))
+        self.title = try con.decode(String.self,
+                                    forKey: AnyCodingKey(stringValue: CodingKeys.title.rawValue))
+        let updatedAtStr = try con.decode(String.self,
+                                          forKey: AnyCodingKey(stringValue: CodingKeys.updatedAt.rawValue))
         self.updatedAt = dateFormatter.date(from: updatedAtStr)!
-        let createdAtStr = try! con.decode(String.self, forKey: AnyCodingKey(stringValue:CodingKeys.createdAt.rawValue))
+        let createdAtStr = try con.decode(String.self,
+                                          forKey: AnyCodingKey(stringValue: CodingKeys.createdAt.rawValue))
         self.createdAt = dateFormatter.date(from: createdAtStr)!
     }
 }
@@ -68,10 +72,10 @@ final class GroupModel {
             urlRequest.httpMethod = "GET"
             return URLSession.shared.rx.data(request: urlRequest)
                 .flatMap { (data) -> Observable<[Group]> in
-                    guard let Groups = try? JSONDecoder().decode([Group].self, from: data) else {
+                    guard let groups = try? JSONDecoder().decode([Group].self, from: data) else {
                         return Observable<[Group]>.error(RxError.noElements)
                     }
-                    return Observable<[Group]>.just(Groups)
+                    return Observable<[Group]>.just(groups)
                 }.do(onError: { (error) in
                     print(error)
                 })

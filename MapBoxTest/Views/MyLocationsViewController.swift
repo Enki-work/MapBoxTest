@@ -40,7 +40,7 @@ class MyLocationsViewController: BaseViewController {
     private func setTableView(locations: Observable<[Location]>) {
         tableView.tableFooterView = UIView.init()
         locations
-            .bind(to: tableView.rx.items) { (tableView, row, element) in
+            .bind(to: tableView.rx.items) { (tableView, _, element) in
                 let cell = tableView.dequeueReusableCell(withIdentifier: "LocationsListItem")!
                 cell.textLabel?.text = "latitude: \(element.latitude) longitude:\(element.longitude)"
                 return cell

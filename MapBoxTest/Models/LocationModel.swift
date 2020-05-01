@@ -59,7 +59,7 @@ struct Location: Codable {
         let createdAtStr = try con.decode(String.self,
                                           forKey: AnyCodingKey(stringValue: CodingKeys.createdAt.rawValue))
         self.createdAt = dateFormatter.date(from: createdAtStr)!
-        con = try! con.nestedContainer(keyedBy: AnyCodingKey.self,
+        con = try con.nestedContainer(keyedBy: AnyCodingKey.self,
                                        forKey: AnyCodingKey(stringValue: "user"))
         self.userId = try con.decode(String.self, forKey: AnyCodingKey(stringValue: "id"))
     }

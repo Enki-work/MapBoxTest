@@ -40,7 +40,7 @@ class MyGroupViewController: BaseViewController {
     private func setTableView(groups: Observable<[Group]>) {
         tableView.tableFooterView = UIView.init()
         groups
-            .bind(to: tableView.rx.items) { (tableView, row, element) in
+            .bind(to: tableView.rx.items) { (tableView, _, element) in
                 let cell = tableView.dequeueReusableCell(withIdentifier: "GroupsListItem")!
                 cell.textLabel?.text = "\(element.title)"
                 return cell

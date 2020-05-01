@@ -24,7 +24,7 @@ class SideMenuViewController: BaseViewController {
     private func setTableView() {
         tableView.tableFooterView = UIView.init()
         cellTitleList
-            .bind(to: tableView.rx.items) { (tableView, row, element) in
+            .bind(to: tableView.rx.items) { (tableView, _, element) in
                 let cell = tableView.dequeueReusableCell(withIdentifier: "leftMenuListItem")!
                 cell.textLabel?.text = element
                 return cell
