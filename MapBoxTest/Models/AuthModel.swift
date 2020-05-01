@@ -66,14 +66,14 @@ final class AuthModel {
             return URLSession.shared.rx.data(request: urlRequest)
                 .flatMap { (data) -> Observable<Bool> in
                     guard let bodyStr = String(data: data, encoding: String.Encoding.utf8) else {
-                        return Observable<Bool>.error(RxError.noElements)
+                        return Observable<Bool>.error(RxError.unknown)
                     }
                     print(bodyStr)
                     return Observable<Bool>.just(true)
                 }.do(onError: { (error) in
                     print(error)
                 })
-        }.observeOn(MainScheduler.instance)
+            }.observeOn(MainScheduler.instance).checkAccountValidity()
     }
 
     func register(with user: UserModel) -> Observable<UserModel> {

@@ -79,6 +79,6 @@ final class GroupModel {
                 }.do(onError: { (error) in
                     print(error)
                 })
-        }.observeOn(MainScheduler.instance)
+        }.observeOn(MainScheduler.instance).checkAccountValidity()
     }
 }

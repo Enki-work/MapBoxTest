@@ -9,6 +9,13 @@
 import RxSwift
 import Foundation
 
+struct LocationRequest: Codable {
+    var latitude: Double
+    var longitude: Double
+    var userIDStr: String?
+    var token: String
+}
+
 struct Location: Codable {
     var id: String
     var longitude: Double
@@ -60,7 +67,7 @@ struct Location: Codable {
                                           forKey: AnyCodingKey(stringValue: CodingKeys.createdAt.rawValue))
         self.createdAt = dateFormatter.date(from: createdAtStr)!
         con = try con.nestedContainer(keyedBy: AnyCodingKey.self,
-                                       forKey: AnyCodingKey(stringValue: "user"))
+                                      forKey: AnyCodingKey(stringValue: "user"))
         self.userId = try con.decode(String.self, forKey: AnyCodingKey(stringValue: "id"))
     }
 }
@@ -87,7 +94,7 @@ final class LocationModel {
                 }.do(onError: { (error) in
                     print(error)
                 })
-        }.observeOn(MainScheduler.instance)
+        }.observeOn(MainScheduler.instance).checkAccountValidity()
     }
 
     func getGroupLocations() -> Observable<[Location]> {
@@ -111,6 +118,36 @@ final class LocationModel {
                 }.do(onError: { (error) in
                     print(error)
                 })
-        }.observeOn(MainScheduler.instance)
+        }.observeOn(MainScheduler.instance).checkAccountValidity()
+    }
+
+    func uploadLocation(latitude: Double, longitude: Double, userIDStr: String? = nil) -> Observable<Void> {
+        return AuthModel.getMe().flatMap { (user) -> Observable<Void> in
+            guard let user = user, user.token.count > 0 else {
+                return Observable<Void>.error(RxError.unknown)
+            }
+            guard let url = URL(string: MBTUrlString.hostUrlString +
+                MBTUrlString.getUserLocationUrlString) else {
+                return Observable<Void>.error(RxError.unknown)
+            }
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpBody = try? JSONEncoder().encode(
+                LocationRequest(latitude: latitude,
+                                longitude: longitude,
+                                userIDStr: userIDStr,
+                                token: user.token))
+            return URLSession.shared.rx.data(request: urlRequest)
+                .flatMap { (data) -> Observable<Void> in
+                    guard let bodyStr = String(data: data, encoding: String.Encoding.utf8) else {
+                        return Observable<Void>.error(RxError.unknown)
+                    }
+                    print(bodyStr)
+                    return Observable<Void>.just(())
+                }.do(onError: { (error) in
+                    print(error)
+                })
+        }.observeOn(MainScheduler.instance).checkAccountValidity()
     }
 }
