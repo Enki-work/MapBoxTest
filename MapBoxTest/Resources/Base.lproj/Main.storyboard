@@ -332,6 +332,7 @@
                         <segue destination="Rts-rL-3DK" kind="presentation" identifier="mapToLogin" modalPresentationStyle="fullScreen" id="vJS-BI-rPn"/>
                         <segue destination="jf2-KF-zMD" kind="show" identifier="mapToLocations" id="yEe-F9-0fV"/>
                         <segue destination="KHJ-2Y-bwV" kind="show" identifier="mapToGroups" id="6ca-ek-bIo"/>
+                        <segue destination="XML-aT-NfG" kind="show" identifier="mapToGroupLocations" id="RSf-t5-m3M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -419,6 +420,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lYu-lw-sZE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1249" y="916"/>
+        </scene>
+        <!--My Group Locations View Controller-->
+        <scene sceneID="zhJ-SB-bYT">
+            <objects>
+                <viewController id="XML-aT-NfG" customClass="MyGroupLocationsViewController" customModule="MapBoxTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ijf-1X-H7N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eRd-W4-qKs">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupLocationsListItem" id="qQ9-R0-RXa">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qQ9-R0-RXa" id="IKA-FX-Q0u">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="eRd-W4-qKs" firstAttribute="trailing" secondItem="4Ci-ZG-Ww1" secondAttribute="trailing" id="6P1-v4-6rK"/>
+                            <constraint firstItem="eRd-W4-qKs" firstAttribute="top" secondItem="4Ci-ZG-Ww1" secondAttribute="top" id="FyC-jf-Sab"/>
+                            <constraint firstItem="eRd-W4-qKs" firstAttribute="bottom" secondItem="4Ci-ZG-Ww1" secondAttribute="bottom" id="cbb-DF-5rc"/>
+                            <constraint firstItem="eRd-W4-qKs" firstAttribute="leading" secondItem="4Ci-ZG-Ww1" secondAttribute="leading" id="rR9-Yt-c6g"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4Ci-ZG-Ww1"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0He-Gn-yef"/>
+                    <connections>
+                        <outlet property="tableView" destination="eRd-W4-qKs" id="0QR-Ma-zSp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UgE-PJ-k00" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2244" y="137"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

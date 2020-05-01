@@ -13,7 +13,8 @@ class SideMenuViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     let disposeBag = DisposeBag()
     let cellTitleList = Observable.just(["マイローケーション",
-                                         "マイグループ"])
+                                         "マイグループ",
+                                         "マイグループローケーション"])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,9 @@ class SideMenuViewController: BaseViewController {
 
                 case 1:
                     SideMenuNavigator.init(with: mapVC).toGroups()
+
+                case 2:
+                    SideMenuNavigator.init(with: mapVC).toGroupLocations()
                 default:
                     break
                 }

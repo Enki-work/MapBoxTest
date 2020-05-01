@@ -33,7 +33,7 @@ struct Location: Codable {
             self.intValue = intValue
         }
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case longitude
@@ -47,15 +47,15 @@ struct Location: Codable {
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         var con = try! decoder.container(keyedBy: AnyCodingKey.self)
-        self.id = try! con.decode(String.self, forKey: AnyCodingKey(stringValue:CodingKeys.id.rawValue))
-        self.longitude = try! con.decode(Double.self, forKey: AnyCodingKey(stringValue:CodingKeys.longitude.rawValue))
-        self.latitude = try! con.decode(Double.self, forKey: AnyCodingKey(stringValue:CodingKeys.latitude.rawValue))
-        let updatedAtStr = try! con.decode(String.self, forKey: AnyCodingKey(stringValue:CodingKeys.updatedAt.rawValue))
+        self.id = try! con.decode(String.self, forKey: AnyCodingKey(stringValue: CodingKeys.id.rawValue))
+        self.longitude = try! con.decode(Double.self, forKey: AnyCodingKey(stringValue: CodingKeys.longitude.rawValue))
+        self.latitude = try! con.decode(Double.self, forKey: AnyCodingKey(stringValue: CodingKeys.latitude.rawValue))
+        let updatedAtStr = try! con.decode(String.self, forKey: AnyCodingKey(stringValue: CodingKeys.updatedAt.rawValue))
         self.updatedAt = dateFormatter.date(from: updatedAtStr)!
-        let createdAtStr = try! con.decode(String.self, forKey: AnyCodingKey(stringValue:CodingKeys.createdAt.rawValue))
+        let createdAtStr = try! con.decode(String.self, forKey: AnyCodingKey(stringValue: CodingKeys.createdAt.rawValue))
         self.createdAt = dateFormatter.date(from: createdAtStr)!
-        con = try! con.nestedContainer(keyedBy: AnyCodingKey.self, forKey: AnyCodingKey(stringValue:"user"))
-        self.userId = try! con.decode(String.self, forKey: AnyCodingKey(stringValue:"id"))
+        con = try! con.nestedContainer(keyedBy: AnyCodingKey.self, forKey: AnyCodingKey(stringValue: "user"))
+        self.userId = try! con.decode(String.self, forKey: AnyCodingKey(stringValue: "id"))
     }
 }
 
@@ -83,16 +83,28 @@ final class LocationModel {
                 })
         }.observeOn(MainScheduler.instance)
     }
-}
 
-extension Dictionary where Key == String, Value == String {
-    func getUrlParams() -> String {
-        self.enumerated().reduce("") { (result, element) -> String in
-            if result.isEmpty {
-                return "?\(element.element.key)=\(element.element.value)"
-            } else {
-                return result + "&\(element.element.key)=\(element.element.value)"
+    func getGroupLocations() -> Observable<[Location]> {
+        return AuthModel.getMe().flatMap { (user) -> Observable<[Location]> in
+            guard let user = user, user.token.count > 0 else {
+                return Observable<[Location]>.error(RxError.unknown)
             }
-        }
+            let params = ["token": user.token].getUrlParams()
+            guard let url = URL(string: MBTUrlString.hostUrlString +
+                MBTUrlString.getGroupLocationUrlString + params) else {
+                return Observable<[Location]>.error(RxError.unknown)
+            }
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "GET"
+            return URLSession.shared.rx.data(request: urlRequest)
+                .flatMap { (data) -> Observable<[Location]> in
+                    guard let locations = try? JSONDecoder().decode([Location].self, from: data) else {
+                        return Observable<[Location]>.error(RxError.noElements)
+                    }
+                    return Observable<[Location]>.just(locations)
+                }.do(onError: { (error) in
+                    print(error)
+                })
+        }.observeOn(MainScheduler.instance)
     }
 }

@@ -22,4 +22,8 @@ class SideMenuNavigator: MBNavigatorProtocol {
     func toGroups() {
         performSegue(with: .mapToGroups)
     }
+
+    func toGroupLocations() {
+        performSegue(with: .mapToGroupLocations)
+    }
 }
