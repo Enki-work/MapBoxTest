@@ -78,7 +78,7 @@ class SignupViewController: BaseViewController {
         output.back
             .drive()
             .disposed(by: disposeBag)
-        
+
         output.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
 
         let tapBackground = UITapGestureRecognizer()
