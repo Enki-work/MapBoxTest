@@ -53,7 +53,7 @@ final class AuthModel {
 
     func register(with user: UserModel) -> Observable<UserModel> {
         //ローカルのregisterURL
-        guard let url = URL(string: MBTUrlString.hostUrlString + MBTUrlString.loginUrlString) else {
+        guard let url = URL(string: MBTUrlString.hostUrlString + MBTUrlString.registerUrlString) else {
             return Observable<UserModel>.error(RxError.unknown)
         }
         var urlRequest = URLRequest(url: url)

@@ -26,6 +26,7 @@ class SignupViewModel: ViewModelType {
         let signupFinish: Driver<UserModel>
         let back: Driver<Void>
         let signupEnabled: Driver<Bool>
+        let error: Driver<Error>
     }
 
     struct State {
@@ -73,7 +74,7 @@ class SignupViewModel: ViewModelType {
                         self.navigator.dismiss()
                     })
                     .trackError(state.error)
-                    .asDriverOnErrorJustComplete()
+                    .asDriverOnSkipError()
         }
 
         let back = input.backTrigger.do(onNext: {
@@ -85,7 +86,8 @@ class SignupViewModel: ViewModelType {
                                       validatedPasswordRepeated: validateRepeatedPassword,
                                       signupFinish: signupFinish,
                                       back: back,
-                                      signupEnabled: signupEnabled)
+                                      signupEnabled: signupEnabled,
+                                      error: state.error.asDriver())
     }
 }
 
