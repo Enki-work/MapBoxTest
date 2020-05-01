@@ -12,7 +12,8 @@ import RxSwift
 class SideMenuViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     let disposeBag = DisposeBag()
-    let cellTitleList = Observable.just(["マイローケーション"])
+    let cellTitleList = Observable.just(["マイローケーション",
+                                         "マイグループ"])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,15 @@ class SideMenuViewController: BaseViewController {
                 let mapVC = naviVC.topViewController as? MapViewController else { return }
             self.tableView.deselectRow(at: indexPath, animated: true)
             self.dismiss(animated: true) {
-                SideMenuNavigator.init(with: mapVC).toLocations()
+                switch indexPath.row {
+                case 0:
+                    SideMenuNavigator.init(with: mapVC).toLocations()
+
+                case 1:
+                    SideMenuNavigator.init(with: mapVC).toGroups()
+                default:
+                    break
+                }
             }
 
         }).disposed(by: disposeBag)

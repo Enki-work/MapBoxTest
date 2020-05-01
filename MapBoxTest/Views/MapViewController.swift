@@ -52,7 +52,6 @@ class MapViewController: BaseViewController {
     }
 
     private func setupSideMenu() {
-        // Define the menus
         SideMenuManager.default.leftMenuNavigationController = storyboard?
             .instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? SideMenuNavigationController
         SideMenuManager.default.leftMenuNavigationController?.statusBarEndAlpha = 0
