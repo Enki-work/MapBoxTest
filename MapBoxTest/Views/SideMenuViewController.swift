@@ -8,13 +8,18 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class SideMenuViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
+
+    private var logoutViewModel: LogoutViewModel?
+
     let disposeBag = DisposeBag()
     let cellTitleList = Observable.just(["マイローケーション",
                                          "マイグループ",
-                                         "マイグループローケーション"])
+                                         "マイグループローケーション",
+                                         "ログアウト"])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +51,16 @@ class SideMenuViewController: BaseViewController {
 
                 case 2:
                     SideMenuNavigator.init(with: mapVC).toGroupLocations()
+
+                case 3:
+                    if self.logoutViewModel == nil {
+                        self.logoutViewModel = LogoutViewModel(with: AuthModel(),
+                                                               and: LogoutNavigator(with: mapVC))
+                    }
+                    let logoutTrigger = Driver<Void>.just(())
+                    let input = LogoutViewModel.Input.init(logoutTrigger: logoutTrigger)
+                    let output = self.logoutViewModel?.transform(input: input)
+                    output?.logout.drive().disposed(by: self.disposeBag)
                 default:
                     break
                 }

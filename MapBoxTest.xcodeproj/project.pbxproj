@@ -19,6 +19,8 @@
 		9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */; };
 		96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */; };
 		9676BDCF244D642800F98E2E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9676BDCE244D642800F98E2E /* SignupViewController.swift */; };
+		A4035223245BEDE600E9DFCB /* LogoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4035222245BEDE600E9DFCB /* LogoutViewModel.swift */; };
+		A4035225245BEE1D00E9DFCB /* LogoutNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4035224245BEE1D00E9DFCB /* LogoutNavigator.swift */; };
 		A4472C1D2446D9EF0067A7DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */; };
 		A4472C232446F15A0067A7DE /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; };
 		A4472C242446F15A0067A7DE /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -89,6 +91,8 @@
 		9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBCLLocationManagerDelegate.swift; sourceTree = "<group>"; };
 		96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		9676BDCE244D642800F98E2E /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		A4035222245BEDE600E9DFCB /* LogoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewModel.swift; sourceTree = "<group>"; };
+		A4035224245BEE1D00E9DFCB /* LogoutNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutNavigator.swift; sourceTree = "<group>"; };
 		A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A4472C1E2446F15A0067A7DE /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		A4472C1F2446F15A0067A7DE /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 				A4D953E82457E62700028D09 /* GetUserLocationsViewModel.swift */,
 				A4D953F0245A5B0700028D09 /* GetUserGroupsViewModel.swift */,
 				A4B5D5CD245BB60600217BCB /* GetGroupLocationsViewModel.swift */,
+				A4035222245BEDE600E9DFCB /* LogoutViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 				960A3D30245123560003965C /* MapViewNavigator.swift */,
 				960A3D32245124230003965C /* SignupNavigator.swift */,
 				A4D953E42457CF4700028D09 /* SideMenuNavigator.swift */,
+				A4035224245BEE1D00E9DFCB /* LogoutNavigator.swift */,
 			);
 			path = Navigators;
 			sourceTree = "<group>";
@@ -396,6 +402,7 @@
 				A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */,
 				9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */,
 				A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */,
+				A4035223245BEDE600E9DFCB /* LogoutViewModel.swift in Sources */,
 				960A3B61244E81BC0003965C /* MBDefaultValidationService.swift in Sources */,
 				960A3B5F244E81800003965C /* MBValidationServiceProtocol.swift in Sources */,
 				A4472C312446FB940067A7DE /* ErrorTracker.swift in Sources */,
@@ -416,6 +423,7 @@
 				A4B5D5CC245BB43200217BCB /* MyGroupLocationsViewController.swift in Sources */,
 				960A3D2F245122A40003965C /* LoginNavigator.swift in Sources */,
 				A4472C37244726490067A7DE /* Observable+Ext.swift in Sources */,
+				A4035225245BEE1D00E9DFCB /* LogoutNavigator.swift in Sources */,
 				A4472C35244722240067A7DE /* UserModel.swift in Sources */,
 				A4472C2F2446FAC20067A7DE /* ViewModelType.swift in Sources */,
 			);
