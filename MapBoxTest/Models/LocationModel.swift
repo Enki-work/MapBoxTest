@@ -46,16 +46,22 @@ struct Location: Codable {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        var con = try! decoder.container(keyedBy: AnyCodingKey.self)
-        self.id = try! con.decode(String.self, forKey: AnyCodingKey(stringValue: CodingKeys.id.rawValue))
-        self.longitude = try! con.decode(Double.self, forKey: AnyCodingKey(stringValue: CodingKeys.longitude.rawValue))
-        self.latitude = try! con.decode(Double.self, forKey: AnyCodingKey(stringValue: CodingKeys.latitude.rawValue))
-        let updatedAtStr = try! con.decode(String.self, forKey: AnyCodingKey(stringValue: CodingKeys.updatedAt.rawValue))
+        var con = try decoder.container(keyedBy: AnyCodingKey.self)
+        self.id = try con.decode(String.self,
+                                 forKey: AnyCodingKey(stringValue: CodingKeys.id.rawValue))
+        self.longitude = try con.decode(Double.self,
+                                        forKey: AnyCodingKey(stringValue: CodingKeys.longitude.rawValue))
+        self.latitude = try con.decode(Double.self,
+                                       forKey: AnyCodingKey(stringValue: CodingKeys.latitude.rawValue))
+        let updatedAtStr = try con.decode(String.self,
+                                          forKey: AnyCodingKey(stringValue: CodingKeys.updatedAt.rawValue))
         self.updatedAt = dateFormatter.date(from: updatedAtStr)!
-        let createdAtStr = try! con.decode(String.self, forKey: AnyCodingKey(stringValue: CodingKeys.createdAt.rawValue))
+        let createdAtStr = try con.decode(String.self,
+                                          forKey: AnyCodingKey(stringValue: CodingKeys.createdAt.rawValue))
         self.createdAt = dateFormatter.date(from: createdAtStr)!
-        con = try! con.nestedContainer(keyedBy: AnyCodingKey.self, forKey: AnyCodingKey(stringValue: "user"))
-        self.userId = try! con.decode(String.self, forKey: AnyCodingKey(stringValue: "id"))
+        con = try! con.nestedContainer(keyedBy: AnyCodingKey.self,
+                                       forKey: AnyCodingKey(stringValue: "user"))
+        self.userId = try con.decode(String.self, forKey: AnyCodingKey(stringValue: "id"))
     }
 }
 
