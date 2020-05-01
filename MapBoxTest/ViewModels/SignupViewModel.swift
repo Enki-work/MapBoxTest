@@ -23,7 +23,7 @@ class SignupViewModel: ViewModelType {
         let validatedEmail: Driver<ValidationResult>
         let validatedPassword: Driver<ValidationResult>
         let validatedPasswordRepeated: Driver<ValidationResult>
-        let signupFinish: Driver<Void>
+        let signupFinish: Driver<UserModel>
         let back: Driver<Void>
         let signupEnabled: Driver<Bool>
     }
@@ -33,12 +33,15 @@ class SignupViewModel: ViewModelType {
     }
 
     private let navigator: SignupNavigator
+    private let authModel: AuthModel
 
-    init(with navigator: SignupNavigator) {
+    init(with authModel: AuthModel, and navigator: SignupNavigator) {
+        self.authModel = authModel
         self.navigator = navigator
     }
 
     func transform(input: SignupViewModel.Input) -> SignupViewModel.Output {
+        let state = State()
         let validationService = MBDefaultValidationService()
 
         let validatedEmail = input.email.flatMapLatest { email in
@@ -61,9 +64,17 @@ class SignupViewModel: ViewModelType {
                 email.isValid && password.isValid && repeatedPassword.isValid
             }.distinctUntilChanged()
 
-        let signupFinish = input.signupFinishTrigger.do(onNext: {
-            self.navigator.dismiss()
-        }).asDriver()
+        let requiredInputs = Driver.combineLatest(input.email, input.password)
+        let signupFinish = input.signupFinishTrigger
+            .withLatestFrom(requiredInputs)
+            .flatMapLatest { [unowned self] (email: String, password: String) in
+                return self.authModel.register(with: UserModel.init(mailAddress: email, passWord: password))
+                    .do(onNext: { [unowned self] _ in
+                        self.navigator.dismiss()
+                    })
+                    .trackError(state.error)
+                    .asDriverOnErrorJustComplete()
+        }
 
         let back = input.backTrigger.do(onNext: {
             self.navigator.dismiss()

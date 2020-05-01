@@ -46,5 +46,29 @@ final class AuthModel {
                 }
                 return Observable<UserModel>.just(user ?? UserModel.init(mailAddress: "", passWord: ""))
             }.observeOn(MainScheduler.instance)
+            .do(onError: { (error) in
+                print(error)
+            }).observeOn(MainScheduler.instance)
+    }
+
+    func register(with user: UserModel) -> Observable<UserModel> {
+        //ローカルのregisterURL
+        guard let url = URL(string: MBTUrlString.hostUrlString + MBTUrlString.loginUrlString) else {
+            return Observable<UserModel>.error(RxError.unknown)
+        }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try? JSONEncoder().encode(user)
+        return URLSession.shared.rx.data(request: urlRequest)
+            .flatMap { (data) -> Observable<UserModel> in
+                let user = try? JSONDecoder().decode(UserModel.self, from: data)
+                if let error = try? JSONDecoder().decode(MBTError.self, from: data) {
+                    print(error)
+                }
+                return Observable<UserModel>.just(user ?? UserModel.init(mailAddress: "", passWord: ""))
+            }.do(onError: { (error) in
+                print(error)
+            }).observeOn(MainScheduler.instance)
     }
 }
