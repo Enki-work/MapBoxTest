@@ -54,7 +54,7 @@ class LoginViewModel: ViewModelType {
                         }
                     })
                     .trackError(state.error)
-                    .asDriverOnErrorJustComplete()
+                    .asDriverOnSkipError()
         }
         let signup = input.signupTrigger.do(onNext: {
             self.navigator.toSignup()

@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class SignupViewController: UIViewController {
+class SignupViewController: BaseViewController {
     // MARK: - IBOutlet
 
     @IBOutlet weak var emailTextField: UITextField!

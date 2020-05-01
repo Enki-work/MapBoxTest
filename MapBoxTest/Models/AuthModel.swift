@@ -26,7 +26,7 @@ class AuthModel {
 
     func login(with user: UserModel) -> Observable<UserModel> {
         //ローカルのloginURL
-        guard let url = URL(string: "http://192.168.0.3:8080/api/users/login") else {
+        guard let url = URL(string: "http://192.168.0.3:8083/api/users/login") else {
             return Observable<UserModel>.error(RxError.unknown)
         }
         var urlRequest = URLRequest(url: url)
