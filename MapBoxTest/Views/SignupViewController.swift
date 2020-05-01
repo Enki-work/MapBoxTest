@@ -24,7 +24,8 @@ class SignupViewController: UIViewController {
     // MARK: - Constants
 
     private lazy var signupViewModel: SignupViewModel = {
-        return SignupViewModel(with: SignupNavigator(with: self))
+        return SignupViewModel(with: AuthModel(),
+                               and: SignupNavigator(with: self))
     }()
 
     let disposeBag = DisposeBag()
@@ -86,7 +87,7 @@ class SignupViewController: UIViewController {
         view.addGestureRecognizer(tapBackground)
     }
 
-    private func userFinishedSignup() {
+    private func userFinishedSignup(userModel: UserModel) {
         // アカウント登録後サーバー通信などの処理をする
     }
 }

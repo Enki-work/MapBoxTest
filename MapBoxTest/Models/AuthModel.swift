@@ -42,8 +42,29 @@ class AuthModel {
                     print(error)
                 }
                 return Observable<UserModel>.just(user ?? UserModel.init(mailAddress: "", passWord: ""))
-        }.do(onError: { (error) in
-            print(error)
-        }).observeOn(MainScheduler.instance)
+            }.do(onError: { (error) in
+                print(error)
+            }).observeOn(MainScheduler.instance)
+    }
+
+    func register(with user: UserModel) -> Observable<UserModel> {
+        //ローカルのregisterURL
+        guard let url = URL(string: "http://192.168.0.8:8082/api/users/register") else {
+            return Observable<UserModel>.error(RxError.unknown)
+        }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try? JSONEncoder().encode(user)
+        return URLSession.shared.rx.data(request: urlRequest)
+            .flatMap { (data) -> Observable<UserModel> in
+                let user = try? JSONDecoder().decode(UserModel.self, from: data)
+                if let error = try? JSONDecoder().decode(MBTError.self, from: data) {
+                    print(error)
+                }
+                return Observable<UserModel>.just(user ?? UserModel.init(mailAddress: "", passWord: ""))
+            }.do(onError: { (error) in
+                print(error)
+            }).observeOn(MainScheduler.instance)
     }
 }
