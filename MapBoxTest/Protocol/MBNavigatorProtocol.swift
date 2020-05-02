@@ -12,6 +12,9 @@ enum SegueIdentifiers: String {
     case signupToLogin
     case loginToSignup
     case mapToLogin
+    case mapToLocations
+    case mapToGroups
+    case mapToGroupLocations
 }
 
 protocol MBNavigatorProtocol {

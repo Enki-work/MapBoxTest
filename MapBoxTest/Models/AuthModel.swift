@@ -9,24 +9,27 @@
 import Foundation
 import RxSwift
 
-class AuthModel {
+final class AuthModel {
+    class func getMe() -> Observable<UserModel?> {
+        return UserDefaults.standard.rx.observe(Data.self, "myUserData").map { (data) -> UserModel? in
+            guard let data = data else { return nil }
+            return try? JSONDecoder().decode(UserModel.self, from: data)
+        }
+    }
+
     // swiftlint:disable todo
     func checkLogin() -> Observable<Bool> {
-        guard let myUserData = UserDefaults.standard.data(forKey: "myUserData"),
-            let user = try? JSONDecoder().decode(UserModel.self, from: myUserData) else {
-                return Observable<Bool>.just(false)
-        }
-        return Observable.create { observer in
+        return AuthModel.getMe().map { (user) -> Bool in
+            guard let user = user else {
+                return false
+            }
             //TODO: check login
-            observer.onNext(user.mailAddress.count > 0 && user.passWord.count > 0)
-            observer.onCompleted()
-            return Disposables.create()
+            return user.mailAddress.count > 0 && user.passWord.count > 0
         }
     }
 
     func login(with user: UserModel) -> Observable<UserModel> {
-        //ローカルのloginURL
-        guard let url = URL(string: "http://192.168.0.3:8083/api/users/login") else {
+        guard let url = URL(string: MBTUrlString.hostUrlString + MBTUrlString.loginUrlString) else {
             return Observable<UserModel>.error(RxError.unknown)
         }
         var urlRequest = URLRequest(url: url)
@@ -42,14 +45,15 @@ class AuthModel {
                     print(error)
                 }
                 return Observable<UserModel>.just(user ?? UserModel.init(mailAddress: "", passWord: ""))
-            }.do(onError: { (error) in
+            }.observeOn(MainScheduler.instance)
+            .do(onError: { (error) in
                 print(error)
             }).observeOn(MainScheduler.instance)
     }
 
     func register(with user: UserModel) -> Observable<UserModel> {
         //ローカルのregisterURL
-        guard let url = URL(string: "http://192.168.0.8:8082/api/users/register") else {
+        guard let url = URL(string: MBTUrlString.hostUrlString + MBTUrlString.registerUrlString) else {
             return Observable<UserModel>.error(RxError.unknown)
         }
         var urlRequest = URLRequest(url: url)

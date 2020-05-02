@@ -79,6 +79,8 @@ class SignupViewController: BaseViewController {
             .drive()
             .disposed(by: disposeBag)
 
+        output.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
+
         let tapBackground = UITapGestureRecognizer()
         tapBackground.rx.event.subscribe(onNext: { [weak self] _ in
             self?.view.endEditing(true)
