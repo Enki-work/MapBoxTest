@@ -68,7 +68,8 @@ class MapViewController: BaseViewController {
         let titleBtn = UIButton(type: .custom)
         titleBtn.setTitleColor(UIColor.init(named: "menuColor"), for: .normal)
         titleBtn.rx.tap.bind { [weak self]() in
-
+            guard let self = self else { return }
+            MapViewNavigator(with: self).showGroups()
         }.disposed(by: disposeBag)
         self.navigationItem.titleView = titleBtn
     }

@@ -46,16 +46,23 @@ class MyGroupViewController: BaseViewController {
                 return cell
             }
             .disposed(by: disposeBag)
+        Observable.combineLatest(tableView.rx.modelSelected(Group.self), AuthModel.getMe())
+            .subscribe(onNext: { [weak self](combineData) in
+                guard let user = combineData.1 else { return }
+                UserDefaults.standard.set(combineData.0.id, forKey: "selectedGroupId\(user.mailAddress)")
+
+                if let self = self, let naviVC = self.presentingViewController as? UINavigationController,
+                    let titleBtn = naviVC.topViewController?.navigationItem.titleView as? UIButton {
+                    titleBtn.setTitle(combineData.0.title, for: .normal)
+                    titleBtn.sizeToFit()
+                }
+            }).disposed(by: disposeBag)
+
 
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
-            guard let self = self,
-                let naviVC = self.presentingViewController as? UINavigationController,
-                let mapVC = naviVC.topViewController as? MapViewController else { return }
+            guard let self = self else { return }
             self.tableView.deselectRow(at: indexPath, animated: true)
-            self.dismiss(animated: true) {
-                SideMenuNavigator.init(with: mapVC).toGroups()
-            }
-
+            self.dismiss(animated: true, completion: nil)
         }).disposed(by: disposeBag)
     }
 }

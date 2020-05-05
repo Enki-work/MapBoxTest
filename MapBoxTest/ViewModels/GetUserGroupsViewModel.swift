@@ -38,6 +38,10 @@ class GetUserGroupsViewModel: ViewModelType {
                     .getUserGroups()
                     .trackError(state.error)
                     .asDriverOnSkipError()
+        }.map {
+            var groups: [Group] = $0
+            groups.insert(Group(title: "すべて"), at: 0)
+            return groups
         }
         return GetUserGroupsViewModel.Output(groups: groups, error: state.error.asDriver())
     }

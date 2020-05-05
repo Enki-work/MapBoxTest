@@ -55,6 +55,13 @@ struct Group: Codable {
                                           forKey: AnyCodingKey(stringValue: CodingKeys.createdAt.rawValue))
         self.createdAt = dateFormatter.date(from: createdAtStr)!
     }
+    
+    init(title: String) {
+        self.title = title
+        self.id = ""
+        self.updatedAt = Date()
+        self.createdAt = Date()
+    }
 }
 
 final class GroupModel {
