@@ -22,12 +22,17 @@ class MapViewController: BaseViewController {
                                    and: MapViewNavigator(with: self))
     }()
 
+    private lazy var mapViewTitleViewModel: MapViewTitleViewModel = {
+        return MapViewTitleViewModel(with: GroupModel.init())
+    }()
+
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSideMenu()
-        setupMenu()
+        setupMap()
+        setupUI()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -36,19 +41,36 @@ class MapViewController: BaseViewController {
     }
 
     func bindViewModel() {
-        let checkTrigger = Observable<Void>.just(())
-        let input = CheckLoginViewModel.Input.init(checkTrigger:
-            checkTrigger.asObservable().asDriverOnErrorJustComplete())
+        let beginTrigger = Driver<Void>.just(())
+        let checkLoginInput = CheckLoginViewModel.Input.init(checkTrigger:
+            beginTrigger)
+        checkLoginViewModel.transform(input: checkLoginInput).check.drive().disposed(by: disposeBag)
 
-        checkLoginViewModel.transform(input: input).check.drive().disposed(by: disposeBag)
+        let titleInput = MapViewTitleViewModel.Input.init(beginTrigger: beginTrigger)
+        let titleOutPut = mapViewTitleViewModel.transform(input: titleInput)
+        if let titleBtn = self.navigationItem.titleView as? UIButton {
+            titleOutPut.selectedGroupTitle.asObservable().do(afterNext: { (_) in
+                titleBtn.sizeToFit()
+            })
+                .bind(to: titleBtn.rx.title()).disposed(by: disposeBag)
+        }
     }
 
-    private func setupMenu() {
+    private func setupMap() {
         mapView.showsScale = true
         mapView.showsUserLocation = true
         mapView.showsUserHeadingIndicator = true
         mapView.userTrackingMode = .followWithHeading
         mapView.attributionButtonPosition = .bottomLeft
+    }
+
+    private func setupUI() {
+        let titleBtn = UIButton(type: .custom)
+        titleBtn.setTitleColor(UIColor.init(named: "menuColor"), for: .normal)
+        titleBtn.rx.tap.bind { [weak self]() in
+
+        }.disposed(by: disposeBag)
+        self.navigationItem.titleView = titleBtn
     }
 
     private func setupSideMenu() {
@@ -68,9 +90,9 @@ class MapViewController: BaseViewController {
         mapView.setCenter(currentLocation,
                           zoomLevel: mapView.zoomLevel,
                           direction: mapView.direction,
-                          animated: true, completionHandler: {[weak self] in
-                            self?.mapView.userTrackingMode = .followWithHeading
-        })
+                          animated: true, completionHandler: { [weak self] in
+                              self?.mapView.userTrackingMode = .followWithHeading
+                          })
     }
 }
 
