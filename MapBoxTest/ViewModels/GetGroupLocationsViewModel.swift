@@ -35,7 +35,7 @@ class GetGroupLocationsViewModel: ViewModelType {
         let locations: Driver<[Location]> = input.checkTrigger
             .flatMapLatest { [unowned self] in
                 return self.locationModel
-                    .getGroupLocations()
+                    .getGroupLocations(groupId: nil)
                     .trackError(state.error)
                     .asDriverOnSkipError()
         }

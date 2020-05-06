@@ -77,16 +77,12 @@ struct Location: Codable {
 }
 
 final class LocationModel {
-    func getUserLocations(groupId: String?) -> Observable<[Location]> {
+    func getUserLocations() -> Observable<[Location]> {
         return AuthModel.getMe().flatMap { (user) -> Observable<[Location]> in
             guard let user = user, user.token.count > 0 else {
                 return Observable<[Location]>.error(RxError.unknown)
             }
-            var paramsDic = ["token": user.token]
-            if let groupId = groupId {
-                paramsDic["groupId"] = groupId
-            }
-            let params = paramsDic.getUrlParams()
+            let params = ["token": user.token].getUrlParams()
             guard let url = URL(string: MBTUrlString.hostUrlString +
                 MBTUrlString.getUserLocationUrlString + params) else {
                 return Observable<[Location]>.error(RxError.unknown)
@@ -105,12 +101,16 @@ final class LocationModel {
         }.observeOn(MainScheduler.instance).checkAccountValidity()
     }
 
-    func getGroupLocations() -> Observable<[Location]> {
+    func getGroupLocations(groupId: String?) -> Observable<[Location]> {
         return AuthModel.getMe().flatMap { (user) -> Observable<[Location]> in
             guard let user = user, user.token.count > 0 else {
                 return Observable<[Location]>.error(RxError.unknown)
             }
-            let params = ["token": user.token].getUrlParams()
+            var paramsDic = ["token": user.token]
+            if let groupId = groupId {
+                paramsDic["groupId"] = groupId
+            }
+            let params = paramsDic.getUrlParams()
             guard let url = URL(string: MBTUrlString.hostUrlString +
                 MBTUrlString.getGroupLocationUrlString + params) else {
                 return Observable<[Location]>.error(RxError.unknown)

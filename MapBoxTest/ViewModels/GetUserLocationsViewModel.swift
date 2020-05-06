@@ -33,9 +33,9 @@ class GetUserLocationsViewModel: ViewModelType {
     func transform(input: GetUserLocationsViewModel.Input) -> GetUserLocationsViewModel.Output {
         let state = State()
         let locations: Driver<[Location]> = input.groupIdBeginTrigger
-            .flatMapLatest {  [unowned self] groupId in
+            .flatMapLatest {  [unowned self] userId in
                 return self.locationModel
-                    .getUserLocations(groupId: groupId)
+                    .getUserLocations()
                     .trackError(state.error)
                     .asDriverOnSkipError()
         }

@@ -156,7 +156,7 @@ extension MapViewController: MGLMapViewDelegate {
                 annotationView?.layer.cornerRadius = (annotationView?.frame.size.width)! / 2
                 annotationView?.layer.borderWidth = 4.0
                 annotationView?.layer.borderColor = UIColor.white.cgColor
-                annotationView!.backgroundColor = UIColor(red: 0.03, green: 0.80, blue: 0.69, alpha: 1.0)
+                annotationView!.backgroundColor = UIColor.red
             }
 
             return annotationView

@@ -47,7 +47,7 @@ class SelectGroupViewModel: ViewModelType {
                 }
                 self.navigator?.toMapView()
                 return self.locationModel
-                    .getUserLocations(groupId: combineData.0.id)
+                    .getGroupLocations(groupId: combineData.0.id)
                     .map {
                         (combineData.0, $0)
                     }
