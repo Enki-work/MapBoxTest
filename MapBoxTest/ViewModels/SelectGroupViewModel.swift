@@ -41,7 +41,10 @@ class SelectGroupViewModel: ViewModelType {
             .flatMapLatest { [weak self](combineData) -> Observable<(Group, [Location])> in
                 guard let self = self, let user = combineData.1 else
                 { return Observable<(Group, [Location]) > .error(RxError.noElements) }
-                UserDefaults.standard.set(combineData.0.id, forKey: "selectedGroupId\(user.mailAddress)")
+                if let simpleGroupData = try? JSONEncoder()
+                    .encode(SimpleGroupInfo(id: combineData.0.id, title: combineData.0.title)) {
+                    UserDefaults.standard.set(simpleGroupData, forKey: "selectedGroup\(user.mailAddress)")
+                }
                 self.navigator.toMapView()
                 return self.locationModel
                     .getUserLocations(groupId: combineData.0.id)

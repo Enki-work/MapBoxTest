@@ -64,6 +64,11 @@ struct Group: Codable {
     }
 }
 
+struct SimpleGroupInfo: Codable {
+    var id: String
+    var title: String
+}
+
 final class GroupModel {
     func getUserGroups() -> Observable<[Group]> {
         return AuthModel.getMe().flatMap { (user) -> Observable<[Group]> in

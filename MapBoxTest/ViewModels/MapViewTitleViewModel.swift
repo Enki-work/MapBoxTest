@@ -17,7 +17,7 @@ class MapViewTitleViewModel: ViewModelType {
     }
 
     struct Output {
-        let selectedGroupTitle: Driver<String>
+        let selectedGroup: Driver<SimpleGroupInfo>
         let error: Driver<Error>
     }
 
@@ -42,16 +42,16 @@ class MapViewTitleViewModel: ViewModelType {
             }.asObservable()
 
         let selectedGroupTitle = Observable.combineLatest(groups, AuthModel.getMe())
-            .flatMap { (combineData) -> Driver<String> in
+            .flatMap { (combineData) -> Driver<SimpleGroupInfo> in
                 guard let userModel = combineData.1,
-                    let selectedGroupId = UserDefaults.standard
-                    .string(forKey: "selectedGroupId\(userModel.mailAddress)"),
-                    let selectedGroupName = combineData.0.first(where: { $0.id == selectedGroupId })?.title else {
-                        return Driver<String>.just("すべて")
+                    let selectedGroupData = UserDefaults.standard
+                    .data(forKey: "selectedGroup\(userModel.mailAddress)"),
+                    let group = try? JSONDecoder().decode(SimpleGroupInfo.self, from: selectedGroupData) else {
+                        return Driver<SimpleGroupInfo>.just(SimpleGroupInfo(id: "", title: "すべて"))
                 }
-                return Driver<String>.just(selectedGroupName)
+                return Driver<SimpleGroupInfo>.just(group)
         }
-        return MapViewTitleViewModel.Output(selectedGroupTitle: selectedGroupTitle.asDriverOnSkipError(),
+        return MapViewTitleViewModel.Output(selectedGroup: selectedGroupTitle.asDriverOnSkipError(),
                                             error: state.error.asDriver())
     }
 }

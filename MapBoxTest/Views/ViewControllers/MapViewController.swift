@@ -49,9 +49,9 @@ class MapViewController: BaseViewController {
         let titleInput = MapViewTitleViewModel.Input.init(beginTrigger: beginTrigger)
         let titleOutPut = mapViewTitleViewModel.transform(input: titleInput)
         if let titleBtn = self.navigationItem.titleView as? UIButton {
-            titleOutPut.selectedGroupTitle.asObservable().do(afterNext: { (_) in
+            titleOutPut.selectedGroup.asObservable().do(afterNext: { (_) in
                 titleBtn.sizeToFit()
-            })
+            }).map({ $0.title })
                 .bind(to: titleBtn.rx.title()).disposed(by: disposeBag)
         }
     }
