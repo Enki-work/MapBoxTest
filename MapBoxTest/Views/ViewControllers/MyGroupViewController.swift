@@ -61,6 +61,7 @@ class MyGroupViewController: BaseViewController {
                 let titleBtn = mapVC.navigationItem.titleView as? UIButton {
                 titleBtn.setTitle(combineData.0.title, for: .normal)
                 titleBtn.sizeToFit()
+                mapVC.setPointAnnotation(locations: combineData.1)
             }
         }).disposed(by: disposeBag)
 

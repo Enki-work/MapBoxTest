@@ -80,6 +80,21 @@ class MapViewController: BaseViewController {
         SideMenuManager.default.leftMenuNavigationController?.statusBarEndAlpha = 0
     }
 
+    func setPointAnnotation(locations: [Location]) {
+        var annotations: [LocationPointAnnotation] = []
+        for location in locations {
+            let annotation = LocationPointAnnotation()
+            annotation.title = location.userName ?? "Unknow User"
+            annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude,
+                                                           longitude: location.longitude)
+            annotations.append(annotation)
+        }
+        if let oldAnnotations = mapView.annotations?.filter({ $0 is LocationPointAnnotation }) {
+            mapView.removeAnnotations(oldAnnotations)
+        }
+        mapView.addAnnotations(annotations)
+    }
+
     @IBAction func clickLeftBarItem(_ sender: UIBarButtonItem) {
         MapViewNavigator(with: self).toSideMenu()
     }
@@ -98,23 +113,45 @@ class MapViewController: BaseViewController {
 }
 
 extension MapViewController: MGLMapViewDelegate {
-    func mapView(_ mapView: MGLMapView, regionWillChangeAnimated animated: Bool) {
-        print("🍎############### regionWillChangeAnimated")
+
+    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+        return annotation.responds(to: #selector(getter: MGLAnnotation.title))
+            && annotation is LocationPointAnnotation
     }
 
-    func mapView(_ mapView: MGLMapView,
-                 regionWillChangeWith reason: MGLCameraChangeReason,
-                 animated: Bool) {
-
-        print("🍏############### regionWillChangeAnimated reason\(reason)")
+    func mapView(_ mapView: MGLMapView, calloutViewFor annotation: MGLAnnotation) -> MGLCalloutView? {
+        // Instantiate and return our custom callout view.
+        return LocationCalloutView(representedObject: annotation)
     }
 
-    func mapView(_ mapView: MGLMapView, didUpdate userLocation: MGLUserLocation?) {
+    func mapView(_ mapView: MGLMapView, tapOnCalloutFor annotation: MGLAnnotation) {
+        // Optionally handle taps on the callout.
+        print("Tapped the callout for: \(annotation)")
 
-        print("🍐############### didUpdate userLocation\(String(describing: userLocation))")
+        // Hide the callout.
+        mapView.deselectAnnotation(annotation, animated: true)
     }
 
-    func mapView(_ mapView: MGLMapView, didFailToLocateUserWithError error: Error) {
-        print("🍌############### didFailToLocateUserWithError error\(error)")
+    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
+
+        if annotation is LocationPointAnnotation {
+            let reuseIdentifier = "reusableDotView"
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+            if annotationView == nil {
+                annotationView = LocationAnnotationView(reuseIdentifier: reuseIdentifier)
+                annotationView?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+                annotationView?.layer.cornerRadius = (annotationView?.frame.size.width)! / 2
+                annotationView?.layer.borderWidth = 4.0
+                annotationView?.layer.borderColor = UIColor.white.cgColor
+                annotationView!.backgroundColor = UIColor(red: 0.03, green: 0.80, blue: 0.69, alpha: 1.0)
+            }
+
+            return annotationView
+        }
+        return nil
+    }
+
+    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
+        return nil
     }
 }

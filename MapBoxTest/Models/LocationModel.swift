@@ -23,6 +23,7 @@ struct Location: Codable {
     var updatedAt: Date
     var createdAt: Date
     var userId: String
+    var userName: String?
 
     struct AnyCodingKey: CodingKey {
         var stringValue: String
@@ -47,6 +48,7 @@ struct Location: Codable {
         case latitude
         case updatedAt
         case createdAt
+        case userName
     }
 
     init(from decoder: Decoder) throws {
@@ -66,6 +68,8 @@ struct Location: Codable {
         let createdAtStr = try con.decode(String.self,
                                           forKey: AnyCodingKey(stringValue: CodingKeys.createdAt.rawValue))
         self.createdAt = dateFormatter.date(from: createdAtStr)!
+        self.userName = try con.decode(String.self,
+        forKey: AnyCodingKey(stringValue: CodingKeys.userName.rawValue))
         con = try con.nestedContainer(keyedBy: AnyCodingKey.self,
                                       forKey: AnyCodingKey(stringValue: "user"))
         self.userId = try con.decode(String.self, forKey: AnyCodingKey(stringValue: "id"))

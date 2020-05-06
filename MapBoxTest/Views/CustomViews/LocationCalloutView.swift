@@ -7,7 +7,7 @@
 //
 import Mapbox
 
-class CustomCalloutView: UIView, MGLCalloutView {
+class LocationCalloutView: UIView, MGLCalloutView {
     var representedObject: MGLAnnotation
 
 // Allow the callout to remain open during panning.
@@ -69,7 +69,7 @@ class CustomCalloutView: UIView, MGLCalloutView {
 
         if isCalloutTappable() {
 // Handle taps and eventually try to send them to the delegate (usually the map view).
-            mainBody.addTarget(self, action: #selector(CustomCalloutView.calloutTapped), for: .touchUpInside)
+            mainBody.addTarget(self, action: #selector(LocationCalloutView.calloutTapped), for: .touchUpInside)
         } else {
 // Disable tapping and highlighting.
             mainBody.isUserInteractionEnabled = false
