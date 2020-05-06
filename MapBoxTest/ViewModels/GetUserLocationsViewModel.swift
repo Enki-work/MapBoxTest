@@ -12,7 +12,7 @@ import RxCocoa
 class GetUserLocationsViewModel: ViewModelType {
 
     struct Input {
-        let checkTrigger: Driver<Void>
+        let groupIdBeginTrigger: Driver<String?>
     }
 
     struct Output {
@@ -32,10 +32,10 @@ class GetUserLocationsViewModel: ViewModelType {
 
     func transform(input: GetUserLocationsViewModel.Input) -> GetUserLocationsViewModel.Output {
         let state = State()
-        let locations: Driver<[Location]> = input.checkTrigger
-            .flatMapLatest { [unowned self] in
+        let locations: Driver<[Location]> = input.groupIdBeginTrigger
+            .flatMapLatest {  [unowned self] groupId in
                 return self.locationModel
-                    .getUserLocations()
+                    .getUserLocations(groupId: groupId)
                     .trackError(state.error)
                     .asDriverOnSkipError()
         }

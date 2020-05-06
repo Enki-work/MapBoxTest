@@ -73,12 +73,16 @@ struct Location: Codable {
 }
 
 final class LocationModel {
-    func getUserLocations() -> Observable<[Location]> {
+    func getUserLocations(groupId: String?) -> Observable<[Location]> {
         return AuthModel.getMe().flatMap { (user) -> Observable<[Location]> in
             guard let user = user, user.token.count > 0 else {
                 return Observable<[Location]>.error(RxError.unknown)
             }
-            let params = ["token": user.token].getUrlParams()
+            var paramsDic = ["token": user.token]
+            if let groupId = groupId {
+                paramsDic["groupId"] = groupId
+            }
+            let params = paramsDic.getUrlParams()
             guard let url = URL(string: MBTUrlString.hostUrlString +
                 MBTUrlString.getUserLocationUrlString + params) else {
                 return Observable<[Location]>.error(RxError.unknown)

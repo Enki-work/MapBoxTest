@@ -25,6 +25,8 @@
 		A403522D24611BEA00E9DFCB /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A403522C24611BEA00E9DFCB /* RxRelay.framework */; };
 		A403522E24611BEB00E9DFCB /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A403522C24611BEA00E9DFCB /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A40352312461672600E9DFCB /* MapViewTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40352302461672500E9DFCB /* MapViewTitleViewModel.swift */; };
+		A403523324626A5500E9DFCB /* SelectGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403523224626A5400E9DFCB /* SelectGroupViewModel.swift */; };
+		A40352352462741F00E9DFCB /* MyGroupViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40352342462741F00E9DFCB /* MyGroupViewNavigator.swift */; };
 		A4472C1D2446D9EF0067A7DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */; };
 		A4472C232446F15A0067A7DE /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; };
 		A4472C242446F15A0067A7DE /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -102,6 +104,8 @@
 		A403522924611BD500E9DFCB /* MapBoxTest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MapBoxTest.xcodeproj; sourceTree = "<group>"; };
 		A403522C24611BEA00E9DFCB /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		A40352302461672500E9DFCB /* MapViewTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewTitleViewModel.swift; sourceTree = "<group>"; };
+		A403523224626A5400E9DFCB /* SelectGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupViewModel.swift; sourceTree = "<group>"; };
+		A40352342462741F00E9DFCB /* MyGroupViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupViewNavigator.swift; sourceTree = "<group>"; };
 		A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A4472C1E2446F15A0067A7DE /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		A4472C1F2446F15A0067A7DE /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 				A4B5D5CD245BB60600217BCB /* GetGroupLocationsViewModel.swift */,
 				A4035222245BEDE600E9DFCB /* LogoutViewModel.swift */,
 				A40352302461672500E9DFCB /* MapViewTitleViewModel.swift */,
+				A403523224626A5400E9DFCB /* SelectGroupViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 				960A3D32245124230003965C /* SignupNavigator.swift */,
 				A4D953E42457CF4700028D09 /* SideMenuNavigator.swift */,
 				A4035224245BEE1D00E9DFCB /* LogoutNavigator.swift */,
+				A40352342462741F00E9DFCB /* MyGroupViewNavigator.swift */,
 			);
 			path = Navigators;
 			sourceTree = "<group>";
@@ -426,6 +432,8 @@
 				A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */,
 				9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */,
 				A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */,
+				A403523324626A5500E9DFCB /* SelectGroupViewModel.swift in Sources */,
+				A40352352462741F00E9DFCB /* MyGroupViewNavigator.swift in Sources */,
 				A4035223245BEDE600E9DFCB /* LogoutViewModel.swift in Sources */,
 				960A3B61244E81BC0003965C /* MBDefaultValidationService.swift in Sources */,
 				960A3B5F244E81800003965C /* MBValidationServiceProtocol.swift in Sources */,
