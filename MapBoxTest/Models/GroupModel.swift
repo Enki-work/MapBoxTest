@@ -9,7 +9,12 @@
 import RxSwift
 import Foundation
 
-struct Group: Codable {
+protocol SimpleGroupInfoProtocol {
+    var id: String { get }
+    var title: String { get }
+}
+
+struct Group: Codable, SimpleGroupInfoProtocol {
     var id: String
     var title: String
     var updatedAt: Date
@@ -64,7 +69,7 @@ struct Group: Codable {
     }
 }
 
-struct SimpleGroupInfo: Codable {
+struct SimpleGroupInfo: Codable, SimpleGroupInfoProtocol {
     var id: String
     var title: String
 }

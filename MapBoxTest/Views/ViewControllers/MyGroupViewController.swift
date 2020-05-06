@@ -53,7 +53,7 @@ class MyGroupViewController: BaseViewController {
             .disposed(by: disposeBag)
 
         let selectGroupInput = SelectGroupViewModel.Input.init(groupIdBeginTrigger:
-            tableView.rx.modelSelected(Group.self).asDriver())
+            tableView.rx.modelSelected(SimpleGroupInfoProtocol.self).asDriver())
         let selectGroupOutput = selectGroupViewModel.transform(input: selectGroupInput)
         selectGroupOutput.locations.drive(onNext: { [weak self](combineData) in
             if let self = self, let naviVC = self.presentingViewController as? UINavigationController,

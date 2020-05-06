@@ -23,7 +23,11 @@ class MapViewController: BaseViewController {
     }()
 
     private lazy var mapViewTitleViewModel: MapViewTitleViewModel = {
-        return MapViewTitleViewModel(with: GroupModel.init())
+        return MapViewTitleViewModel()
+    }()
+
+    private lazy var selectGroupViewModel: SelectGroupViewModel = {
+        return SelectGroupViewModel(with: LocationModel.init())
     }()
 
     private let disposeBag = DisposeBag()
@@ -49,11 +53,20 @@ class MapViewController: BaseViewController {
         let titleInput = MapViewTitleViewModel.Input.init(beginTrigger: beginTrigger)
         let titleOutPut = mapViewTitleViewModel.transform(input: titleInput)
         if let titleBtn = self.navigationItem.titleView as? UIButton {
-            titleOutPut.selectedGroup.asObservable().do(afterNext: { (_) in
-                titleBtn.sizeToFit()
-            }).map({ $0.title })
+            titleOutPut.selectedGroup.asObservable().map({ $0.title })
+                .do(afterNext: { (_) in
+                    titleBtn.sizeToFit()
+                })
                 .bind(to: titleBtn.rx.title()).disposed(by: disposeBag)
         }
+
+        let selectGroupInput = SelectGroupViewModel.Input(groupIdBeginTrigger:
+            titleOutPut.selectedGroup.map({ $0 as SimpleGroupInfoProtocol }).asDriver())
+        let selectGroupOutput = selectGroupViewModel.transform(input: selectGroupInput)
+        selectGroupOutput.locations.drive(onNext: { [weak self](combineData) in
+            guard let self = self else { return }
+            self.setPointAnnotation(locations: combineData.1)
+        }).disposed(by: disposeBag)
     }
 
     private func setupMap() {

@@ -25,25 +25,15 @@ class MapViewTitleViewModel: ViewModelType {
         let error = ErrorTracker()
     }
 
-    private let groupModel: GroupModel
-
-    init(with groupModel: GroupModel) {
-        self.groupModel = groupModel
-    }
-
     func transform(input: MapViewTitleViewModel.Input) -> MapViewTitleViewModel.Output {
         let state = State()
-        let groups = input.beginTrigger
-            .flatMapLatest { [unowned self] in
-                return self.groupModel
-                    .getUserGroups()
+        let selectedGroupTitle = input.beginTrigger
+            .flatMapLatest {
+                return AuthModel.getMe()
                     .trackError(state.error)
                     .asDriverOnSkipError()
-            }.asObservable()
-
-        let selectedGroupTitle = Observable.combineLatest(groups, AuthModel.getMe())
-            .flatMap { (combineData) -> Driver<SimpleGroupInfo> in
-                guard let userModel = combineData.1,
+            }.asObservable().flatMap { (user) -> Driver<SimpleGroupInfo> in
+                guard let userModel = user,
                     let selectedGroupData = UserDefaults.standard
                     .data(forKey: "selectedGroup\(userModel.mailAddress)"),
                     let group = try? JSONDecoder().decode(SimpleGroupInfo.self, from: selectedGroupData) else {

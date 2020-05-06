@@ -13,11 +13,11 @@ import UIKit
 class SelectGroupViewModel: ViewModelType {
 
     struct Input {
-        let groupIdBeginTrigger: Driver<Group>
+        let groupIdBeginTrigger: Driver<SimpleGroupInfoProtocol>
     }
 
     struct Output {
-        let locations: Driver<(Group, [Location])>
+        let locations: Driver<(SimpleGroupInfoProtocol, [Location])>
         let error: Driver<Error>
     }
 
@@ -26,10 +26,10 @@ class SelectGroupViewModel: ViewModelType {
     }
 
     private let locationModel: LocationModel
-    private let navigator: MyGroupViewNavigator
+    private let navigator: MyGroupViewNavigator?
 
     init(with locationModel: LocationModel,
-         navigator: MyGroupViewNavigator) {
+         navigator: MyGroupViewNavigator? = nil) {
         self.locationModel = locationModel
         self.navigator = navigator
     }
@@ -37,15 +37,15 @@ class SelectGroupViewModel: ViewModelType {
     func transform(input: SelectGroupViewModel.Input) -> SelectGroupViewModel.Output {
         let state = State()
 
-        let locations: Driver<(Group, [Location])> = Observable.combineLatest(input.groupIdBeginTrigger.asObservable(), AuthModel.getMe())
-            .flatMapLatest { [weak self](combineData) -> Observable<(Group, [Location])> in
+        let locations: Driver<(SimpleGroupInfoProtocol, [Location])> = Observable.combineLatest(input.groupIdBeginTrigger.asObservable(), AuthModel.getMe())
+            .flatMapLatest { [weak self](combineData) -> Observable<(SimpleGroupInfoProtocol, [Location])> in
                 guard let self = self, let user = combineData.1 else
-                { return Observable<(Group, [Location]) > .error(RxError.noElements) }
+                { return Observable<(SimpleGroupInfoProtocol, [Location]) > .error(RxError.noElements) }
                 if let simpleGroupData = try? JSONEncoder()
                     .encode(SimpleGroupInfo(id: combineData.0.id, title: combineData.0.title)) {
                     UserDefaults.standard.set(simpleGroupData, forKey: "selectedGroup\(user.mailAddress)")
                 }
-                self.navigator.toMapView()
+                self.navigator?.toMapView()
                 return self.locationModel
                     .getUserLocations(groupId: combineData.0.id)
                     .map {
