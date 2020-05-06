@@ -27,6 +27,7 @@
 		A40352312461672600E9DFCB /* MapViewTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40352302461672500E9DFCB /* MapViewTitleViewModel.swift */; };
 		A403523324626A5500E9DFCB /* SelectGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403523224626A5400E9DFCB /* SelectGroupViewModel.swift */; };
 		A40352352462741F00E9DFCB /* MyGroupViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40352342462741F00E9DFCB /* MyGroupViewNavigator.swift */; };
+		A40352392462A0B800E9DFCB /* LocationCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40352382462A0B800E9DFCB /* LocationCalloutView.swift */; };
 		A4472C1D2446D9EF0067A7DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */; };
 		A4472C232446F15A0067A7DE /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; };
 		A4472C242446F15A0067A7DE /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -106,6 +107,7 @@
 		A40352302461672500E9DFCB /* MapViewTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewTitleViewModel.swift; sourceTree = "<group>"; };
 		A403523224626A5400E9DFCB /* SelectGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupViewModel.swift; sourceTree = "<group>"; };
 		A40352342462741F00E9DFCB /* MyGroupViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupViewNavigator.swift; sourceTree = "<group>"; };
+		A40352382462A0B800E9DFCB /* LocationCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCalloutView.swift; sourceTree = "<group>"; };
 		A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A4472C1E2446F15A0067A7DE /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		A4472C1F2446F15A0067A7DE /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
@@ -184,7 +186,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A4472C192446D56E0067A7DE /* Views */ = {
+		A40352362462A01900E9DFCB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				A47DC6312443FAF100D12922 /* MapViewController.swift */,
@@ -195,6 +197,23 @@
 				A4D953E62457D01E00028D09 /* MyLocationsViewController.swift */,
 				A4D953EE24599FA400028D09 /* MyGroupViewController.swift */,
 				A4B5D5CB245BB43200217BCB /* MyGroupLocationsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A40352372462A06400E9DFCB /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				A40352382462A0B800E9DFCB /* LocationCalloutView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		A4472C192446D56E0067A7DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A40352372462A06400E9DFCB /* CustomViews */,
+				A40352362462A01900E9DFCB /* ViewControllers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -440,6 +459,7 @@
 				A4472C312446FB940067A7DE /* ErrorTracker.swift in Sources */,
 				A4472C2B2446FA550067A7DE /* LoginViewModel.swift in Sources */,
 				9645D4982447F01500737631 /* MBCLLocationManager.swift in Sources */,
+				A40352392462A0B800E9DFCB /* LocationCalloutView.swift in Sources */,
 				960A3D31245123560003965C /* MapViewNavigator.swift in Sources */,
 				96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */,
 				A4D953ED2457FF7C00028D09 /* Constant.swift in Sources */,
