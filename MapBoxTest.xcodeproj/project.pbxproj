@@ -19,6 +19,17 @@
 		9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */; };
 		96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */; };
 		9676BDCF244D642800F98E2E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9676BDCE244D642800F98E2E /* SignupViewController.swift */; };
+		A4035223245BEDE600E9DFCB /* LogoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4035222245BEDE600E9DFCB /* LogoutViewModel.swift */; };
+		A4035225245BEE1D00E9DFCB /* LogoutNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4035224245BEE1D00E9DFCB /* LogoutNavigator.swift */; };
+		A403522824611BB200E9DFCB /* RxBlocking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1E2446F15A0067A7DE /* RxBlocking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A403522D24611BEA00E9DFCB /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A403522C24611BEA00E9DFCB /* RxRelay.framework */; };
+		A403522E24611BEB00E9DFCB /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A403522C24611BEA00E9DFCB /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A40352312461672600E9DFCB /* MapViewTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40352302461672500E9DFCB /* MapViewTitleViewModel.swift */; };
+		A403523324626A5500E9DFCB /* SelectGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403523224626A5400E9DFCB /* SelectGroupViewModel.swift */; };
+		A40352352462741F00E9DFCB /* MyGroupViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40352342462741F00E9DFCB /* MyGroupViewNavigator.swift */; };
+		A40352392462A0B800E9DFCB /* LocationCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40352382462A0B800E9DFCB /* LocationCalloutView.swift */; };
+		A403523B2462B83000E9DFCB /* LocationPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403523A2462B83000E9DFCB /* LocationPointAnnotation.swift */; };
+		A403523E2462BCA100E9DFCB /* LocationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403523D2462BCA100E9DFCB /* LocationAnnotationView.swift */; };
 		A4472C1D2446D9EF0067A7DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */; };
 		A4472C232446F15A0067A7DE /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; };
 		A4472C242446F15A0067A7DE /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -65,6 +76,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				A403522E24611BEB00E9DFCB /* RxRelay.framework in Embed Frameworks */,
+				A403522824611BB200E9DFCB /* RxBlocking.framework in Embed Frameworks */,
 				A4472C242446F15A0067A7DE /* RxSwift.framework in Embed Frameworks */,
 				A4E18130245681FD004E9D56 /* SideMenu.framework in Embed Frameworks */,
 				A47DC6582443FD9A00D12922 /* MapboxMobileEvents.framework in Embed Frameworks */,
@@ -89,6 +102,16 @@
 		9645D49A2447F06C00737631 /* MBCLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBCLLocationManagerDelegate.swift; sourceTree = "<group>"; };
 		96667FFA2446CAAE00661E91 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		9676BDCE244D642800F98E2E /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		A4035222245BEDE600E9DFCB /* LogoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewModel.swift; sourceTree = "<group>"; };
+		A4035224245BEE1D00E9DFCB /* LogoutNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutNavigator.swift; sourceTree = "<group>"; };
+		A403522924611BD500E9DFCB /* MapBoxTest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MapBoxTest.xcodeproj; sourceTree = "<group>"; };
+		A403522C24611BEA00E9DFCB /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
+		A40352302461672500E9DFCB /* MapViewTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewTitleViewModel.swift; sourceTree = "<group>"; };
+		A403523224626A5400E9DFCB /* SelectGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupViewModel.swift; sourceTree = "<group>"; };
+		A40352342462741F00E9DFCB /* MyGroupViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupViewNavigator.swift; sourceTree = "<group>"; };
+		A40352382462A0B800E9DFCB /* LocationCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCalloutView.swift; sourceTree = "<group>"; };
+		A403523A2462B83000E9DFCB /* LocationPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPointAnnotation.swift; sourceTree = "<group>"; };
+		A403523D2462BCA100E9DFCB /* LocationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAnnotationView.swift; sourceTree = "<group>"; };
 		A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A4472C1E2446F15A0067A7DE /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		A4472C1F2446F15A0067A7DE /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
@@ -133,6 +156,7 @@
 			files = (
 				A4472C232446F15A0067A7DE /* RxSwift.framework in Frameworks */,
 				A4E1812F245681FD004E9D56 /* SideMenu.framework in Frameworks */,
+				A403522D24611BEA00E9DFCB /* RxRelay.framework in Frameworks */,
 				A47DC6572443FD9A00D12922 /* MapboxMobileEvents.framework in Frameworks */,
 				A47DC6552443FD9A00D12922 /* Mapbox.framework in Frameworks */,
 				A4472C252446F15A0067A7DE /* RxCocoa.framework in Frameworks */,
@@ -161,7 +185,12 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		A4472C192446D56E0067A7DE /* Views */ = {
+		A403522A24611BD500E9DFCB /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A40352362462A01900E9DFCB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				A47DC6312443FAF100D12922 /* MapViewController.swift */,
@@ -172,6 +201,25 @@
 				A4D953E62457D01E00028D09 /* MyLocationsViewController.swift */,
 				A4D953EE24599FA400028D09 /* MyGroupViewController.swift */,
 				A4B5D5CB245BB43200217BCB /* MyGroupLocationsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A40352372462A06400E9DFCB /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				A40352382462A0B800E9DFCB /* LocationCalloutView.swift */,
+				A403523A2462B83000E9DFCB /* LocationPointAnnotation.swift */,
+				A403523D2462BCA100E9DFCB /* LocationAnnotationView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		A4472C192446D56E0067A7DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A40352372462A06400E9DFCB /* CustomViews */,
+				A40352362462A01900E9DFCB /* ViewControllers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,6 +257,9 @@
 				A4D953E82457E62700028D09 /* GetUserLocationsViewModel.swift */,
 				A4D953F0245A5B0700028D09 /* GetUserGroupsViewModel.swift */,
 				A4B5D5CD245BB60600217BCB /* GetGroupLocationsViewModel.swift */,
+				A4035222245BEDE600E9DFCB /* LogoutViewModel.swift */,
+				A40352302461672500E9DFCB /* MapViewTitleViewModel.swift */,
+				A403523224626A5400E9DFCB /* SelectGroupViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -231,6 +282,8 @@
 				960A3D30245123560003965C /* MapViewNavigator.swift */,
 				960A3D32245124230003965C /* SignupNavigator.swift */,
 				A4D953E42457CF4700028D09 /* SideMenuNavigator.swift */,
+				A4035224245BEE1D00E9DFCB /* LogoutNavigator.swift */,
+				A40352342462741F00E9DFCB /* MyGroupViewNavigator.swift */,
 			);
 			path = Navigators;
 			sourceTree = "<group>";
@@ -273,6 +326,8 @@
 		A47DC6412443FD2600D12922 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A403522C24611BEA00E9DFCB /* RxRelay.framework */,
+				A403522924611BD500E9DFCB /* MapBoxTest.xcodeproj */,
 				A4E1812E245681FD004E9D56 /* SideMenu.framework */,
 				A4472C1E2446F15A0067A7DE /* RxBlocking.framework */,
 				A4472C202446F15A0067A7DE /* RxCocoa.framework */,
@@ -332,6 +387,12 @@
 			mainGroup = A47DC6212443FAF100D12922;
 			productRefGroup = A47DC62B2443FAF100D12922 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A403522A24611BD500E9DFCB /* Products */;
+					ProjectRef = A403522924611BD500E9DFCB /* MapBoxTest.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A47DC6292443FAF100D12922 /* MapBoxTest */,
@@ -389,18 +450,24 @@
 				A4472C1D2446D9EF0067A7DE /* LoginViewController.swift in Sources */,
 				A4D953E92457E62700028D09 /* GetUserLocationsViewModel.swift in Sources */,
 				960A3B66244EB4260003965C /* Binding+Ext.swift in Sources */,
+				A403523B2462B83000E9DFCB /* LocationPointAnnotation.swift in Sources */,
 				A453EA5E24503A8600B2BA0E /* MBTError.swift in Sources */,
 				A4B5D5CE245BB60600217BCB /* GetGroupLocationsViewModel.swift in Sources */,
+				A403523E2462BCA100E9DFCB /* LocationAnnotationView.swift in Sources */,
 				A4D953EF24599FA400028D09 /* MyGroupViewController.swift in Sources */,
 				A4D953E72457D01E00028D09 /* MyLocationsViewController.swift in Sources */,
 				A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */,
 				9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */,
 				A47DC62E2443FAF100D12922 /* AppDelegate.swift in Sources */,
+				A403523324626A5500E9DFCB /* SelectGroupViewModel.swift in Sources */,
+				A40352352462741F00E9DFCB /* MyGroupViewNavigator.swift in Sources */,
+				A4035223245BEDE600E9DFCB /* LogoutViewModel.swift in Sources */,
 				960A3B61244E81BC0003965C /* MBDefaultValidationService.swift in Sources */,
 				960A3B5F244E81800003965C /* MBValidationServiceProtocol.swift in Sources */,
 				A4472C312446FB940067A7DE /* ErrorTracker.swift in Sources */,
 				A4472C2B2446FA550067A7DE /* LoginViewModel.swift in Sources */,
 				9645D4982447F01500737631 /* MBCLLocationManager.swift in Sources */,
+				A40352392462A0B800E9DFCB /* LocationCalloutView.swift in Sources */,
 				960A3D31245123560003965C /* MapViewNavigator.swift in Sources */,
 				96667FFB2446CAAE00661E91 /* LocalNotificationManager.swift in Sources */,
 				A4D953ED2457FF7C00028D09 /* Constant.swift in Sources */,
@@ -416,8 +483,10 @@
 				A4B5D5CC245BB43200217BCB /* MyGroupLocationsViewController.swift in Sources */,
 				960A3D2F245122A40003965C /* LoginNavigator.swift in Sources */,
 				A4472C37244726490067A7DE /* Observable+Ext.swift in Sources */,
+				A4035225245BEE1D00E9DFCB /* LogoutNavigator.swift in Sources */,
 				A4472C35244722240067A7DE /* UserModel.swift in Sources */,
 				A4472C2F2446FAC20067A7DE /* ViewModelType.swift in Sources */,
+				A40352312461672600E9DFCB /* MapViewTitleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

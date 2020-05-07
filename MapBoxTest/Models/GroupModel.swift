@@ -9,7 +9,12 @@
 import RxSwift
 import Foundation
 
-struct Group: Codable {
+protocol SimpleGroupInfoProtocol {
+    var id: String { get }
+    var title: String { get }
+}
+
+struct Group: Codable, SimpleGroupInfoProtocol {
     var id: String
     var title: String
     var updatedAt: Date
@@ -55,6 +60,18 @@ struct Group: Codable {
                                           forKey: AnyCodingKey(stringValue: CodingKeys.createdAt.rawValue))
         self.createdAt = dateFormatter.date(from: createdAtStr)!
     }
+
+    init(title: String) {
+        self.title = title
+        self.id = ""
+        self.updatedAt = Date()
+        self.createdAt = Date()
+    }
+}
+
+struct SimpleGroupInfo: Codable, SimpleGroupInfoProtocol {
+    var id: String
+    var title: String
 }
 
 final class GroupModel {
@@ -79,6 +96,6 @@ final class GroupModel {
                 }.do(onError: { (error) in
                     print(error)
                 })
-        }.observeOn(MainScheduler.instance)
+        }.observeOn(MainScheduler.instance).checkAccountValidity()
     }
 }

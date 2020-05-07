@@ -29,8 +29,8 @@ class MyLocationsViewController: BaseViewController {
     }
 
     private func bindViewModel() {
-        let checkTrigger = Driver<Void>.just(())
-        let input = GetUserLocationsViewModel.Input(checkTrigger: checkTrigger)
+        let groupIdBeginTrigger = Driver<String?>.just((nil))
+        let input = GetUserLocationsViewModel.Input(groupIdBeginTrigger: groupIdBeginTrigger)
         let output = locationViewModel.transform(input: input)
 
         setTableView(locations: output.locations.asObservable())

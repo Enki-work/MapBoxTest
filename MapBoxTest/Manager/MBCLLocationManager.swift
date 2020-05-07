@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import RxSwift
 
 final class MBCLLocationManager: NSObject {
     // MARK: - Constants
@@ -18,6 +19,7 @@ final class MBCLLocationManager: NSObject {
 
     static var shared: MBCLLocationManager = MBCLLocationManager()
     weak var delegate: MBCLLocationManagerDelegate?
+    let disposeBag = DisposeBag()
 
     // MARK: - Methods
 
@@ -47,28 +49,27 @@ final class MBCLLocationManager: NSObject {
 extension MBCLLocationManager: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // デバッグモードでローカル通知を送付する
-        #if DEBUG
-            var lat = ""
-            var lon = ""
+        guard let myLocations = locations.first else { return }
+        LocationModel.init().uploadLocation(latitude: myLocations.coordinate.latitude,
+                                            longitude: myLocations.coordinate.longitude).subscribe { (_) in
 
-            if let myLocations = locations.first {
-                lat = String(format: "%.2f", myLocations.coordinate.latitude)
-                lon = String(format: "%.2f", myLocations.coordinate.longitude)
-            }
+            // デバッグモードでローカル通知を送付する
+            #if DEBUG
+                let lat = String(format: "%.2f", myLocations.coordinate.latitude)
+                let lon = String(format: "%.2f", myLocations.coordinate.longitude)
+                let title = "位置情報の更新を開始します"
+                let body = "あなた現在の位置情報 - 緯度: " + lat + ", 経度: " + lon
 
-            let title = "位置情報の更新を開始します"
-            let body = "あなた現在の位置情報 - 緯度: " + lat + ", 経度: " + lon
-
-            LocalNotificationManager.sendLocalNotification(contents: (title, body),
-                                                           timeInterval: 5,
-                                                           isRepeats: false,
-                                                           identifier: "didUpdateLocationsIdentifier") { (error) in
-                if error != nil {
-                    print(error?.localizedDescription ?? "")
+                LocalNotificationManager.sendLocalNotification(contents: (title, body),
+                                                               timeInterval: 5,
+                                                               isRepeats: false,
+                                                               identifier: "didUpdateLocationsIdentifier") { (error) in
+                    if error != nil {
+                        print(error?.localizedDescription ?? "")
+                    }
                 }
-            }
-        #endif
+            #endif
+        }.disposed(by: disposeBag)
     }
 
     func locationManager(_ manager: CLLocationManager,

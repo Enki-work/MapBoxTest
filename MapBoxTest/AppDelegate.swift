@@ -71,3 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 }
+
+extension AppDelegate {
+    func currentKeyWindow() -> UIWindow? {
+        if #available(iOS 13.0, *) {
+            return UIApplication.shared.windows[0]
+        } else {
+            return UIApplication.shared.keyWindow
+        }
+    }
+}

@@ -383,7 +383,7 @@
         <!--My Group View Controller-->
         <scene sceneID="4Ag-GL-wdX">
             <objects>
-                <viewController id="KHJ-2Y-bwV" customClass="MyGroupViewController" customModule="MapBoxTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyGroupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KHJ-2Y-bwV" customClass="MyGroupViewController" customModule="MapBoxTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Usc-jQ-xbd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -424,7 +424,7 @@
         <!--My Group Locations View Controller-->
         <scene sceneID="zhJ-SB-bYT">
             <objects>
-                <viewController id="XML-aT-NfG" customClass="MyGroupLocationsViewController" customModule="MapBoxTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyGroupLocationsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XML-aT-NfG" customClass="MyGroupLocationsViewController" customModule="MapBoxTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ijf-1X-H7N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

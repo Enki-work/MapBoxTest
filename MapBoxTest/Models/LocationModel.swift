@@ -9,6 +9,13 @@
 import RxSwift
 import Foundation
 
+struct LocationRequest: Codable {
+    var latitude: Double
+    var longitude: Double
+    var userIDStr: String?
+    var token: String
+}
+
 struct Location: Codable {
     var id: String
     var longitude: Double
@@ -16,6 +23,7 @@ struct Location: Codable {
     var updatedAt: Date
     var createdAt: Date
     var userId: String
+    var userName: String?
 
     struct AnyCodingKey: CodingKey {
         var stringValue: String
@@ -40,6 +48,7 @@ struct Location: Codable {
         case latitude
         case updatedAt
         case createdAt
+        case userName
     }
 
     init(from decoder: Decoder) throws {
@@ -59,8 +68,10 @@ struct Location: Codable {
         let createdAtStr = try con.decode(String.self,
                                           forKey: AnyCodingKey(stringValue: CodingKeys.createdAt.rawValue))
         self.createdAt = dateFormatter.date(from: createdAtStr)!
+        self.userName = try con.decode(String.self,
+        forKey: AnyCodingKey(stringValue: CodingKeys.userName.rawValue))
         con = try con.nestedContainer(keyedBy: AnyCodingKey.self,
-                                       forKey: AnyCodingKey(stringValue: "user"))
+                                      forKey: AnyCodingKey(stringValue: "user"))
         self.userId = try con.decode(String.self, forKey: AnyCodingKey(stringValue: "id"))
     }
 }
@@ -87,15 +98,19 @@ final class LocationModel {
                 }.do(onError: { (error) in
                     print(error)
                 })
-        }.observeOn(MainScheduler.instance)
+        }.observeOn(MainScheduler.instance).checkAccountValidity()
     }
 
-    func getGroupLocations() -> Observable<[Location]> {
+    func getGroupLocations(groupId: String?) -> Observable<[Location]> {
         return AuthModel.getMe().flatMap { (user) -> Observable<[Location]> in
             guard let user = user, user.token.count > 0 else {
                 return Observable<[Location]>.error(RxError.unknown)
             }
-            let params = ["token": user.token].getUrlParams()
+            var paramsDic = ["token": user.token]
+            if let groupId = groupId {
+                paramsDic["groupId"] = groupId
+            }
+            let params = paramsDic.getUrlParams()
             guard let url = URL(string: MBTUrlString.hostUrlString +
                 MBTUrlString.getGroupLocationUrlString + params) else {
                 return Observable<[Location]>.error(RxError.unknown)
@@ -111,6 +126,36 @@ final class LocationModel {
                 }.do(onError: { (error) in
                     print(error)
                 })
-        }.observeOn(MainScheduler.instance)
+        }.observeOn(MainScheduler.instance).checkAccountValidity()
+    }
+
+    func uploadLocation(latitude: Double, longitude: Double, userIDStr: String? = nil) -> Observable<Void> {
+        return AuthModel.getMe().flatMap { (user) -> Observable<Void> in
+            guard let user = user, user.token.count > 0 else {
+                return Observable<Void>.error(RxError.unknown)
+            }
+            guard let url = URL(string: MBTUrlString.hostUrlString +
+                MBTUrlString.getUserLocationUrlString) else {
+                return Observable<Void>.error(RxError.unknown)
+            }
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpBody = try? JSONEncoder().encode(
+                LocationRequest(latitude: latitude,
+                                longitude: longitude,
+                                userIDStr: userIDStr,
+                                token: user.token))
+            return URLSession.shared.rx.data(request: urlRequest)
+                .flatMap { (data) -> Observable<Void> in
+                    guard let bodyStr = String(data: data, encoding: String.Encoding.utf8) else {
+                        return Observable<Void>.error(RxError.unknown)
+                    }
+                    print(bodyStr)
+                    return Observable<Void>.just(())
+                }.do(onError: { (error) in
+                    print(error)
+                })
+        }.observeOn(MainScheduler.instance).checkAccountValidity()
     }
 }

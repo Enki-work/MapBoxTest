@@ -12,9 +12,12 @@ enum MBTUrlString {
     //ローカルのloginURL
     static let hostUrlString = "http://192.168.0.3:8081"
     static let loginUrlString = "/api/users/login"
+    static let logoutUrlString = "/api/users/logout"
     static let registerUrlString = "/api/users/register"
+
     static let getUserLocationUrlString = "/api/locations/user"
     static let getGroupLocationUrlString = "/api/locations/userGroup"
+
     static let getUserGroupUrlString = "/api/groups"
 }
 
