@@ -17,7 +17,7 @@ class SideMenuViewController: BaseViewController {
 
     let disposeBag = DisposeBag()
     let cellTitleList = Observable.just(["マイローケーション",
-                                         "マイグループ",
+                                         "グループ管理",
                                          "マイグループローケーション",
                                          "ログアウト"])
 

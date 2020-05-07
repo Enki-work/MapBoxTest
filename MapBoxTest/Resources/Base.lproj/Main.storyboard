@@ -380,10 +380,10 @@
             </objects>
             <point key="canvasLocation" x="1248.8" y="136.69950738916256"/>
         </scene>
-        <!--My Group View Controller-->
+        <!--Group Manage View Controller-->
         <scene sceneID="4Ag-GL-wdX">
             <objects>
-                <viewController storyboardIdentifier="MyGroupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KHJ-2Y-bwV" customClass="MyGroupViewController" customModule="MapBoxTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GroupManageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KHJ-2Y-bwV" customClass="GroupManageViewController" customModule="MapBoxTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Usc-jQ-xbd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -419,7 +419,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lYu-lw-sZE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1249" y="916"/>
+            <point key="canvasLocation" x="1383" y="916"/>
         </scene>
         <!--My Group Locations View Controller-->
         <scene sceneID="zhJ-SB-bYT">
@@ -461,6 +461,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UgE-PJ-k00" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2244" y="137"/>
+        </scene>
+        <!--My Group View Controller-->
+        <scene sceneID="ER7-Fu-phN">
+            <objects>
+                <viewController storyboardIdentifier="MyGroupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OSe-wT-BMz" customClass="MyGroupViewController" customModule="MapBoxTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JuA-uc-E92">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mUj-yr-hzK">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupsListItem" id="Cvo-Q8-nEm">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cvo-Q8-nEm" id="UJr-vk-Ulg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="mUj-yr-hzK" firstAttribute="trailing" secondItem="NMo-ip-vCq" secondAttribute="trailing" id="AYW-2V-ibI"/>
+                            <constraint firstItem="mUj-yr-hzK" firstAttribute="top" secondItem="NMo-ip-vCq" secondAttribute="top" id="ajM-Bj-bRT"/>
+                            <constraint firstItem="mUj-yr-hzK" firstAttribute="bottom" secondItem="NMo-ip-vCq" secondAttribute="bottom" id="hdC-qg-n1G"/>
+                            <constraint firstItem="mUj-yr-hzK" firstAttribute="leading" secondItem="NMo-ip-vCq" secondAttribute="leading" id="sA5-ps-zYR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NMo-ip-vCq"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vNF-wZ-V4t"/>
+                    <connections>
+                        <outlet property="tableView" destination="mUj-yr-hzK" id="ZgX-oa-JNO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wRO-g1-cqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-722" y="1618"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

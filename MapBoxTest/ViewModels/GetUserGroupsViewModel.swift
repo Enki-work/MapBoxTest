@@ -25,9 +25,11 @@ class GetUserGroupsViewModel: ViewModelType {
     }
 
     private let groupModel: GroupModel
+    private let isSelectMode: Bool
 
-    init(with groupModel: GroupModel) {
+    init(with groupModel: GroupModel, isSelectMode: Bool = true) {
         self.groupModel = groupModel
+        self.isSelectMode = isSelectMode
     }
 
     func transform(input: GetUserGroupsViewModel.Input) -> GetUserGroupsViewModel.Output {
@@ -38,10 +40,11 @@ class GetUserGroupsViewModel: ViewModelType {
                     .getUserGroups()
                     .trackError(state.error)
                     .asDriverOnSkipError()
-        }.map {
-            var groups: [Group] = $0
-            groups.insert(Group(title: "すべて"), at: 0)
-            return groups
+            }.map {[weak self] in
+                guard self?.isSelectMode == true else { return $0 }
+                var groups: [Group] = $0
+                groups.insert(Group(title: "すべて"), at: 0)
+                return groups
         }
         return GetUserGroupsViewModel.Output(groups: groups, error: state.error.asDriver())
     }
