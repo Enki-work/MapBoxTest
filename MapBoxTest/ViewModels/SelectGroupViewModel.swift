@@ -41,8 +41,9 @@ class SelectGroupViewModel: ViewModelType {
             Observable.combineLatest(input.groupIdBeginTrigger.asObservable(),
                                      AuthModel.getMe())
             .flatMapLatest { [weak self](combineData) -> Observable<(SimpleGroupInfoProtocol, [Location])> in
-                guard let self = self, let user = combineData.1 else
-                { return Observable<(SimpleGroupInfoProtocol, [Location]) > .error(RxError.noElements) }
+                guard let self = self, let user = combineData.1 else {
+                    return Observable<(SimpleGroupInfoProtocol, [Location]) > .error(RxError.noElements)
+                }
                 if let simpleGroupData = try? JSONEncoder()
                     .encode(SimpleGroupInfo(id: combineData.0.id, title: combineData.0.title)) {
                     UserDefaults.standard.set(simpleGroupData, forKey: "selectedGroup\(user.mailAddress)")
