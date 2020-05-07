@@ -42,6 +42,7 @@ class MapViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         bindViewModel()
+        mapView.locationManager.setDistanceFilter?(kCLLocationAccuracyThreeKilometers)
     }
 
     func bindViewModel() {

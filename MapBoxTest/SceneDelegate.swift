@@ -28,8 +28,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
+        MBCLLocationManager.shared.startRequestLocation()
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
+        MBCLLocationManager.shared.stopRequestLocation()
     }
 }
