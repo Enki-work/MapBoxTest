@@ -37,7 +37,9 @@ class SelectGroupViewModel: ViewModelType {
     func transform(input: SelectGroupViewModel.Input) -> SelectGroupViewModel.Output {
         let state = State()
 
-        let locations: Driver<(SimpleGroupInfoProtocol, [Location])> = Observable.combineLatest(input.groupIdBeginTrigger.asObservable(), AuthModel.getMe())
+        let locations: Driver<(SimpleGroupInfoProtocol, [Location])> =
+            Observable.combineLatest(input.groupIdBeginTrigger.asObservable(),
+                                     AuthModel.getMe())
             .flatMapLatest { [weak self](combineData) -> Observable<(SimpleGroupInfoProtocol, [Location])> in
                 guard let self = self, let user = combineData.1 else
                 { return Observable<(SimpleGroupInfoProtocol, [Location]) > .error(RxError.noElements) }

@@ -9,5 +9,5 @@
 import Mapbox
 
 class LocationPointAnnotation: MGLPointAnnotation {
-    
+
 }

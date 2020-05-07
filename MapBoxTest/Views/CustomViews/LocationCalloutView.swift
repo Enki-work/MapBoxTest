@@ -99,7 +99,7 @@ class LocationCalloutView: UIView, MGLCalloutView {
     }
 
     func dismissCallout(animated: Bool) {
-        if (superview != nil) {
+        if superview != nil {
             if animated {
                 UIView.animate(withDuration: 0.2, animations: { [weak self] in
                     self?.alpha = 0

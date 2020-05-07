@@ -58,8 +58,8 @@ extension ObservableType {
             case let RxCocoa.RxCocoaURLError.httpRequestFailed(httpResponse, _):
                 if httpResponse.statusCode == 401,
                     let delegate = UIApplication.shared.delegate as? AppDelegate,
-                    let naviVC = delegate._keyWindow()?.rootViewController as? UINavigationController,
-                    let mapVC = naviVC.viewControllers.first(where: {$0 is MapViewController}){
+                    let naviVC = delegate.currentKeyWindow()?.rootViewController as? UINavigationController,
+                    let mapVC = naviVC.viewControllers.first(where: { $0 is MapViewController }) {
                     naviVC.popToViewController(mapVC, animated: false)
                     MapViewNavigator.init(with: mapVC).toLogin()
                 }

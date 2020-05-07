@@ -60,7 +60,7 @@ struct Group: Codable, SimpleGroupInfoProtocol {
                                           forKey: AnyCodingKey(stringValue: CodingKeys.createdAt.rawValue))
         self.createdAt = dateFormatter.date(from: createdAtStr)!
     }
-    
+
     init(title: String) {
         self.title = title
         self.id = ""

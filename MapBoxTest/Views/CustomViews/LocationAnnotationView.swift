@@ -9,5 +9,5 @@
 import Mapbox
 
 class LocationAnnotationView: MGLAnnotationView {
-    
+
 }

@@ -33,7 +33,7 @@ class GetUserLocationsViewModel: ViewModelType {
     func transform(input: GetUserLocationsViewModel.Input) -> GetUserLocationsViewModel.Output {
         let state = State()
         let locations: Driver<[Location]> = input.groupIdBeginTrigger
-            .flatMapLatest {  [unowned self] userId in
+            .flatMapLatest {  [unowned self] _ in
                 return self.locationModel
                     .getUserLocations()
                     .trackError(state.error)
