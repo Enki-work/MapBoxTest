@@ -24,6 +24,10 @@ class GroupManageViewController: BaseViewController {
                                     navigator: MyGroupViewNavigator.init(with: self))
     }()
 
+    private lazy var quitGroupViewModel: QuitGroupViewModel = {
+        return QuitGroupViewModel(with: UserGroupModel())
+    }()
+
     // MARK: - Constants
 
     let disposeBag = DisposeBag()
@@ -33,8 +37,8 @@ class GroupManageViewController: BaseViewController {
         setupUI()
         bindViewModel()
     }
-    
-    private func setupUI(){
+
+    private func setupUI() {
         self.navigationItem.title = "グループ管理"
     }
 
@@ -74,9 +78,16 @@ class GroupManageViewController: BaseViewController {
             guard let self = self else { return }
             self.tableView.deselectRow(at: indexPath, animated: true)
         }).disposed(by: disposeBag)
-        
-        tableView.rx.modelDeleted(Group.self).subscribe(onNext: { (Group) in
-            
+
+        tableView.rx.modelDeleted(Group.self).subscribe(onNext: { [weak self](group) in
+            guard let self = self else { return }
+            let groupIdBeginTrigger = Driver<SimpleGroupInfoProtocol>.just(group)
+            let input = QuitGroupViewModel.Input(groupIdBeginTrigger: groupIdBeginTrigger)
+            let output = self.quitGroupViewModel.transform(input: input)
+            output.result.drive().disposed(by: self.disposeBag)
+            output.error.drive(onNext: self.presentErrorAlert)
+                .disposed(by: self.disposeBag)
+            self.bindViewModel()
         }).disposed(by: disposeBag)
     }
 }

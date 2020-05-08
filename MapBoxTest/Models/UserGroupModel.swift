@@ -10,7 +10,7 @@ import RxSwift
 import Foundation
 
 final class UserGroupModel {
-    func getUserGroups(groupId: String) -> Observable<Void> {
+    func quitUserGroups(groupId: String) -> Observable<Void> {
         return AuthModel.getMe().flatMap { (user) -> Observable<Void> in
             guard let user = user, user.token.count > 0 else {
                 return Observable<Void>.error(RxError.unknown)

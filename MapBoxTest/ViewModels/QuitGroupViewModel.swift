@@ -34,9 +34,9 @@ class QuitGroupViewModel: ViewModelType {
     func transform(input: QuitGroupViewModel.Input) -> QuitGroupViewModel.Output {
         let state = State()
         let result = input.groupIdBeginTrigger.flatMapLatest { [unowned self] group in
-            return self.userGroupModel.getUserGroups(groupId: group.id)
+            return self.userGroupModel.quitUserGroups(groupId: group.id)
                 .trackError(state.error)
-                .asDriverOnErrorJustComplete()
+                .asDriverOnSkipError()
         }
         return QuitGroupViewModel.Output(result: result, error: state.error.asDriver())
     }
