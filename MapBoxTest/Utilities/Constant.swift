@@ -19,6 +19,8 @@ enum MBTUrlString {
     static let getGroupLocationUrlString = "/api/locations/userGroup"
 
     static let getGroupUrlString = "/api/groups"
+    
+    static let userGroupUrlString = "/api/userGroups"
 }
 
 extension Dictionary where Key == String, Value == String {

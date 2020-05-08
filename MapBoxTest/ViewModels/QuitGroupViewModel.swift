@@ -17,7 +17,7 @@ class QuitGroupViewModel: ViewModelType {
     }
 
     struct Output {
-        let locations: Driver<(SimpleGroupInfoProtocol, [Location])>
+        let result: Driver<Void>
         let error: Driver<Error>
     }
 
@@ -25,35 +25,19 @@ class QuitGroupViewModel: ViewModelType {
         let error = ErrorTracker()
     }
 
-    private let locationModel: LocationModel
-    private let navigator: MyGroupViewNavigator?
+    private let userGroupModel: UserGroupModel
 
-    init(with locationModel: LocationModel,
-         navigator: MyGroupViewNavigator? = nil) {
-        self.locationModel = locationModel
-        self.navigator = navigator
+    init(with userGroupModel: UserGroupModel) {
+        self.userGroupModel = userGroupModel
     }
 
     func transform(input: QuitGroupViewModel.Input) -> QuitGroupViewModel.Output {
         let state = State()
-
-        let locations: Driver<(SimpleGroupInfoProtocol, [Location])> = Observable.combineLatest(input.groupIdBeginTrigger.asObservable(), AuthModel.getMe())
-            .flatMapLatest { [weak self](combineData) -> Observable<(SimpleGroupInfoProtocol, [Location])> in
-                guard let self = self, let user = combineData.1 else
-                { return Observable<(SimpleGroupInfoProtocol, [Location]) > .error(RxError.noElements) }
-                if let simpleGroupData = try? JSONEncoder()
-                    .encode(SimpleGroupInfo(id: combineData.0.id, title: combineData.0.title)) {
-                    UserDefaults.standard.set(simpleGroupData, forKey: "selectedGroup\(user.mailAddress)")
-                }
-                self.navigator?.toMapView()
-                return self.locationModel
-                    .getGroupLocations(groupId: combineData.0.id)
-                    .map {
-                        (combineData.0, $0)
-                    }
-                    .trackError(state.error)
-            }.asDriverOnSkipError()
-
-        return QuitGroupViewModel.Output(locations: locations, error: state.error.asDriver())
+        let result = input.groupIdBeginTrigger.flatMapLatest { [unowned self] group in
+            return self.userGroupModel.getUserGroups(groupId: group.id)
+                .trackError(state.error)
+                .asDriverOnErrorJustComplete()
+        }
+        return QuitGroupViewModel.Output(result: result, error: state.error.asDriver())
     }
 }
