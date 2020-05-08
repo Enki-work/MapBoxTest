@@ -15,8 +15,8 @@ class MyGroupViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     // MARK: - Variables
 
-    private lazy var groupViewModel: GetUserGroupsViewModel = {
-        return GetUserGroupsViewModel(with: GroupModel())
+    private lazy var groupViewModel: GetGroupsViewModel = {
+        return GetGroupsViewModel(with: GroupModel())
     }()
 
     private lazy var selectGroupViewModel: SelectGroupViewModel = {
@@ -35,7 +35,7 @@ class MyGroupViewController: BaseViewController {
 
     private func bindViewModel() {
         let checkTrigger = Driver<Void>.just(())
-        let input = GetUserGroupsViewModel.Input(checkTrigger: checkTrigger)
+        let input = GetGroupsViewModel.Input(checkTrigger: checkTrigger)
         let output = groupViewModel.transform(input: input)
 
         setTableView(groups: output.groups.asObservable())

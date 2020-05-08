@@ -1,5 +1,5 @@
 //
-//  GetUserGroupsViewModel.swift
+//  GetGroupsViewModel.swift
 //  MapBoxTest
 //
 //  Created by YanQi on 2020/04/30.
@@ -37,7 +37,7 @@ class GetGroupsViewModel: ViewModelType {
         let groups: Driver<[Group]> = input.checkTrigger
             .flatMapLatest { [unowned self] in
                 return self.groupModel
-                    .getUserGroups()
+                    .getGroups()
                     .trackError(state.error)
                     .asDriverOnSkipError()
             }.map {[weak self] in

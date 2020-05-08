@@ -75,14 +75,14 @@ struct SimpleGroupInfo: Codable, SimpleGroupInfoProtocol {
 }
 
 final class GroupModel {
-    func getUserGroups() -> Observable<[Group]> {
+    func getGroups() -> Observable<[Group]> {
         return AuthModel.getMe().flatMap { (user) -> Observable<[Group]> in
             guard let user = user, user.token.count > 0 else {
                 return Observable<[Group]>.error(RxError.unknown)
             }
             let params = ["token": user.token].getUrlParams()
             guard let url = URL(string: MBTUrlString.hostUrlString +
-                MBTUrlString.getUserGroupUrlString + params) else {
+                MBTUrlString.getGroupUrlString + params) else {
                 return Observable<[Group]>.error(RxError.unknown)
             }
             var urlRequest = URLRequest(url: url)

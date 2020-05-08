@@ -15,8 +15,8 @@ class GroupManageViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     // MARK: - Variables
 
-    private lazy var groupViewModel: GetUserGroupsViewModel = {
-        return GetUserGroupsViewModel(with: GroupModel(), isSelectMode: false)
+    private lazy var groupViewModel: GetGroupsViewModel = {
+        return GetGroupsViewModel(with: GroupModel(), isSelectMode: false)
     }()
 
     private lazy var selectGroupViewModel: SelectGroupViewModel = {
@@ -30,12 +30,17 @@ class GroupManageViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         bindViewModel()
+    }
+    
+    private func setupUI(){
+        self.navigationItem.title = "グループ管理"
     }
 
     private func bindViewModel() {
         let checkTrigger = Driver<Void>.just(())
-        let input = GetUserGroupsViewModel.Input(checkTrigger: checkTrigger)
+        let input = GetGroupsViewModel.Input(checkTrigger: checkTrigger)
         let output = groupViewModel.transform(input: input)
 
         setTableView(groups: output.groups.asObservable())
@@ -68,6 +73,10 @@ class GroupManageViewController: BaseViewController {
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
             guard let self = self else { return }
             self.tableView.deselectRow(at: indexPath, animated: true)
+        }).disposed(by: disposeBag)
+        
+        tableView.rx.modelDeleted(Group.self).subscribe(onNext: { (Group) in
+            
         }).disposed(by: disposeBag)
     }
 }
