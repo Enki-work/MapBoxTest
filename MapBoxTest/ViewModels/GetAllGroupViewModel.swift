@@ -38,7 +38,7 @@ class GetAllGroupViewModel: ViewModelType {
                     .getAllGroups()
                     .trackError(state.error)
                     .asDriverOnSkipError()
-        }
+            }
         return GetAllGroupViewModel.Output(groups: groups, error: state.error.asDriver())
     }
 }

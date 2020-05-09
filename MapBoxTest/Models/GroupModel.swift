@@ -100,20 +100,26 @@ final class GroupModel {
     }
 
     func getAllGroups() -> Observable<[Group]> {
-        guard let url = URL(string: MBTUrlString.hostUrlString +
-            MBTUrlString.getAllGroupUrlString) else {
-            return Observable<[Group]>.error(RxError.unknown)
-        }
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
-        return URLSession.shared.rx.data(request: urlRequest)
-            .flatMap { (data) -> Observable<[Group]> in
-                guard let groups = try? JSONDecoder().decode([Group].self, from: data) else {
-                    return Observable<[Group]>.error(RxError.noElements)
-                }
-                return Observable<[Group]>.just(groups)
-            }.do(onError: { (error) in
-                print(error)
-            }).observeOn(MainScheduler.instance).checkAccountValidity()
+        return AuthModel.getMe().flatMap { (user) -> Observable<[Group]> in
+            var params: String = ""
+            if let user = user, user.token.count > 0 {
+                params = ["token": user.token].getUrlParams()
+            }
+            guard let url = URL(string: MBTUrlString.hostUrlString +
+                MBTUrlString.getAllGroupUrlString + params) else {
+                return Observable<[Group]>.error(RxError.unknown)
+            }
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "GET"
+            return URLSession.shared.rx.data(request: urlRequest)
+                .flatMap { (data) -> Observable<[Group]> in
+                    guard let groups = try? JSONDecoder().decode([Group].self, from: data) else {
+                        return Observable<[Group]>.error(RxError.noElements)
+                    }
+                    return Observable<[Group]>.just(groups)
+                }.do(onError: { (error) in
+                    print(error)
+                })
+        }.observeOn(MainScheduler.instance).checkAccountValidity()
     }
 }
