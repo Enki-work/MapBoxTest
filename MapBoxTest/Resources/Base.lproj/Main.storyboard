@@ -509,6 +509,47 @@
             </objects>
             <point key="canvasLocation" x="-722" y="1618"/>
         </scene>
+        <!--All Group View Controller-->
+        <scene sceneID="eWG-U2-h31">
+            <objects>
+                <viewController storyboardIdentifier="AllGroupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1HC-Sb-s8P" customClass="AllGroupViewController" customModule="MapBoxTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2CZ-Je-aF5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Ff-Zm-Dcb">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupsListItem" id="R6e-C6-XhY">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R6e-C6-XhY" id="Uru-jq-lbg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3Ff-Zm-Dcb" firstAttribute="bottom" secondItem="zsR-54-Ir5" secondAttribute="bottom" id="Dgh-vf-gvn"/>
+                            <constraint firstItem="3Ff-Zm-Dcb" firstAttribute="top" secondItem="zsR-54-Ir5" secondAttribute="top" id="HRw-jw-Lab"/>
+                            <constraint firstItem="3Ff-Zm-Dcb" firstAttribute="leading" secondItem="zsR-54-Ir5" secondAttribute="leading" id="hFi-py-vw2"/>
+                            <constraint firstItem="3Ff-Zm-Dcb" firstAttribute="trailing" secondItem="zsR-54-Ir5" secondAttribute="trailing" id="i0d-ua-TNj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zsR-54-Ir5"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yH6-JB-met"/>
+                    <connections>
+                        <outlet property="tableView" destination="3Ff-Zm-Dcb" id="8pT-wd-HOh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uyk-e9-q3n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="321" y="1617"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vJS-BI-rPn"/>

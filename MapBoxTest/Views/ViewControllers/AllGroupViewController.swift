@@ -1,8 +1,8 @@
 //
-//  GroupManageViewController.swift
+//  AllGroupViewController.swift
 //  MapBoxTest
 //
-//  Created by YanQi on 2020/05/07.
+//  Created by YanQi on 2020/05/09.
 //  Copyright © 2020 Prageeth. All rights reserved.
 //
 
@@ -10,22 +10,18 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class GroupManageViewController: BaseViewController {
+class AllGroupViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     // MARK: - Variables
 
-    private lazy var groupViewModel: GetGroupsViewModel = {
-        return GetGroupsViewModel(with: GroupModel(), isSelectMode: false)
+    private lazy var groupViewModel: GetAllGroupViewModel = {
+        return GetAllGroupViewModel(with: GroupModel())
     }()
 
     private lazy var selectGroupViewModel: SelectGroupViewModel = {
         return SelectGroupViewModel(with: LocationModel.init(),
                                     navigator: MyGroupViewNavigator.init(with: self))
-    }()
-
-    private lazy var quitGroupViewModel: QuitGroupViewModel = {
-        return QuitGroupViewModel(with: UserGroupModel())
     }()
 
     // MARK: - Constants
@@ -34,17 +30,12 @@ class GroupManageViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         bindViewModel()
-    }
-
-    private func setupUI() {
-        self.navigationItem.title = "グループ管理"
     }
 
     private func bindViewModel() {
         let checkTrigger = Driver<Void>.just(())
-        let input = GetGroupsViewModel.Input(checkTrigger: checkTrigger)
+        let input = GetAllGroupViewModel.Input(checkTrigger: checkTrigger)
         let output = groupViewModel.transform(input: input)
 
         setTableView(groups: output.groups.asObservable())
@@ -78,25 +69,5 @@ class GroupManageViewController: BaseViewController {
             guard let self = self else { return }
             self.tableView.deselectRow(at: indexPath, animated: true)
         }).disposed(by: disposeBag)
-
-        tableView.rx.modelDeleted(Group.self).subscribe(onNext: { [weak self](group) in
-            guard let self = self else { return }
-            let groupIdBeginTrigger = Driver<SimpleGroupInfoProtocol>.just(group)
-            let input = QuitGroupViewModel.Input(groupIdBeginTrigger: groupIdBeginTrigger)
-            let output = self.quitGroupViewModel.transform(input: input)
-            output.result.drive().disposed(by: self.disposeBag)
-            output.error.drive(onNext: self.presentErrorAlert)
-                .disposed(by: self.disposeBag)
-            self.bindViewModel()
-        }).disposed(by: disposeBag)
-    }
-    @IBAction func clickJoinBtn(_ sender: Any) {
-        GroupManageNavigator.init(with: self).showAllGroups()
-    }
-}
-
-extension GroupManageViewController: UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-            .none
     }
 }

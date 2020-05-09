@@ -19,6 +19,7 @@ enum MBTUrlString {
     static let getGroupLocationUrlString = "/api/locations/userGroup"
 
     static let getGroupUrlString = "/api/groups"
+    static let getAllGroupUrlString = "/api/groups/all"
     
     static let userGroupUrlString = "/api/userGroups"
 }

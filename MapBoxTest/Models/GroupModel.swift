@@ -60,7 +60,7 @@ struct Group: Codable, SimpleGroupInfoProtocol {
                                           forKey: AnyCodingKey(stringValue: CodingKeys.createdAt.rawValue))
         self.createdAt = dateFormatter.date(from: createdAtStr)!
     }
-    
+
     init(title: String) {
         self.title = title
         self.id = ""
@@ -97,5 +97,23 @@ final class GroupModel {
                     print(error)
                 })
         }.observeOn(MainScheduler.instance).checkAccountValidity()
+    }
+
+    func getAllGroups() -> Observable<[Group]> {
+        guard let url = URL(string: MBTUrlString.hostUrlString +
+            MBTUrlString.getAllGroupUrlString) else {
+            return Observable<[Group]>.error(RxError.unknown)
+        }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        return URLSession.shared.rx.data(request: urlRequest)
+            .flatMap { (data) -> Observable<[Group]> in
+                guard let groups = try? JSONDecoder().decode([Group].self, from: data) else {
+                    return Observable<[Group]>.error(RxError.noElements)
+                }
+                return Observable<[Group]>.just(groups)
+            }.do(onError: { (error) in
+                print(error)
+            }).observeOn(MainScheduler.instance).checkAccountValidity()
     }
 }
