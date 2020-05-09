@@ -59,6 +59,9 @@ class MapViewController: BaseViewController {
                     titleBtn.sizeToFit()
                 })
                 .bind(to: titleBtn.rx.title()).disposed(by: disposeBag)
+            titleOutPut.error.drive(onNext: { (_) in
+                titleBtn.setTitle("すべて", for: .normal)
+            }).disposed(by: self.disposeBag)
         }
 
         let selectGroupInput = SelectGroupViewModel.Input(groupIdBeginTrigger:

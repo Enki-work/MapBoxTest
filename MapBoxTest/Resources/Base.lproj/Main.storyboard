@@ -412,14 +412,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BoP-Rk-ekQ"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Msf-oo-Dt2"/>
+                    <navigationItem key="navigationItem" id="Msf-oo-Dt2">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="UxX-dU-p8r">
+                            <connections>
+                                <action selector="clickJoinBtn:" destination="KHJ-2Y-bwV" id="b8r-v7-jwV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="8M2-QY-JKy" id="ShE-J5-KJ5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lYu-lw-sZE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1383" y="916"/>
+            <point key="canvasLocation" x="1249" y="916"/>
         </scene>
         <!--My Group Locations View Controller-->
         <scene sceneID="zhJ-SB-bYT">

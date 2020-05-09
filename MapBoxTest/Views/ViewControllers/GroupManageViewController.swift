@@ -90,4 +90,6 @@ class GroupManageViewController: BaseViewController {
             self.bindViewModel()
         }).disposed(by: disposeBag)
     }
+    @IBAction func clickJoinBtn(_ sender: Any) {
+    }
 }
