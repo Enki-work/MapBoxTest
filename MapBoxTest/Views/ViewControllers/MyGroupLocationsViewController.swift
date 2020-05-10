@@ -21,14 +21,13 @@ class MyGroupLocationsViewController: BaseViewController {
 
     // MARK: - Constants
 
-    let disposeBag = DisposeBag()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
     }
 
     private func bindViewModel() {
+        disposeBag = DisposeBag()
         let checkTrigger = Driver<Void>.just(())
         let input = GetGroupLocationsViewModel.Input(checkTrigger: checkTrigger)
         let output = locationViewModel.transform(input: input)

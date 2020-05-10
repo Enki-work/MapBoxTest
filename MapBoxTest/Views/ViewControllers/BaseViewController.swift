@@ -9,6 +9,9 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+
+    var disposeBag = DisposeBag()
+    
     func presentErrorAlert(error: Error) {
         let alert = UIAlertController(title: "認証エラー",
                                       message: error.localizedDescription,

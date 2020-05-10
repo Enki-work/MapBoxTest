@@ -26,8 +26,6 @@ class MyGroupViewController: BaseViewController {
 
     // MARK: - Constants
 
-    let disposeBag = DisposeBag()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
@@ -64,7 +62,7 @@ class MyGroupViewController: BaseViewController {
                 mapVC.setPointAnnotation(locations: combineData.1)
             }
         }).disposed(by: disposeBag)
-
+        selectGroupOutput.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
             guard let self = self else { return }
             self.tableView.deselectRow(at: indexPath, animated: true)

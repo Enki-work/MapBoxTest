@@ -30,8 +30,6 @@ class GroupManageViewController: BaseViewController {
 
     // MARK: - Constants
 
-    let disposeBag = DisposeBag()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -43,6 +41,7 @@ class GroupManageViewController: BaseViewController {
     }
 
     private func bindViewModel() {
+        disposeBag = DisposeBag()
         let checkTrigger = Driver<Void>.just(())
         let input = GetGroupsViewModel.Input(checkTrigger: checkTrigger)
         let output = groupViewModel.transform(input: input)
@@ -84,14 +83,19 @@ class GroupManageViewController: BaseViewController {
             let groupIdBeginTrigger = Driver<SimpleGroupInfoProtocol>.just(group)
             let input = QuitGroupViewModel.Input(groupIdBeginTrigger: groupIdBeginTrigger)
             let output = self.quitGroupViewModel.transform(input: input)
-            output.result.drive().disposed(by: self.disposeBag)
+            output.result.drive(onNext: { [weak self](_) in
+                self?.bindViewModel()
+            }).disposed(by: self.disposeBag)
             output.error.drive(onNext: self.presentErrorAlert)
                 .disposed(by: self.disposeBag)
-            self.bindViewModel()
         }).disposed(by: disposeBag)
     }
     @IBAction func clickJoinBtn(_ sender: Any) {
         GroupManageNavigator.init(with: self).showAllGroups()
+    }
+
+    func reloadTableViewData() {
+        self.bindViewModel()
     }
 }
 

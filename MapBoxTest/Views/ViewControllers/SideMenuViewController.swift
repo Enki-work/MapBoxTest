@@ -14,8 +14,6 @@ class SideMenuViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private var logoutViewModel: LogoutViewModel?
-
-    let disposeBag = DisposeBag()
     let cellTitleList = Observable.just(["マイローケーション",
                                          "グループ管理",
                                          "マイグループローケーション",
@@ -27,6 +25,7 @@ class SideMenuViewController: BaseViewController {
     }
 
     private func setTableView() {
+        disposeBag = DisposeBag()
         tableView.tableFooterView = UIView.init()
         cellTitleList
             .bind(to: tableView.rx.items) { (tableView, _, element) in

@@ -28,12 +28,11 @@ class SignupViewController: BaseViewController {
                                and: SignupNavigator(with: self))
     }()
 
-    let disposeBag = DisposeBag()
-
     // MARK: - View Life Cycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        disposeBag = DisposeBag()
         initializeUI()
         bindViewModel()
     }

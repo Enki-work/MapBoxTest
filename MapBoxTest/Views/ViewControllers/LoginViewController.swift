@@ -28,8 +28,6 @@ class LoginViewController: BaseViewController {
 
     // MARK: - Constants
 
-    let disposeBag = DisposeBag()
-
     // MARK: - View Life Cycle Methods
 
     override func viewDidLoad() {
@@ -47,6 +45,7 @@ class LoginViewController: BaseViewController {
     }
 
     private func bindViewModel() {
+        disposeBag = DisposeBag()
         let input = LoginViewModel.Input(loginTrigger: loginButton.rx.tap.asDriver(),
                                          signupTrigger: signupButton.rx.tap.asDriver(),
                                          mailaddress: emailTextField.rx.text

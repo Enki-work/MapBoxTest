@@ -30,8 +30,6 @@ class MapViewController: BaseViewController {
         return SelectGroupViewModel(with: LocationModel.init())
     }()
 
-    private let disposeBag = DisposeBag()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSideMenu()
@@ -46,6 +44,7 @@ class MapViewController: BaseViewController {
     }
 
     func bindViewModel() {
+        disposeBag = DisposeBag()
         let beginTrigger = Driver<Void>.just(())
         let checkLoginInput = CheckLoginViewModel.Input.init(checkTrigger:
             beginTrigger)

@@ -19,14 +19,12 @@ class AllGroupViewController: BaseViewController {
         return GetAllGroupViewModel(with: GroupModel())
     }()
 
-    private lazy var selectGroupViewModel: SelectGroupViewModel = {
-        return SelectGroupViewModel(with: LocationModel.init(),
-                                    navigator: MyGroupViewNavigator.init(with: self))
+    private lazy var joinGroupViewModel: JoinGroupViewModel = {
+        return JoinGroupViewModel(with: UserGroupModel.init(),
+                                  navigator: AllGroupViewNavigator.init(with: self))
     }()
 
     // MARK: - Constants
-
-    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +32,7 @@ class AllGroupViewController: BaseViewController {
     }
 
     private func bindViewModel() {
+        disposeBag = DisposeBag()
         let checkTrigger = Driver<Void>.just(())
         let input = GetAllGroupViewModel.Input(checkTrigger: checkTrigger)
         let output = groupViewModel.transform(input: input)
@@ -52,19 +51,17 @@ class AllGroupViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
 
-        let selectGroupInput = SelectGroupViewModel.Input.init(groupIdBeginTrigger:
+        let joinUserGroupInput = JoinGroupViewModel.Input.init(groupIdBeginTrigger:
             tableView.rx.modelSelected(SimpleGroupInfoProtocol.self).asDriver())
-        let selectGroupOutput = selectGroupViewModel.transform(input: selectGroupInput)
-        selectGroupOutput.locations.drive(onNext: { [weak self](combineData) in
+        let joinUserGroupOutput = joinGroupViewModel.transform(input: joinUserGroupInput)
+        joinUserGroupOutput.result.drive(onNext: { [weak self](_) in
+            print(self?.presentingViewController)
             if let self = self, let naviVC = self.presentingViewController as? UINavigationController,
-                let mapVC = naviVC.topViewController as? MapViewController,
-                let titleBtn = mapVC.navigationItem.titleView as? UIButton {
-                titleBtn.setTitle(combineData.0.title, for: .normal)
-                titleBtn.sizeToFit()
-                mapVC.setPointAnnotation(locations: combineData.1)
+                let groupManageVC = naviVC.topViewController as? GroupManageViewController{
+                groupManageVC.reloadTableViewData()
             }
         }).disposed(by: disposeBag)
-
+        joinUserGroupOutput.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
             guard let self = self else { return }
             self.tableView.deselectRow(at: indexPath, animated: true)
