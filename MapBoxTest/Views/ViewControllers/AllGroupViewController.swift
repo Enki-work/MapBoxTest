@@ -55,7 +55,6 @@ class AllGroupViewController: BaseViewController {
             tableView.rx.modelSelected(SimpleGroupInfoProtocol.self).asDriver())
         let joinUserGroupOutput = joinGroupViewModel.transform(input: joinUserGroupInput)
         joinUserGroupOutput.result.drive(onNext: { [weak self](_) in
-            print(self?.presentingViewController)
             if let self = self, let naviVC = self.presentingViewController as? UINavigationController,
                 let groupManageVC = naviVC.topViewController as? GroupManageViewController{
                 groupManageVC.reloadTableViewData()
