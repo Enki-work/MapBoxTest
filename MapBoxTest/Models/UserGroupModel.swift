@@ -30,4 +30,25 @@ final class UserGroupModel {
                 })
         }.observeOn(MainScheduler.instance).checkAccountValidity()
     }
+    
+    func joinUserGroups(groupId: String) -> Observable<Void> {
+        return AuthModel.getMe().flatMap { (user) -> Observable<Void> in
+            guard let user = user, user.token.count > 0 else {
+                return Observable<Void>.error(RxError.unknown)
+            }
+            let params = ["token": user.token, "groupId": groupId].getUrlParams()
+            guard let url = URL(string: MBTUrlString.hostUrlString +
+                MBTUrlString.userGroupUrlString + params) else {
+                return Observable<Void>.error(RxError.unknown)
+            }
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            return URLSession.shared.rx.data(request: urlRequest)
+                .flatMap { (data) -> Observable<Void> in
+                    return Observable<Void>.just(())
+                }.do(onError: { (error) in
+                    print(error)
+                })
+        }.observeOn(MainScheduler.instance).checkAccountValidity()
+    }
 }

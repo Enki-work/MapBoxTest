@@ -36,6 +36,8 @@
 		A40352472466E0FA00E9DFCB /* AllGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40352462466E0FA00E9DFCB /* AllGroupViewController.swift */; };
 		A40352492466E14A00E9DFCB /* GetAllGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40352482466E14A00E9DFCB /* GetAllGroupViewModel.swift */; };
 		A403524B2466E32000E9DFCB /* GroupManageNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403524A2466E32000E9DFCB /* GroupManageNavigator.swift */; };
+		A403524D246828B600E9DFCB /* JoinGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403524C246828B600E9DFCB /* JoinGroupViewModel.swift */; };
+		A403524F2468293500E9DFCB /* AllGroupViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403524E2468293500E9DFCB /* AllGroupViewNavigator.swift */; };
 		A4472C1D2446D9EF0067A7DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */; };
 		A4472C232446F15A0067A7DE /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; };
 		A4472C242446F15A0067A7DE /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4472C1F2446F15A0067A7DE /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -124,6 +126,8 @@
 		A40352462466E0FA00E9DFCB /* AllGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupViewController.swift; sourceTree = "<group>"; };
 		A40352482466E14A00E9DFCB /* GetAllGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllGroupViewModel.swift; sourceTree = "<group>"; };
 		A403524A2466E32000E9DFCB /* GroupManageNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManageNavigator.swift; sourceTree = "<group>"; };
+		A403524C246828B600E9DFCB /* JoinGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupViewModel.swift; sourceTree = "<group>"; };
+		A403524E2468293500E9DFCB /* AllGroupViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupViewNavigator.swift; sourceTree = "<group>"; };
 		A4472C1C2446D9EF0067A7DE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A4472C1E2446F15A0067A7DE /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		A4472C1F2446F15A0067A7DE /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 				A403523224626A5400E9DFCB /* SelectGroupViewModel.swift */,
 				A403524124642D0700E9DFCB /* QuitGroupViewModel.swift */,
 				A40352482466E14A00E9DFCB /* GetAllGroupViewModel.swift */,
+				A403524C246828B600E9DFCB /* JoinGroupViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				A4035224245BEE1D00E9DFCB /* LogoutNavigator.swift */,
 				A40352342462741F00E9DFCB /* MyGroupViewNavigator.swift */,
 				A403524A2466E32000E9DFCB /* GroupManageNavigator.swift */,
+				A403524E2468293500E9DFCB /* AllGroupViewNavigator.swift */,
 			);
 			path = Navigators;
 			sourceTree = "<group>";
@@ -472,8 +478,10 @@
 				A453EA5E24503A8600B2BA0E /* MBTError.swift in Sources */,
 				A4B5D5CE245BB60600217BCB /* GetGroupLocationsViewModel.swift in Sources */,
 				A403523E2462BCA100E9DFCB /* LocationAnnotationView.swift in Sources */,
+				A403524D246828B600E9DFCB /* JoinGroupViewModel.swift in Sources */,
 				A4D953EF24599FA400028D09 /* MyGroupViewController.swift in Sources */,
 				A40352402464220800E9DFCB /* GroupManageViewController.swift in Sources */,
+				A403524F2468293500E9DFCB /* AllGroupViewNavigator.swift in Sources */,
 				A4D953E72457D01E00028D09 /* MyLocationsViewController.swift in Sources */,
 				A47DC6322443FAF100D12922 /* MapViewController.swift in Sources */,
 				9645D49B2447F06C00737631 /* MBCLLocationManagerDelegate.swift in Sources */,
