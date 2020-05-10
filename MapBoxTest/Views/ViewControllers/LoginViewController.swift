@@ -45,7 +45,7 @@ class LoginViewController: BaseViewController {
     }
 
     private func bindViewModel() {
-        disposeBag = DisposeBag()
+        defaultDisposeBag = DisposeBag()
         let input = LoginViewModel.Input(loginTrigger: loginButton.rx.tap.asDriver(),
                                          signupTrigger: signupButton.rx.tap.asDriver(),
                                          mailaddress: emailTextField.rx.text
@@ -56,18 +56,18 @@ class LoginViewController: BaseViewController {
                                              .asDriver(onErrorJustReturn: ""))
         let output = loginViewModel.transform(input: input)
 
-        output.login.drive(onNext: userWillLogin).disposed(by: disposeBag)
-        output.signup.drive().disposed(by: disposeBag)
+        output.login.drive(onNext: userWillLogin).disposed(by: defaultDisposeBag)
+        output.signup.drive().disposed(by: defaultDisposeBag)
 
         output.validatedEmail
             .drive(emailValidationOutlet.rx.validationResult)
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
 
         output.validatedPassword
             .drive(passwordValidationOutlet.rx.validationResult)
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
 
-        output.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
+        output.error.drive(onNext: presentErrorAlert).disposed(by: defaultDisposeBag)
     }
 
     private func userWillLogin(user: UserModel) {

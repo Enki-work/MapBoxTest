@@ -32,13 +32,13 @@ class AllGroupViewController: BaseViewController {
     }
 
     private func bindViewModel() {
-        disposeBag = DisposeBag()
+        defaultDisposeBag = DisposeBag()
         let checkTrigger = Driver<Void>.just(())
         let input = GetAllGroupViewModel.Input(checkTrigger: checkTrigger)
         let output = groupViewModel.transform(input: input)
 
         setTableView(groups: output.groups.asObservable())
-        output.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
+        output.error.drive(onNext: presentErrorAlert).disposed(by: defaultDisposeBag)
     }
 
     private func setTableView(groups: Observable<[Group]>) {
@@ -49,7 +49,7 @@ class AllGroupViewController: BaseViewController {
                 cell.textLabel?.text = "\(element.title)"
                 return cell
             }
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
 
         let joinUserGroupInput = JoinGroupViewModel.Input.init(groupIdBeginTrigger:
             tableView.rx.modelSelected(SimpleGroupInfoProtocol.self).asDriver())
@@ -59,11 +59,11 @@ class AllGroupViewController: BaseViewController {
                 let groupManageVC = naviVC.topViewController as? GroupManageViewController{
                 groupManageVC.reloadTableViewData()
             }
-        }).disposed(by: disposeBag)
-        joinUserGroupOutput.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
+        }).disposed(by: defaultDisposeBag)
+        joinUserGroupOutput.error.drive(onNext: presentErrorAlert).disposed(by: defaultDisposeBag)
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
             guard let self = self else { return }
             self.tableView.deselectRow(at: indexPath, animated: true)
-        }).disposed(by: disposeBag)
+        }).disposed(by: defaultDisposeBag)
     }
 }

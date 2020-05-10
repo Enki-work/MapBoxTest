@@ -32,7 +32,7 @@ class SignupViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        disposeBag = DisposeBag()
+        defaultDisposeBag = DisposeBag()
         initializeUI()
         bindViewModel()
     }
@@ -55,36 +55,36 @@ class SignupViewController: BaseViewController {
 
         output.validatedEmail
             .drive(emailValidationOutlet.rx.validationResult)
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
 
         output.validatedPassword
             .drive(passwordValidationOutlet.rx.validationResult)
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
 
         output.validatedPasswordRepeated
             .drive(repeatedPasswordValidationOutlet.rx.validationResult)
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
 
         output.signupEnabled.drive(onNext: { [weak self] valid in
             self?.signupFinishBtnOutlet.isEnabled = valid
             self?.signupFinishBtnOutlet.alpha = valid ? 1.0 : 0.5
-        }).disposed(by: disposeBag)
+        }).disposed(by: defaultDisposeBag)
 
         output.signupFinish
             .drive(onNext: userFinishedSignup)
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
 
         output.back
             .drive()
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
 
-        output.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
+        output.error.drive(onNext: presentErrorAlert).disposed(by: defaultDisposeBag)
 
         let tapBackground = UITapGestureRecognizer()
         tapBackground.rx.event.subscribe(onNext: { [weak self] _ in
             self?.view.endEditing(true)
         })
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
         view.addGestureRecognizer(tapBackground)
     }
 

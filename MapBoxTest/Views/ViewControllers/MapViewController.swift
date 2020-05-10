@@ -44,11 +44,11 @@ class MapViewController: BaseViewController {
     }
 
     func bindViewModel() {
-        disposeBag = DisposeBag()
+        defaultDisposeBag = DisposeBag()
         let beginTrigger = Driver<Void>.just(())
         let checkLoginInput = CheckLoginViewModel.Input.init(checkTrigger:
             beginTrigger)
-        checkLoginViewModel.transform(input: checkLoginInput).check.drive().disposed(by: disposeBag)
+        checkLoginViewModel.transform(input: checkLoginInput).check.drive().disposed(by: defaultDisposeBag)
 
         let titleInput = MapViewTitleViewModel.Input.init(beginTrigger: beginTrigger)
         let titleOutPut = mapViewTitleViewModel.transform(input: titleInput)
@@ -57,10 +57,10 @@ class MapViewController: BaseViewController {
                 .do(afterNext: { (_) in
                     titleBtn.sizeToFit()
                 })
-                .bind(to: titleBtn.rx.title()).disposed(by: disposeBag)
+                .bind(to: titleBtn.rx.title()).disposed(by: defaultDisposeBag)
             titleOutPut.error.drive(onNext: { (_) in
                 titleBtn.setTitle("すべて", for: .normal)
-            }).disposed(by: self.disposeBag)
+            }).disposed(by: self.defaultDisposeBag)
         }
 
         let selectGroupInput = SelectGroupViewModel.Input(groupIdBeginTrigger:
@@ -69,7 +69,7 @@ class MapViewController: BaseViewController {
         selectGroupOutput.locations.drive(onNext: { [weak self](combineData) in
             guard let self = self else { return }
             self.setPointAnnotation(locations: combineData.1)
-        }).disposed(by: disposeBag)
+        }).disposed(by: defaultDisposeBag)
     }
 
     private func setupMap() {
@@ -86,7 +86,7 @@ class MapViewController: BaseViewController {
         titleBtn.rx.tap.bind { [weak self]() in
             guard let self = self else { return }
             MapViewNavigator(with: self).showGroups()
-        }.disposed(by: disposeBag)
+        }.disposed(by: uiDisposeBag)
         self.navigationItem.titleView = titleBtn
     }
 

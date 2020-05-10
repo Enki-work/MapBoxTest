@@ -41,13 +41,13 @@ class GroupManageViewController: BaseViewController {
     }
 
     private func bindViewModel() {
-        disposeBag = DisposeBag()
+        defaultDisposeBag = DisposeBag()
         let checkTrigger = Driver<Void>.just(())
         let input = GetGroupsViewModel.Input(checkTrigger: checkTrigger)
         let output = groupViewModel.transform(input: input)
 
         setTableView(groups: output.groups.asObservable())
-        output.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
+        output.error.drive(onNext: presentErrorAlert).disposed(by: defaultDisposeBag)
     }
 
     private func setTableView(groups: Observable<[Group]>) {
@@ -58,7 +58,7 @@ class GroupManageViewController: BaseViewController {
                 cell.textLabel?.text = "\(element.title)"
                 return cell
             }
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
 
         let selectGroupInput = SelectGroupViewModel.Input.init(groupIdBeginTrigger:
             tableView.rx.modelSelected(SimpleGroupInfoProtocol.self).asDriver())
@@ -71,12 +71,12 @@ class GroupManageViewController: BaseViewController {
                 titleBtn.sizeToFit()
                 mapVC.setPointAnnotation(locations: combineData.1)
             }
-        }).disposed(by: disposeBag)
+        }).disposed(by: defaultDisposeBag)
 
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
             guard let self = self else { return }
             self.tableView.deselectRow(at: indexPath, animated: true)
-        }).disposed(by: disposeBag)
+        }).disposed(by: defaultDisposeBag)
 
         tableView.rx.modelDeleted(Group.self).subscribe(onNext: { [weak self](group) in
             guard let self = self else { return }
@@ -85,10 +85,10 @@ class GroupManageViewController: BaseViewController {
             let output = self.quitGroupViewModel.transform(input: input)
             output.result.drive(onNext: { [weak self](_) in
                 self?.bindViewModel()
-            }).disposed(by: self.disposeBag)
+            }).disposed(by: self.defaultDisposeBag)
             output.error.drive(onNext: self.presentErrorAlert)
-                .disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
+                .disposed(by: self.defaultDisposeBag)
+        }).disposed(by: defaultDisposeBag)
     }
     @IBAction func clickJoinBtn(_ sender: Any) {
         GroupManageNavigator.init(with: self).showAllGroups()

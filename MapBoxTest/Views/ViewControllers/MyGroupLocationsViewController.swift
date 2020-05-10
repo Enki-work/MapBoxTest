@@ -27,13 +27,13 @@ class MyGroupLocationsViewController: BaseViewController {
     }
 
     private func bindViewModel() {
-        disposeBag = DisposeBag()
+        defaultDisposeBag = DisposeBag()
         let checkTrigger = Driver<Void>.just(())
         let input = GetGroupLocationsViewModel.Input(checkTrigger: checkTrigger)
         let output = locationViewModel.transform(input: input)
 
         setTableView(locations: output.locations.asObservable())
-        output.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
+        output.error.drive(onNext: presentErrorAlert).disposed(by: defaultDisposeBag)
     }
 
     private func setTableView(locations: Observable<[Location]>) {
@@ -44,7 +44,7 @@ class MyGroupLocationsViewController: BaseViewController {
                 cell.textLabel?.text = "latitude: \(element.latitude) longitude:\(element.longitude)"
                 return cell
             }
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
 
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
             guard let self = self,
@@ -55,6 +55,6 @@ class MyGroupLocationsViewController: BaseViewController {
                 SideMenuNavigator.init(with: mapVC).toLocations()
             }
 
-        }).disposed(by: disposeBag)
+        }).disposed(by: defaultDisposeBag)
     }
 }

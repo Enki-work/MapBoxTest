@@ -25,7 +25,7 @@ class SideMenuViewController: BaseViewController {
     }
 
     private func setTableView() {
-        disposeBag = DisposeBag()
+        defaultDisposeBag = DisposeBag()
         tableView.tableFooterView = UIView.init()
         cellTitleList
             .bind(to: tableView.rx.items) { (tableView, _, element) in
@@ -33,7 +33,7 @@ class SideMenuViewController: BaseViewController {
                 cell.textLabel?.text = element
                 return cell
             }
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
 
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
             guard let self = self,
@@ -59,12 +59,12 @@ class SideMenuViewController: BaseViewController {
                     let logoutTrigger = Driver<Void>.just(())
                     let input = LogoutViewModel.Input.init(logoutTrigger: logoutTrigger)
                     let output = self.logoutViewModel?.transform(input: input)
-                    output?.logout.drive().disposed(by: self.disposeBag)
+                    output?.logout.drive().disposed(by: self.defaultDisposeBag)
                 default:
                     break
                 }
             }
 
-        }).disposed(by: disposeBag)
+        }).disposed(by: defaultDisposeBag)
     }
 }

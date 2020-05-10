@@ -11,7 +11,8 @@ import RxSwift
 
 class BaseViewController: UIViewController {
 
-    var disposeBag = DisposeBag()
+    var defaultDisposeBag = DisposeBag()
+    var uiDisposeBag = DisposeBag()
     
     func presentErrorAlert(error: Error) {
         let alert = UIAlertController(title: "認証エラー",

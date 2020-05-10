@@ -37,7 +37,7 @@ class MyGroupViewController: BaseViewController {
         let output = groupViewModel.transform(input: input)
 
         setTableView(groups: output.groups.asObservable())
-        output.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
+        output.error.drive(onNext: presentErrorAlert).disposed(by: defaultDisposeBag)
     }
 
     private func setTableView(groups: Observable<[Group]>) {
@@ -48,7 +48,7 @@ class MyGroupViewController: BaseViewController {
                 cell.textLabel?.text = "\(element.title)"
                 return cell
             }
-            .disposed(by: disposeBag)
+            .disposed(by: defaultDisposeBag)
 
         let selectGroupInput = SelectGroupViewModel.Input.init(groupIdBeginTrigger:
             tableView.rx.modelSelected(SimpleGroupInfoProtocol.self).asDriver())
@@ -61,11 +61,11 @@ class MyGroupViewController: BaseViewController {
                 titleBtn.sizeToFit()
                 mapVC.setPointAnnotation(locations: combineData.1)
             }
-        }).disposed(by: disposeBag)
-        selectGroupOutput.error.drive(onNext: presentErrorAlert).disposed(by: disposeBag)
+        }).disposed(by: defaultDisposeBag)
+        selectGroupOutput.error.drive(onNext: presentErrorAlert).disposed(by: defaultDisposeBag)
         tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
             guard let self = self else { return }
             self.tableView.deselectRow(at: indexPath, animated: true)
-        }).disposed(by: disposeBag)
+        }).disposed(by: defaultDisposeBag)
     }
 }
